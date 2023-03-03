@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 // This class is responsible for managing the games foods, and dispensing of foods.
-public class Dispenser : MonoBehaviour
+public class RecipeDispenser : MonoBehaviour
 {
     public Animator pipe;               // this class will play the pipe dispensing animation
     public Transform monitor;           // the monitor that shows food updates
@@ -104,25 +104,21 @@ public class Dispenser : MonoBehaviour
         foreach (GameObject obj in allFoods) {
             if (obj.name==currentFood) {
                 obj.SetActive(true);
+                obj.transform.position = new Vector3(1f, 4f, 0f);
+                break;
+            }
+            if(randIdx>0)
+            {
+                currentFood = gameFoods[randIdx - 1];
+            }
+            if (obj.name == currentFood)
+            {
+                obj.SetActive(true);
                 obj.transform.position = new Vector3(-1f, 4f, 0f);
                 break;
             }
         }
 
-        if (randIdx > 0)
-        {
-            currentFood = gameFoods[randIdx - 1];
-        }
-        foreach (GameObject obj in allFoods)
-        {
-            if (obj.name == currentFood)
-            {
-                obj.SetActive(true);
-                obj.transform.position = new Vector3(1f, 4f, 0f);
-                break;
-            }
-        }
-        
         // dispensing animation and sound
         pipe.Play("Base Layer.pipe_dispense");
         sound.clip = dispense_sound;
