@@ -59,3 +59,14 @@ public class RockstarConfig : GameConfig
     public bool EnableAnimations {get; set;}
     public int MusicTrack {get; set;}
 }
+
+public class LookingConfig : GameConfig
+{
+    public string TestName { get; set; }
+    public string Scene { get; set; }
+    public float AverageUpdateFrequency { get; set; }
+    public float UpdateFreqVariance { get; set; }
+    public float MaxGameTime { get; set; }
+    public int MaxPrompts { get; set; }
+    public int DiffLevel { get; set; }
+}

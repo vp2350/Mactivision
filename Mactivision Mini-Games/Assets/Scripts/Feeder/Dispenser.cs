@@ -108,20 +108,6 @@ public class Dispenser : MonoBehaviour
                 break;
             }
         }
-
-        if (randIdx > 0)
-        {
-            currentFood = gameFoods[randIdx - 1];
-        }
-        foreach (GameObject obj in allFoods)
-        {
-            if (obj.name == currentFood)
-            {
-                obj.SetActive(true);
-                obj.transform.position = new Vector3(1f, 4f, 0f);
-                break;
-            }
-        }
         
         // dispensing animation and sound
         pipe.Play("Base Layer.pipe_dispense");
