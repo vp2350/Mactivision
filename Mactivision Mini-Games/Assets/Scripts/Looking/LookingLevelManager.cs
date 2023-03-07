@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -64,6 +65,42 @@ public class LookingLevelManager : LevelManager
         //right = 1
         //down = 2
         //left = 3
+        if (lvlState == 2)
+        {
+            StartGame();
+
+            // game automatically ends after maxGameTime seconds
+            if (Time.time - gameStartTime >= maxGameTime)
+            {
+                EndGame();
+                return;
+            }
+
+            // The game cycle
+            switch (gameState)
+            {
+                case GameState.Prompting:
+                    break;
+                case GameState.DisplayOptions:
+                    DisplayOptions();
+                    break;
+                case GameState.WaitingForPlayer:
+                    WaitForPlayer();
+                    break;
+                case GameState.Response:
+                    GiveFeedback();
+                    break;
+            }
+        }
+    }
+
+    // Begin the actual game, start recording metrics
+    void StartGame()
+    {
+        //mcMetric.startRecording();
+        //metricWriter = new MetricJSONWriter("Feeder", DateTime.Now, seed); // initialize metric data writer
+        gameStartTime = Time.time;
+        //sound.clip = bite_sound;
     }
     // Handles GUI events (keyboard, mouse, etc events)
     void OnGUI()
@@ -87,5 +124,48 @@ public class LookingLevelManager : LevelManager
         {
             Battery.Instance.LoadNextScene();
         }
+    }
+
+    void DisplayOptions()
+    {
+
+    }
+
+    void WaitForPlayer()
+    {
+
+    }
+
+    void GiveFeedback()
+    {
+
+    }
+
+    // End game, stop animations, sounds, physics. Finish recording metrics
+    void EndGame()
+    {
+        //mcMetric.finishRecording();
+        //var str = metricWriter.GetLogMetrics(
+        //            DateTime.Now,
+        //            new List<AbstractMetric>() { mcMetric }
+        //        );
+        //StartCoroutine(Post("feeder_" + DateTime.Now.ToFileTime() + ".json", str));
+        //
+        //dispenser.StopAllCoroutines();
+        //dispenser.screenRed.SetActive(false);
+        //dispenser.screenGreen.SetActive(false);
+        //dispenser.enabled = false;
+        //monster.speed = 0f;
+        //foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Food"))
+        //{
+        //    obj.GetComponent<Rigidbody2D>().isKinematic = true;
+        //    obj.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        //    obj.GetComponent<Rigidbody2D>().angularVelocity = 0f;
+        //}
+        foreach (AudioSource aud in FindObjectsOfType(typeof(AudioSource)) as AudioSource[])
+        {
+            aud.Stop();
+        }
+        EndLevel(0f);
     }
 }
