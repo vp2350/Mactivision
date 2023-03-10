@@ -123,7 +123,6 @@ public class LookingLevelManager : LevelManager
                     Prompt();
                     break;
                 case GameState.DisplayOptions:
-                    DisplayOptions();
                     break;
                 case GameState.WaitingForPlayer:
                     WaitForPlayer();
@@ -167,14 +166,59 @@ public class LookingLevelManager : LevelManager
         }
     }
 
-    void DisplayOptions()
-    {
-
-    }
-
     void WaitForPlayer()
     {
+        bool rightDecision = false;
+        if (Input.GetKeyDown(upKey) || Input.GetKeyDown(leftKey)
+            || Input.GetKeyDown(rightKey) || Input.GetKeyDown(downKey) || Input.GetKeyDown(noInput))
+        {
+            if(Input.GetKeyDown(upKey))
+            {
+                rightDecision = displayController.MakeChoice(0);
+            }
+            else if(Input.GetKeyDown(rightKey))
+            {
+                rightDecision = displayController.MakeChoice(1);
+            }
+            else if(Input.GetKeyDown(downKey))
+            {
+                rightDecision = displayController.MakeChoice(2);
+            }
+            else if(Input.GetKeyDown(leftKey))
+            {
+                rightDecision = displayController.MakeChoice(3);
+            }
+            else
+            {
 
+            }
+            // set the angle the plate should tilt to. Play monster eating animation & sound if applicable
+            //if (Input.GetKeyDown(feedKey))
+            //{
+            //    monster.Play("Base Layer.monster_eat");
+            //    sound.PlayDelayed(0.85f);
+            //    tiltPlateTo = -33f;
+            //}
+            //else
+            //{
+            //    tiltPlateTo = 33f;
+            //}
+            //
+            //// record the choice made
+            //mcMetric.recordEvent(new MemoryChoiceEvent(
+            //    dispenser.choiceStartTime,
+            //    new List<String>(dispenser.goodFoods),
+            //    dispenser.currentFood,
+            //    Input.GetKeyDown(feedKey),
+            //    DateTime.Now
+            //));
+            //
+            //// animate choice and play plate sound
+            //sound.PlayOneShot(plate_up);
+            //StartCoroutine(AnimateChoice(Input.GetKeyDown(feedKey) && !dispenser.MakeChoice(Input.GetKeyDown(feedKey))));
+            Debug.Log(rightDecision);
+            gameState = GameState.Prompting;
+        }
     }
 
     void GiveFeedback()

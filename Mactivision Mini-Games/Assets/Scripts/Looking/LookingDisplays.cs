@@ -6,6 +6,7 @@ using System;
 // This class is responsible for managing the games foods, and dispensing of foods.
 public class LookingDisplays : MonoBehaviour
 {
+    private System.Random rng;
     public Animator pipe;               // this class will play the pipe dispensing animation
     //public Transform monitor;           // the monitor that shows food updates
     public GameObject screenGreen1;      // monitor flashes green when food is updated to preferred
@@ -29,6 +30,9 @@ public class LookingDisplays : MonoBehaviour
     string[] badFoods;                                  // foods the monster will spit out
     int goodFoodCount = 0;                              // number of foods the monster likes
 
+    GameObject[] objectsUsed;
+    int correctMonitor;
+
     Vector3[] spawns;
     Vector3[] promptPoints;
 
@@ -44,6 +48,8 @@ public class LookingDisplays : MonoBehaviour
     // strings the same length as `gameFoods` and `badFoods`.
     public void Init(string seed, int tf, float uf, float sd, Vector3[] spawnPoints, Vector3[] promptLocations, GameObject[] foods)
     {
+        rng = new System.Random();
+
         allFoods = new GameObject[foods.Length];
         for(int i = 0; i< foods.Length; i++)
         {
@@ -66,13 +72,14 @@ public class LookingDisplays : MonoBehaviour
 
         spawns = spawnPoints;
         promptPoints = promptLocations;
+
+        objectsUsed = new GameObject[4];
     }
 
     // Decides whether to update the list of liked foods.
     // Returns whether there is an update or not
     public bool DisplayNext()
     {
-        Debug.Log("DisplayNext called");
         bool update = false;
 
         if (++lastUpdate >= nextUpdate || goodFoodCount == 0)
@@ -92,9 +99,9 @@ public class LookingDisplays : MonoBehaviour
     }
 
     //Returns whether the input matches correct item
-    public bool MakeChoice(string[] inputList, int inputNumber)
+    public bool MakeChoice(int inputNumber)
     {
-        return (inputList[inputNumber] == goodFood) ? true : false;
+        return (objectsUsed[inputNumber].name == goodObject.name) ? true : false;
     }
 
     // The actual function that randomly chooses a food and dispenses it.
@@ -105,10 +112,21 @@ public class LookingDisplays : MonoBehaviour
     {
         int randIdx;
         randIdx = randomSeed.Next(2);
-        int correctMonitor = randomSeed.Next(4);
+        correctMonitor = randomSeed.Next(4);
         choiceStartTime = DateTime.Now;
-        Debug.Log("Display called");
-        if(randIdx == 0)
+        objectsUsed = new GameObject[4];
+
+        int n = badObjects.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            GameObject value = badObjects[k];
+            badObjects[k] = badObjects[n];
+            badObjects[n] = value;
+        }
+
+        if (randIdx == 0)
         {
             for(int i = 0; i < 4; i++)
             {
@@ -116,11 +134,13 @@ public class LookingDisplays : MonoBehaviour
                 {
                     goodObject.SetActive(true);
                     goodObject.transform.position = new Vector3(spawns[correctMonitor].x, spawns[correctMonitor].y, -1);
+                    objectsUsed[i] = goodObject;
                 }
                 else
                 {
                     badObjects[i].SetActive(true);
                     badObjects[i].transform.position = new Vector3(spawns[i].x, spawns[i].y, -1);
+                    objectsUsed[i] = badObjects[i];
                 }
             }
         }
@@ -129,7 +149,8 @@ public class LookingDisplays : MonoBehaviour
             for (int i = 0; i < 4; i++)
             {    
                 badObjects[i].SetActive(true);
-                badObjects[i].transform.position = new Vector3(spawns[i].x, spawns[i].y, -1);  
+                badObjects[i].transform.position = new Vector3(spawns[i].x, spawns[i].y, -1);
+                objectsUsed[i] = badObjects[i];
             }
         }
         // find the current food GameObject and place it in the pipe
@@ -156,10 +177,10 @@ public class LookingDisplays : MonoBehaviour
     // depending on if a food was moved to the good or bad list, respectively.
     void UpdateObjects()
     {
-        Debug.Log("Update called");
         int rand = randomSeed.Next(allFoods.Length);
         goodFood = allFoods[rand].name;
         goodObject = allFoods[rand];
+        goodFoodCount++;
         goodObject.SetActive(true);
         goodObject.transform.position = new Vector3(promptPoints[0].x, promptPoints[0].y, -1);
 
@@ -226,4 +247,7 @@ public class LookingDisplays : MonoBehaviour
         float rand = (float)randomSeed.NextDouble();
         return (int)Mathf.Round((sd + 0.1333f) * 30f * Mathf.Pow(rand - 0.5f, 3f) + avg);
     }
+
+    
+    
 }
