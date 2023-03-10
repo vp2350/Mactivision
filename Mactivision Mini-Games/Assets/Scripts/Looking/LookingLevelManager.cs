@@ -11,6 +11,14 @@ public class LookingLevelManager : LevelManager
     KeyCode downKey = KeyCode.DownArrow;   //Down monitor
     KeyCode noInput = KeyCode.X;           //Prompt not displayed on monitors
 
+    int uniqueObjects;                         // number of foods to be used in the current game
+    float avgUpdateFreq;                    // average number of foods dispensed between each food update
+    float updateFreqVariance;               // variance of `avgUpdateFreq`
+
+    int maxFoodDisplayed;                   // maximum foods dispensed before game ends
+    int foodDisplayed;
+
+    public LookingDisplays displayController;
     //The monitors and their positions
     public GameObject[] monitors = new GameObject[4];
     Vector3[] spawnPoints = new Vector3[4];
@@ -36,7 +44,13 @@ public class LookingLevelManager : LevelManager
     {
         Setup();
         Init();
-    }   
+
+        randomSeed = new System.Random(seed.GetHashCode());
+        gameState = GameState.Prompting;
+
+        displayController.Init(seed, uniqueObjects, avgUpdateFreq, updateFreqVariance, spawnPoints, promptPoints, foods); // initialize the display controller
+
+    }
 
     void Init()
     {
@@ -46,15 +60,41 @@ public class LookingLevelManager : LevelManager
         }
         for (int i = 0; i < prompters.Length; i++)
         {
-            promptPoints[i] = monitors[i].transform.position;
+            promptPoints[i] = prompters[i].transform.position;
         }
         InitConfig();
     }
 
     void InitConfig()
     {
-        LookingConfig tempConfig = new LookingConfig();
+        LookingConfig lookingConfig = new LookingConfig();
 
+        // if running the game from the battery, override `feederConfig` with the config class from Battery
+        LookingConfig tempConfig = (LookingConfig)Battery.Instance.GetCurrentConfig();
+        if (tempConfig != null)
+        {
+            lookingConfig = tempConfig;
+        }
+        else
+        {
+            Debug.Log("Battery not found, using default values");
+        }
+
+        // use battery's config values, or default values if running game by itself
+        seed = !String.IsNullOrEmpty(lookingConfig.Seed) ? lookingConfig.Seed : DateTime.Now.ToString(); // if no seed provided, use current DateTime
+        maxGameTime = lookingConfig.MaxGameTime > 0 ? lookingConfig.MaxGameTime : Default(90f, "MaxGameTime");
+        maxFoodDisplayed = lookingConfig.MaxFoodDisplayed > 0 ? lookingConfig.MaxFoodDisplayed : Default(20, "MaxFoodDisplayed");
+        uniqueObjects = lookingConfig.UniqueObjects >= 2 && lookingConfig.UniqueObjects <= displayController.allFoods.Length ? lookingConfig.UniqueObjects : Default(6, "UniqueObjects");
+        avgUpdateFreq = lookingConfig.AverageUpdateFrequency > 0 ? lookingConfig.AverageUpdateFrequency : Default(3f, "AverageUpdateFrequency");
+        updateFreqVariance = lookingConfig.UpdateFreqVariance >= 0 && lookingConfig.UpdateFreqVariance <= 1 ? lookingConfig.UpdateFreqVariance : Default(0.3f, "UpdateFreqVariance");
+
+        // udpate battery config with actual/final values being used
+        lookingConfig.Seed = seed;
+        lookingConfig.MaxGameTime = maxGameTime;
+        lookingConfig.MaxFoodDisplayed = maxFoodDisplayed;
+        lookingConfig.UniqueObjects = uniqueObjects;
+        lookingConfig.AverageUpdateFrequency = avgUpdateFreq;
+        lookingConfig.UpdateFreqVariance = updateFreqVariance;
     }
 
     // Update is called once per frame
@@ -80,6 +120,7 @@ public class LookingLevelManager : LevelManager
             switch (gameState)
             {
                 case GameState.Prompting:
+                    Prompt();
                     break;
                 case GameState.DisplayOptions:
                     DisplayOptions();
@@ -141,6 +182,25 @@ public class LookingLevelManager : LevelManager
 
     }
 
+    void Prompt()
+    {
+        if (displayController.DisplayNext())
+        {
+            StartCoroutine(WaitForFoodDisplay(2.55f));
+        }
+        else
+        {
+            StartCoroutine(WaitForFoodDisplay(0.8f));
+        }
+        gameState = GameState.DisplayOptions;
+    }
+
+    // Wait for the food dispensing animation
+    IEnumerator WaitForFoodDisplay(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        gameState = GameState.WaitingForPlayer;
+    }
     // End game, stop animations, sounds, physics. Finish recording metrics
     void EndGame()
     {

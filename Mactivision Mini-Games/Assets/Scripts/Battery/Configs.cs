@@ -64,8 +64,11 @@ public class LookingConfig : GameConfig
 {
     public string TestName { get; set; }
     public string Scene { get; set; }
+    public string Seed { get; set; }
     public float AverageUpdateFrequency { get; set; }
+    public int UniqueObjects { get; set; }
     public float UpdateFreqVariance { get; set; }
+    public int MaxFoodDisplayed { get; set; }
     public float MaxGameTime { get; set; }
     public int MaxPrompts { get; set; }
     public int DiffLevel { get; set; }

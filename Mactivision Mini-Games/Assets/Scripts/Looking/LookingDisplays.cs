@@ -7,10 +7,12 @@ using System;
 public class LookingDisplays : MonoBehaviour
 {
     public Animator pipe;               // this class will play the pipe dispensing animation
-    public Transform monitor;           // the monitor that shows food updates
-    public GameObject screenGreen;      // monitor flashes green when food is updated to preferred
-    public GameObject screenRed;        // monitor flashes red when food is updated to unpreferred
+    //public Transform monitor;           // the monitor that shows food updates
+    public GameObject screenGreen1;      // monitor flashes green when food is updated to preferred
+    public GameObject screenGreen2;        // monitor flashes red when food is updated to unpreferred
     public GameObject[] allFoods;       // array of all possible foods
+    public GameObject goodObject;
+    public List<GameObject> badObjects;
     public AudioClip display_sound;    // sound played when a food is dispensed from the pipe
     public AudioClip prompt_sound;      // sound played when there is a food update
     AudioSource sound;
@@ -23,11 +25,15 @@ public class LookingDisplays : MonoBehaviour
 
     string[] gameFoods;                                 // foods being used in the current game
     public string goodFood { private set; get; }     // foods the monster will eat
+    public int goodFoodNumber { private set; get; }
     string[] badFoods;                                  // foods the monster will spit out
     int goodFoodCount = 0;                              // number of foods the monster likes
 
-    GameObject screenFood;                                  // the food shown on the screen during a food update
-    public string currentFood { private set; get; }         // the current food the player has to decide on
+    Vector3[] spawns;
+    Vector3[] promptPoints;
+
+    //GameObject screenFood;                                  // the food shown on the screen during a food update
+    //public string currentFood { private set; get; }         // the current food the player has to decide on
     public DateTime choiceStartTime { private set; get; }   // the time the current food is dispensed and the player can make a choice
 
     // Initializes the dispenser with the seed.
@@ -36,10 +42,16 @@ public class LookingDisplays : MonoBehaviour
     // be used in the game, and initially, `badFoods` = `gameFoods`,
     // as all foods begin "unpreferred". `goodFoods` is an array of empty
     // strings the same length as `gameFoods` and `badFoods`.
-    public void Init(string seed, int tf, float uf, float sd)
+    public void Init(string seed, int tf, float uf, float sd, Vector3[] spawnPoints, Vector3[] promptLocations, GameObject[] foods)
     {
-        screenGreen.SetActive(false);
-        screenRed.SetActive(false);
+        allFoods = new GameObject[foods.Length];
+        for(int i = 0; i< foods.Length; i++)
+        {
+            allFoods[i] = foods[i];
+        }
+
+        screenGreen1.SetActive(false);
+        screenGreen2.SetActive(false);
         foreach (GameObject obj in allFoods) obj.SetActive(false);
 
         sound = gameObject.GetComponent<AudioSource>();
@@ -50,28 +62,30 @@ public class LookingDisplays : MonoBehaviour
 
         gameFoods = new string[tf];
 
-
         goodFood = allFoods[randomSeed.Next(allFoods.Length)].name;
-        
+
+        spawns = spawnPoints;
+        promptPoints = promptLocations;
     }
 
     // Decides whether to update the list of liked foods.
     // Returns whether there is an update or not
-    public bool DispenseNext()
+    public bool DisplayNext()
     {
+        Debug.Log("DisplayNext called");
         bool update = false;
 
         if (++lastUpdate >= nextUpdate || goodFoodCount == 0)
         {
-            UpdateFoods();
+            UpdateObjects();
             update = true;
             lastUpdate = 0;
-            nextUpdate = FoodsBetweenNextUpdate(avgUpdateFreq, updateFreqVariance);
-            StartCoroutine(WaitForFoodUpdate(1.75f)); // wait for a food update and then dispense next
+            nextUpdate = ObjectsBetweenNextUpdate(avgUpdateFreq, updateFreqVariance);
+            StartCoroutine(WaitForObjectUpdate(1.75f)); // wait for a food update and then dispense next
         }
         else
         {
-            StartCoroutine(WaitForFoodUpdate(0f)); // instantly dispense next food
+            StartCoroutine(WaitForObjectUpdate(0f)); // instantly dispense next food
         }
 
         return update;
@@ -87,28 +101,52 @@ public class LookingDisplays : MonoBehaviour
     // Sets the `choiceStartTime` to the current time and activate the 
     // food GameObject and places it "in the pipe".
     // Physics does the rest to make it fall out of the pipe.
-    void Dispense()
+    void Display()
     {
         int randIdx;
-        randIdx = randomSeed.Next(gameFoods.Length);
-        currentFood = gameFoods[randIdx];
+        randIdx = randomSeed.Next(2);
+        int correctMonitor = randomSeed.Next(4);
         choiceStartTime = DateTime.Now;
-
-        // find the current food GameObject and place it in the pipe
-        foreach (GameObject obj in allFoods)
+        Debug.Log("Display called");
+        if(randIdx == 0)
         {
-            if (obj.name == currentFood)
+            for(int i = 0; i < 4; i++)
             {
-                obj.SetActive(true);
-                obj.transform.position = new Vector3(-1f, 4f, 0f);
-                break;
+                if(i == correctMonitor)
+                {
+                    goodObject.SetActive(true);
+                    goodObject.transform.position = new Vector3(spawns[correctMonitor].x, spawns[correctMonitor].y, -1);
+                }
+                else
+                {
+                    badObjects[i].SetActive(true);
+                    badObjects[i].transform.position = new Vector3(spawns[i].x, spawns[i].y, -1);
+                }
             }
         }
+        else
+        {
+            for (int i = 0; i < 4; i++)
+            {    
+                badObjects[i].SetActive(true);
+                badObjects[i].transform.position = new Vector3(spawns[i].x, spawns[i].y, -1);  
+            }
+        }
+        // find the current food GameObject and place it in the pipe
+        //foreach (GameObject obj in allFoods)
+        //{
+        //    if (obj.name == currentFood)
+        //    {
+        //        obj.SetActive(true);
+        //        obj.transform.position = new Vector3(-1f, 4f, 0f);
+        //        break;
+        //    }
+        //}
 
         // dispensing animation and sound
-        pipe.Play("Base Layer.pipe_dispense");
-        sound.clip = dispense_sound;
-        sound.PlayDelayed(0f);
+        //pipe.Play("Base Layer.pipe_dispense");
+        //sound.clip = dispense_sound;
+        //sound.PlayDelayed(0f);
     }
 
     // Update the list of good and bad foods. Essentially swaps items between
@@ -116,52 +154,74 @@ public class LookingDisplays : MonoBehaviour
     // it will move a food from the bad list to the good list. 
     // On update, this function will activate the flashing green or red screen
     // depending on if a food was moved to the good or bad list, respectively.
-    void UpdateFoods()
+    void UpdateObjects()
     {
-        // choose a food to update and swap it to the other list
-        int randIdx = randomSeed.Next(gameFoods.Length);
-        string food = badFoods[randIdx];
-        if (goodFoodCount < 2)
-        {
-            do
-            {
-                randIdx = randomSeed.Next(gameFoods.Length);
-                food = badFoods[randIdx];
-            } while (food == "");
-        }
-        badFoods[randIdx] = goodFoods[randIdx];
-        goodFoods[randIdx] = food;
+        Debug.Log("Update called");
+        int rand = randomSeed.Next(allFoods.Length);
+        goodFood = allFoods[rand].name;
+        goodObject = allFoods[rand];
+        goodObject.SetActive(true);
+        goodObject.transform.position = new Vector3(promptPoints[0].x, promptPoints[0].y, -1);
 
-        // show the food to be updated on the monitor, and activate either
-        // the green or red flashing screen animation and sound
-        if (food == "")
+        badObjects.Clear();
+        for(int i = 0; i < allFoods.Length; i++)
         {
-            food = badFoods[randIdx];
-            screenRed.SetActive(true);
-            goodFoodCount--;
+            if (allFoods[i].name != goodObject.name)
+            {
+                badObjects.Add(allFoods[i]);
+            }    
         }
-        else
-        {
-            screenGreen.SetActive(true);
-            goodFoodCount++;
-        }
-        food = food + " (screen)";
-        screenFood = monitor.Find(food).gameObject;
-        screenFood.SetActive(true);
-        sound.PlayOneShot(screen_sound);
+
+        screenGreen1.SetActive(true);
+        screenGreen2.SetActive(true);
+        // choose a food to update and swap it to the other list
+        //int randIdx = randomSeed.Next(gameFoods.Length);
+        //string food = badFoods[randIdx];
+        //if (goodFoodCount < 2)
+        //{
+        //    do
+        //    {
+        //        randIdx = randomSeed.Next(gameFoods.Length);
+        //        food = badFoods[randIdx];
+        //    } while (food == "");
+        //}
+        //badFoods[randIdx] = goodFoods[randIdx];
+        //goodFoods[randIdx] = food;
+        //
+        //// show the food to be updated on the monitor, and activate either
+        //// the green or red flashing screen animation and sound
+        //if (food == "")
+        //{
+        //    food = badFoods[randIdx];
+        //    screenRed.SetActive(true);
+        //    goodFoodCount--;
+        //}
+        //else
+        //{
+        //    screenGreen.SetActive(true);
+        //    goodFoodCount++;
+        //}
+        //food = food + " (screen)";
+        //screenFood = monitor.Find(food).gameObject;
+        //screenFood.SetActive(true);
+        //sound.PlayOneShot(screen_sound);
     }
 
     // Wait for the flashing screen animation and then dispense the next food.
-    IEnumerator WaitForFoodUpdate(float wait)
+    IEnumerator WaitForObjectUpdate(float wait)
     {
         yield return new WaitForSeconds(wait);
-        screenGreen.SetActive(false);
-        screenRed.SetActive(false);
-        screenFood.SetActive(false);
-        Dispense();
+        screenGreen1.SetActive(false);
+        screenGreen2.SetActive(false);
+        goodObject.SetActive(false);
+        foreach(GameObject obj in badObjects)
+        {
+            obj.SetActive(false);
+        }
+        Display();
     }
 
-    int FoodsBetweenNextUpdate(float avg, float sd)
+    int ObjectsBetweenNextUpdate(float avg, float sd)
     {
         float rand = (float)randomSeed.NextDouble();
         return (int)Mathf.Round((sd + 0.1333f) * 30f * Mathf.Pow(rand - 0.5f, 3f) + avg);
