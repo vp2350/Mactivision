@@ -104,7 +104,7 @@ public class Dispenser : MonoBehaviour
         foreach (GameObject obj in allFoods) {
             if (obj.name==currentFood) {
                 obj.SetActive(true);
-                obj.transform.position = new Vector3(-1f, 4f, 0f);
+                obj.transform.position = new Vector3(0f, 4f, 0f);
                 break;
             }
         }

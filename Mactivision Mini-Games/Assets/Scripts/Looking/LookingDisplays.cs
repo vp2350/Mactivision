@@ -18,6 +18,9 @@ public class LookingDisplays : MonoBehaviour
     public AudioClip prompt_sound;      // sound played when there is a food update
     AudioSource sound;
 
+    bool goodObjectShown;
+    public List<string> objectsDisplayed;
+
     System.Random randomSeed;   // seed of the current game
     float avgUpdateFreq;        // average number of foods dispensed between each food update
     float updateFreqVariance;   // variance of `avgUpdateFreq`
@@ -56,6 +59,8 @@ public class LookingDisplays : MonoBehaviour
             allFoods[i] = foods[i];
         }
 
+        goodObjectShown = false;
+
         screenGreen1.SetActive(false);
         screenGreen2.SetActive(false);
         foreach (GameObject obj in allFoods) obj.SetActive(false);
@@ -81,6 +86,10 @@ public class LookingDisplays : MonoBehaviour
     public bool DisplayNext()
     {
         bool update = false;
+        foreach(GameObject obj in allFoods)
+        {
+            obj.SetActive(false);
+        }
 
         if (++lastUpdate >= nextUpdate || goodFoodCount == 0)
         {
@@ -101,7 +110,19 @@ public class LookingDisplays : MonoBehaviour
     //Returns whether the input matches correct item
     public bool MakeChoice(int inputNumber)
     {
-        return (objectsUsed[inputNumber].name == goodObject.name) ? true : false;
+        bool result = false;
+        if (inputNumber > -1 && inputNumber < 4)
+        {
+            result = (objectsUsed[inputNumber].name == goodObject.name) ? true : false;
+        }
+        else
+        {
+            if(!goodObjectShown)
+            {
+                result = true;
+            }
+        }
+        return result;
     }
 
     // The actual function that randomly chooses a food and dispenses it.
@@ -115,6 +136,8 @@ public class LookingDisplays : MonoBehaviour
         correctMonitor = randomSeed.Next(4);
         choiceStartTime = DateTime.Now;
         objectsUsed = new GameObject[4];
+        objectsDisplayed = new List<string>();
+        goodObjectShown = false;
 
         int n = badObjects.Count;
         while (n > 1)
@@ -133,6 +156,7 @@ public class LookingDisplays : MonoBehaviour
                 if(i == correctMonitor)
                 {
                     goodObject.SetActive(true);
+                    goodObjectShown = true;
                     goodObject.transform.position = new Vector3(spawns[correctMonitor].x, spawns[correctMonitor].y, -1);
                     objectsUsed[i] = goodObject;
                 }
@@ -248,6 +272,9 @@ public class LookingDisplays : MonoBehaviour
         return (int)Mathf.Round((sd + 0.1333f) * 30f * Mathf.Pow(rand - 0.5f, 3f) + avg);
     }
 
-    
+    public List<string> GetObjectsShown()
+    {
+        return objectsDisplayed;
+    }
     
 }

@@ -18,10 +18,15 @@ public class LookingLevelManager : LevelManager
     int maxFoodDisplayed;                   // maximum foods dispensed before game ends
     int foodDisplayed;
 
+    LookingChoiceMetric lcMetric;            // records choice data during the game
+    MetricJSONWriter metricWriter;          // outputs recording metric (lcMetric) as a json file
+    string recordKey;
+
     public LookingDisplays displayController;
     //The monitors and their positions
     public GameObject[] monitors = new GameObject[4];
     Vector3[] spawnPoints = new Vector3[4];
+    public GameObject[] arrows = new GameObject[4];
 
     //The prompters for the right object and their positions
     public GameObject[] prompters = new GameObject[2];
@@ -44,6 +49,8 @@ public class LookingLevelManager : LevelManager
     {
         Setup();
         Init();
+
+        lcMetric = new LookingChoiceMetric(); // initialize metric recorder
 
         randomSeed = new System.Random(seed.GetHashCode());
         gameState = GameState.Prompting;
@@ -69,7 +76,7 @@ public class LookingLevelManager : LevelManager
     {
         LookingConfig lookingConfig = new LookingConfig();
 
-        // if running the game from the battery, override `feederConfig` with the config class from Battery
+        // if running the game from the battery, override `lookingConfig` with the config class from Battery
         LookingConfig tempConfig = (LookingConfig)Battery.Instance.GetCurrentConfig();
         if (tempConfig != null)
         {
@@ -137,8 +144,8 @@ public class LookingLevelManager : LevelManager
     // Begin the actual game, start recording metrics
     void StartGame()
     {
-        //mcMetric.startRecording();
-        //metricWriter = new MetricJSONWriter("Feeder", DateTime.Now, seed); // initialize metric data writer
+        lcMetric.startRecording();
+        metricWriter = new MetricJSONWriter("Looking", DateTime.Now, seed); // initialize metric data writer
         gameStartTime = Time.time;
         //sound.clip = bite_sound;
     }
@@ -169,28 +176,38 @@ public class LookingLevelManager : LevelManager
     void WaitForPlayer()
     {
         bool rightDecision = false;
+        
         if (Input.GetKeyDown(upKey) || Input.GetKeyDown(leftKey)
             || Input.GetKeyDown(rightKey) || Input.GetKeyDown(downKey) || Input.GetKeyDown(noInput))
         {
             if(Input.GetKeyDown(upKey))
             {
                 rightDecision = displayController.MakeChoice(0);
+                recordKey = "Up";
+                StartCoroutine(DarkenArrow(0.1f, arrows[0]));
             }
             else if(Input.GetKeyDown(rightKey))
             {
                 rightDecision = displayController.MakeChoice(1);
+                recordKey = "Right";
+                StartCoroutine(DarkenArrow(0.1f, arrows[1]));
             }
             else if(Input.GetKeyDown(downKey))
             {
                 rightDecision = displayController.MakeChoice(2);
+                recordKey = "Down";
+                StartCoroutine(DarkenArrow(0.1f, arrows[2]));
             }
             else if(Input.GetKeyDown(leftKey))
             {
                 rightDecision = displayController.MakeChoice(3);
+                recordKey = "Left";
+                StartCoroutine(DarkenArrow(0.1f, arrows[3]));
             }
             else
             {
-
+                rightDecision = displayController.MakeChoice(-1);
+                recordKey = "X";
             }
             // set the angle the plate should tilt to. Play monster eating animation & sound if applicable
             //if (Input.GetKeyDown(feedKey))
@@ -204,37 +221,38 @@ public class LookingLevelManager : LevelManager
             //    tiltPlateTo = 33f;
             //}
             //
-            //// record the choice made
-            //mcMetric.recordEvent(new MemoryChoiceEvent(
-            //    dispenser.choiceStartTime,
-            //    new List<String>(dispenser.goodFoods),
-            //    dispenser.currentFood,
-            //    Input.GetKeyDown(feedKey),
-            //    DateTime.Now
-            //));
+            // record the choice made
+            lcMetric.recordEvent(new LookingChoiceEvent(
+                displayController.choiceStartTime,
+                displayController.goodFood,
+                displayController.GetObjectsShown(),
+                recordKey,
+                DateTime.Now
+            )); 
+
             //
             //// animate choice and play plate sound
             //sound.PlayOneShot(plate_up);
             //StartCoroutine(AnimateChoice(Input.GetKeyDown(feedKey) && !dispenser.MakeChoice(Input.GetKeyDown(feedKey))));
-            Debug.Log(rightDecision);
-            gameState = GameState.Prompting;
+            gameState = GameState.Response;
         }
     }
 
     void GiveFeedback()
     {
-
+        WaitForFeedback(2f);
+        gameState = GameState.Prompting;
     }
 
     void Prompt()
     {
         if (displayController.DisplayNext())
         {
-            StartCoroutine(WaitForFoodDisplay(2.55f));
+            StartCoroutine(WaitForFoodDisplay(1.75f));
         }
         else
         {
-            StartCoroutine(WaitForFoodDisplay(0.8f));
+            StartCoroutine(WaitForFoodDisplay(1f));
         }
         gameState = GameState.DisplayOptions;
     }
@@ -245,15 +263,32 @@ public class LookingLevelManager : LevelManager
         yield return new WaitForSeconds(wait);
         gameState = GameState.WaitingForPlayer;
     }
+
+    // Wait for the food dispensing animation
+    IEnumerator WaitForFeedback(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        gameState = GameState.Prompting;
+    }
+
+    // Wait for the food dispensing animation
+    IEnumerator DarkenArrow(float wait, GameObject arrow)
+    {
+        SpriteRenderer temp = arrow.GetComponent<SpriteRenderer>();
+        temp.color = new Color(0f, 0f, 0f, 1f);
+        yield return new WaitForSeconds(wait);
+        temp.color = new Color(251f, 233f, 0f, 1f);
+
+    }
     // End game, stop animations, sounds, physics. Finish recording metrics
     void EndGame()
     {
-        //mcMetric.finishRecording();
-        //var str = metricWriter.GetLogMetrics(
-        //            DateTime.Now,
-        //            new List<AbstractMetric>() { mcMetric }
-        //        );
-        //StartCoroutine(Post("feeder_" + DateTime.Now.ToFileTime() + ".json", str));
+        lcMetric.finishRecording();
+        var str = metricWriter.GetLogMetrics(
+                    DateTime.Now,
+                    new List<AbstractMetric>() { lcMetric }
+                );
+        StartCoroutine(Post("looking_" + DateTime.Now.ToFileTime() + ".json", str));
         //
         //dispenser.StopAllCoroutines();
         //dispenser.screenRed.SetActive(false);

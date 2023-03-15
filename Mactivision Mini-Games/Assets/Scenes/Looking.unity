@@ -1064,6 +1064,7 @@ MonoBehaviour:
   badObjects: []
   display_sound: {fileID: 0}
   prompt_sound: {fileID: 0}
+  objectsDisplayed: []
 --- !u!4 &363293277
 Transform:
   m_ObjectHideFlags: 0
@@ -3926,6 +3927,11 @@ MonoBehaviour:
   - {fileID: 2045695475}
   - {fileID: 1029060119}
   - {fileID: 294035587}
+  arrows:
+  - {fileID: 1979977145}
+  - {fileID: 543210713}
+  - {fileID: 805493697}
+  - {fileID: 519332059}
   prompters:
   - {fileID: 1928416805}
   - {fileID: 1365054372}
