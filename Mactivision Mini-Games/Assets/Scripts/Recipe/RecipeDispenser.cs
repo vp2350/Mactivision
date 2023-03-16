@@ -72,6 +72,7 @@ public class RecipeDispenser : MonoBehaviour
                 gameFoods[i] = food;
                 gameFoodObjs[i] = allFoods[i];
                 goodFoods[i] = "";
+                i++;
             }
         }
     }
@@ -206,7 +207,7 @@ public class RecipeDispenser : MonoBehaviour
         //    screenRed.SetActive(true);
         //    goodFoodCount--;
         //} else {
-        //    screenGreen.SetActive(true);
+        screenGreen.SetActive(true);
         //    goodFoodCount++;
         //}
         foodLeft = foodLeft + " (screenLeft)";

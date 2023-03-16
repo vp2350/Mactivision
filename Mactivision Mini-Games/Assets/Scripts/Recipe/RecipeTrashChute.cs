@@ -6,7 +6,7 @@ using System;
 // This class animates the trashchute and resets food GameObjects entering it
 public class RecipeTrashChute : MonoBehaviour
 {
-    public Dispenser dispenser;         // will tell this class the correctness of the decision
+    public RecipeDispenser dispenser;         // will tell this class the correctness of the decision
     public SpriteRenderer recycleIcon;  // icon changes colour based on correctness
     public Color correct = Color.green;
     public Color incorrect = Color.red;
