@@ -20,7 +20,7 @@ public class LookingDisplays : MonoBehaviour
 
     bool goodObjectShown;
     public List<string> objectsDisplayed;
-
+    int i = 6; 
     System.Random randomSeed;   // seed of the current game
     float avgUpdateFreq;        // average number of foods dispensed between each food update
     float updateFreqVariance;   // variance of `avgUpdateFreq`

@@ -22,11 +22,18 @@ public class RecipeDispenser : MonoBehaviour
     int nextUpdate = 0;
 
     string[] gameFoods;                                 // foods being used in the current game
+    GameObject[] gameFoodObjs;
     public string[] goodFoods { private set; get; }     // foods the monster will eat
+    public GameObject[] goodFoodObjs;
     string[] badFoods;                                  // foods the monster will spit out
+    GameObject[] badFoodObjs;
     int goodFoodCount = 0;                              // number of foods the monster likes
 
-    GameObject screenFood;                                  // the food shown on the screen during a food update
+    bool wasCorrectDispensed;
+
+    GameObject screenFood1;                                  // the food shown on the screen during a food update
+    GameObject screenFood2;                                  // the food shown on the screen during a food update
+
     public string currentFood { private set; get; }         // the current food the player has to decide on
     public DateTime choiceStartTime { private set; get; }   // the time the current food is dispensed and the player can make a choice
 
@@ -49,17 +56,22 @@ public class RecipeDispenser : MonoBehaviour
         updateFreqVariance = sd;
         
         gameFoods = new string[tf];
+        gameFoodObjs = new GameObject[tf];
         goodFoods = new string[tf];
-        badFoods = new string[tf];
-        
+        goodFoodObjs = new GameObject[2];
+        badFoods = new string[tf - 2];
+        badFoodObjs = new GameObject[tf - 2];
+
+        wasCorrectDispensed = false;
         // randomly select the foods that will be used in the game 
         int i = 0;
         while (i<tf) {
-            string food = allFoods[randomSeed.Next(allFoods.Length)].name;
+            int rand = randomSeed.Next(allFoods.Length);
+            string food = allFoods[rand].name;
             if (Array.IndexOf(gameFoods, food)<0) {
                 gameFoods[i] = food;
+                gameFoodObjs[i] = allFoods[i];
                 goodFoods[i] = "";
-                badFoods[i++] = food;
             }
         }
     }
@@ -86,7 +98,7 @@ public class RecipeDispenser : MonoBehaviour
     // Returns whether the choice to `feed` was correct or not
     public bool MakeChoice(bool feed)
     {
-        return (Array.IndexOf(goodFoods, currentFood)>=0 == feed);
+        return (wasCorrectDispensed == feed);
     }
 
     // The actual function that randomly chooses a food and dispenses it.
@@ -95,10 +107,20 @@ public class RecipeDispenser : MonoBehaviour
     // Physics does the rest to make it fall out of the pipe.
     void Dispense()
     {
-        int randIdx;
-        randIdx = randomSeed.Next(gameFoods.Length);
-        currentFood = gameFoods[randIdx];
-        choiceStartTime = DateTime.Now;
+        int n = gameFoods.Length;
+        GameObject[] tempFoods = new GameObject[n];
+        for (int i = 0; i < n; i++)
+        {
+            tempFoods[i] = gameFoodObjs[i];
+        }
+        while (n > 1)
+        {
+            n--;
+            int k = randomSeed.Next(n + 1);
+            GameObject value = tempFoods[k];
+            tempFoods[k] = tempFoods[n];
+            tempFoods[n] = value;
+        }
 
         // find the current food GameObject and place it in the pipe
         foreach (GameObject obj in allFoods) {
@@ -107,16 +129,26 @@ public class RecipeDispenser : MonoBehaviour
                 obj.transform.position = new Vector3(1f, 4f, 0f);
                 break;
             }
-            if(randIdx>0)
-            {
-                currentFood = gameFoods[randIdx - 1];
-            }
-            if (obj.name == currentFood)
-            {
-                obj.SetActive(true);
-                obj.transform.position = new Vector3(-1f, 4f, 0f);
-                break;
-            }
+        }
+
+        int rand = randomSeed.Next(5);
+        if (rand == 0)
+        {
+            wasCorrectDispensed = true;
+            goodFoodObjs[0].SetActive(true);
+            goodFoodObjs[0].transform.position = new Vector3(-1f, 4f, 0f);
+            
+            goodFoodObjs[1].SetActive(true);
+            goodFoodObjs[1].transform.position = new Vector3(1f, 4f, 0f);
+        }
+        else
+        {
+            wasCorrectDispensed = false;
+            tempFoods[0].SetActive(true);
+            tempFoods[0].transform.position = new Vector3(-1f, 4f, 0f);
+
+            tempFoods[1].SetActive(true);
+            tempFoods[1].transform.position = new Vector3(1f, 4f, 0f);
         }
 
         // dispensing animation and sound
@@ -134,29 +166,56 @@ public class RecipeDispenser : MonoBehaviour
     {
         // choose a food to update and swap it to the other list
         int randIdx = randomSeed.Next(gameFoods.Length);
-        string food = badFoods[randIdx];
-        if (goodFoodCount<2) {
-            do {
-                randIdx = randomSeed.Next(gameFoods.Length);
-                food = badFoods[randIdx];
-            } while (food=="");
+        int n = gameFoods.Length;
+        GameObject[] tempFoods = new GameObject[n];
+        for(int i = 0; i < n; i++)
+        {
+            tempFoods[i] = gameFoodObjs[i];
         }
-        badFoods[randIdx] = goodFoods[randIdx];
-        goodFoods[randIdx] = food;
+        while (n > 1)
+        {
+            n--;
+            int k = randomSeed.Next(n + 1);
+            GameObject value = tempFoods[k];
+            tempFoods[k] = tempFoods[n];
+            tempFoods[n] = value;
+        }
 
-        // show the food to be updated on the monitor, and activate either
-        // the green or red flashing screen animation and sound
-        if (food=="") {
-            food = badFoods[randIdx];
-            screenRed.SetActive(true);
-            goodFoodCount--;
-        } else {
-            screenGreen.SetActive(true);
-            goodFoodCount++;
+        string foodLeft = tempFoods[0].name;
+        string foodRight = tempFoods[1].name;
+
+        goodFoodObjs[0] = tempFoods[0];
+        goodFoodObjs[1] = tempFoods[1];
+        goodFoods[0] = tempFoods[0].name;
+        goodFoods[1] = tempFoods[1].name;
+        goodFoodCount = 2;
+
+        for (int i = 2; i < n; i++)
+        {
+            badFoodObjs[i - 2] = tempFoods[i];
+            badFoods[i - 2] = tempFoods[i].name;
         }
-        food = food + " (screen)";
-        screenFood = monitor.Find(food).gameObject;
-        screenFood.SetActive(true);
+
+        //badFoods[randIdx] = goodFoods[randIdx];
+        //goodFoods[randIdx] = food;
+        //
+        //// show the food to be updated on the monitor, and activate either
+        //// the green or red flashing screen animation and sound
+        //if (food=="") {
+        //    food = badFoods[randIdx];
+        //    screenRed.SetActive(true);
+        //    goodFoodCount--;
+        //} else {
+        //    screenGreen.SetActive(true);
+        //    goodFoodCount++;
+        //}
+        foodLeft = foodLeft + " (screenLeft)";
+        screenFood1 = monitor.Find(foodLeft).gameObject;
+        screenFood1.SetActive(true);
+
+        foodRight = foodRight + " (screenRight)";
+        screenFood2 = monitor.Find(foodRight).gameObject;
+        screenFood2.SetActive(true);
         sound.PlayOneShot(screen_sound);
     }
 
@@ -166,7 +225,9 @@ public class RecipeDispenser : MonoBehaviour
         yield return new WaitForSeconds(wait);
         screenGreen.SetActive(false);
         screenRed.SetActive(false);
-        screenFood.SetActive(false);
+        screenFood1.SetActive(false);
+        screenFood2.SetActive(false);
+
         Dispense();
     }
 
