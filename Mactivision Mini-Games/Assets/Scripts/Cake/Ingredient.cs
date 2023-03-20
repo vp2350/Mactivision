@@ -37,7 +37,7 @@ public class Ingredient : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name.Equals("Player"))
+        if (collision.gameObject.name.Equals("Player") && player.GetComponent<Baker>().GetIsHolding())
         {
             pickupAllowed = true;
         }
@@ -53,6 +53,6 @@ public class Ingredient : MonoBehaviour
     private void PickUp()
     {
         this.transform.SetParent(player.transform);
-
+        player.GetComponent<Baker>().SetIsHolding(true);
     }
 }
