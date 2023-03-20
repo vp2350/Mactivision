@@ -113,6 +113,8 @@ public class RecipeDispenser : MonoBehaviour
         for (int i = 0; i < n; i++)
         {
             tempFoods[i] = gameFoodObjs[i];
+            tempFoods[i].GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            tempFoods[i].transform.eulerAngles = Vector3.zero;
         }
         while (n > 1)
         {

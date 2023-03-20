@@ -1253,7 +1253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315842104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.27, z: -1}
+  m_LocalPosition: {x: 0, y: 4.7, z: -1}
   m_LocalScale: {x: 2.1590626, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3778,8 +3778,8 @@ GameObject:
   - component: {fileID: 975804442}
   - component: {fileID: 975804441}
   - component: {fileID: 975804440}
-  - component: {fileID: 975804439}
   - component: {fileID: 975804438}
+  - component: {fileID: 975804439}
   m_Layer: 0
   m_Name: combiner
   m_TagString: Trashchute
@@ -3892,10 +3892,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 975804437}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63da80df5aa80e44582202f183c5b5c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 5275701f6654e4b4496494d0285538b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dispenser: {fileID: 0}
+  dispenser: {fileID: 315842110}
   recycleIcon: {fileID: 871547060}
   correct: {r: 0, g: 1, b: 0, a: 1}
   incorrect: {r: 1, g: 0, b: 0, a: 1}
