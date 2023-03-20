@@ -7,8 +7,8 @@ public class Baker : MonoBehaviour
     public Animator rockstar;   // rockstar gameobject, used to animate red guy
 
     float velocity;         // just x velocity because y doesn't change
-    float minPos = -2f;   // the minimum value for position (left)
-    float maxPos = 2f;    // the maximum value for position (right)
+    float minPos = -1f;   // the minimum value for position (left)
+    float maxPos = 1f;    // the maximum value for position (right)
 
     bool right = true;
     bool isHolding;
@@ -28,7 +28,6 @@ public class Baker : MonoBehaviour
     // Parameter `right` is true to move right, false to move left
     public void Move()
     {
-        rockstar.SetFloat("Velocity", (0f));
         if (Input.GetKey(KeyCode.RightArrow) && gameObject.transform.position.x <= maxPos)
         {
             velocity = 5f;
@@ -36,21 +35,24 @@ public class Baker : MonoBehaviour
             rockstar.SetFloat("Velocity", (velocity));
             if (!right)
             {
-                transform.localScale = Vector3.one * 3f;
+                transform.localScale = Vector3.one * 2f;
                 right = true;
             }
         }
         else if (Input.GetKey(KeyCode.LeftArrow) && gameObject.transform.position.x >= minPos)
         {
             velocity = 5f;
-            Debug.Log("!234");
             gameObject.transform.Translate(Vector3.left * velocity * Time.deltaTime);
             rockstar.SetFloat("Velocity", (velocity));
             if (right)
             {
-                transform.localScale = Vector3.Reflect(Vector3.one, Vector3.right) * 3f;
+                transform.localScale = Vector3.Reflect(Vector3.one, Vector3.right) * 2f;
                 right = false;
             }
+        }
+        else
+        {
+            rockstar.SetFloat("Velocity", (0f));
         }
     }
 
