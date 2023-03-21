@@ -27,7 +27,9 @@ public class Battery
     {
         {"Digger", new DiggerConfig()},
         {"Feeder", new FeederConfig()},
-        {"Rockstar", new RockstarConfig()}
+        {"Rockstar", new RockstarConfig()},
+        {"Looking", new LookingConfig() },
+        {"Recipe", new FeederConfig() }
     };
 
     // Helpers
