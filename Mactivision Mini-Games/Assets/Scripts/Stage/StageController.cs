@@ -13,6 +13,7 @@ public class StageController : MonoBehaviour
     int lastUpdate = 0;         // number of foods dispensed since last food update
     int nextUpdate = 0;
 
+    public List<GameObject> playerTypes = new List<GameObject>();
     public DateTime choiceStartTime { private set; get; }   // the time the current food is dispensed and the player can make a choice
 
     // Initializes the dispenser with the seed.

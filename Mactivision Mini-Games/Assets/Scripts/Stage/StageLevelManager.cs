@@ -5,27 +5,29 @@ using UnityEngine;
 
 public class StageLevelManager : LevelManager
 {
-    KeyCode leftKey = KeyCode.LeftArrow;   //Left monitor
-    KeyCode upKey = KeyCode.UpArrow;       //Up monitor
-    KeyCode rightKey = KeyCode.RightArrow; //Right monitor
-    KeyCode downKey = KeyCode.DownArrow;   //Down monitor
-    KeyCode noInput = KeyCode.X;           //Prompt not displayed on monitors
+    KeyCode yesKey = KeyCode.Y;   //Left monitor
+    KeyCode noKey = KeyCode.N;       //Up monitor
+    KeyCode rowOne = KeyCode.Alpha1; //Right monitor
+    KeyCode rowTwo = KeyCode.Alpha2;   //Down monitor
+    KeyCode rowThree = KeyCode.Alpha3;           //Prompt not displayed on monitors
 
-    StageController controller;
+    StageController stageController;
 
-    int uniqueObjects;                         // number of foods to be used in the current game
-    float avgUpdateFreq;                    // average number of foods dispensed between each food update
-    float updateFreqVariance;               // variance of `avgUpdateFreq`
+    int uniqueTypes;                         // number of foods to be used in the current game
+    int uniqueTokens;
 
-    int maxFoodDisplayed;                   // maximum foods dispensed before game ends
-    int foodDisplayed;
+    int maxPlayersDisplayed;                   // maximum foods dispensed before game ends
+    int playerTypeDisplayed;
 
-    LookingChoiceMetric lcMetric;            // records choice data during the game
-    MetricJSONWriter metricWriter;          // outputs recording metric (lcMetric) as a json file
-    string recordKey;
+    //LookingChoiceMetric lcMetric;            // records choice data during the game
+    //MetricJSONWriter metricWriter;          // outputs recording metric (lcMetric) as a json file
+    //string recordKey;
 
     public int difficulty;
-    public GameObject[] foods = new GameObject[10];
+    public GameObject player;
+    public int maxPrompts;
+
+    List<GameObject> playersSpawned = new List<GameObject>();
 
     enum GameState
     {
@@ -42,7 +44,7 @@ public class StageLevelManager : LevelManager
         Setup();
         Init();
 
-        lcMetric = new LookingChoiceMetric(); // initialize metric recorder
+        //lcMetric = new LookingChoiceMetric(); // initialize metric recorder
 
         randomSeed = new System.Random(seed.GetHashCode());
         gameState = GameState.Prompting;
@@ -57,13 +59,13 @@ public class StageLevelManager : LevelManager
 
     void InitConfig()
     {
-        LookingConfig lookingConfig = new LookingConfig();
+        StageConfig stageConfig = new StageConfig();
 
         // if running the game from the battery, override `lookingConfig` with the config class from Battery
-        LookingConfig tempConfig = (LookingConfig)Battery.Instance.GetCurrentConfig();
+        StageConfig tempConfig = (StageConfig)Battery.Instance.GetCurrentConfig();
         if (tempConfig != null)
         {
-            lookingConfig = tempConfig;
+            stageConfig = tempConfig;
         }
         else
         {
@@ -71,20 +73,19 @@ public class StageLevelManager : LevelManager
         }
 
         // use battery's config values, or default values if running game by itself
-        seed = !String.IsNullOrEmpty(lookingConfig.Seed) ? lookingConfig.Seed : DateTime.Now.ToString(); // if no seed provided, use current DateTime
-        maxGameTime = lookingConfig.MaxGameTime > 0 ? lookingConfig.MaxGameTime : Default(90f, "MaxGameTime");
-        maxFoodDisplayed = lookingConfig.MaxFoodDisplayed > 0 ? lookingConfig.MaxFoodDisplayed : Default(20, "MaxFoodDisplayed");
-        uniqueObjects = lookingConfig.UniqueObjects >= 2 && lookingConfig.UniqueObjects <= displayController.allFoods.Length ? lookingConfig.UniqueObjects : Default(6, "UniqueObjects");
-        avgUpdateFreq = lookingConfig.AverageUpdateFrequency > 0 ? lookingConfig.AverageUpdateFrequency : Default(3f, "AverageUpdateFrequency");
-        updateFreqVariance = lookingConfig.UpdateFreqVariance >= 0 && lookingConfig.UpdateFreqVariance <= 1 ? lookingConfig.UpdateFreqVariance : Default(0.3f, "UpdateFreqVariance");
+        seed = !String.IsNullOrEmpty(stageConfig.Seed) ? stageConfig.Seed : DateTime.Now.ToString(); // if no seed provided, use current DateTime
+        maxGameTime = stageConfig.MaxGameTime > 0 ? stageConfig.MaxGameTime : Default(90f, "MaxGameTime");
+        maxPlayersDisplayed = stageConfig.MaxPlayersDisplayed > 0 ? stageConfig.MaxPlayersDisplayed : Default(10, "MaxFoodDisplayed");
+        uniqueTypes = stageConfig.UniqueTypes >= 2 && stageConfig.UniqueTypes <= stageController.playerTypes.Count ? stageConfig.UniqueTypes : Default(1, "UniqueTypes");
+        difficulty = stageConfig.DiffLevel > 0 ? stageConfig.DiffLevel : Default(1, "DiffLevel");
+        maxPrompts = stageConfig.MaxPrompts > 0 ? stageConfig.MaxPrompts : Default(5, "MaxPrompts");
 
         // udpate battery config with actual/final values being used
-        lookingConfig.Seed = seed;
-        lookingConfig.MaxGameTime = maxGameTime;
-        lookingConfig.MaxFoodDisplayed = maxFoodDisplayed;
-        lookingConfig.UniqueObjects = uniqueObjects;
-        lookingConfig.AverageUpdateFrequency = avgUpdateFreq;
-        lookingConfig.UpdateFreqVariance = updateFreqVariance;
+        stageConfig.Seed = seed;
+        stageConfig.MaxGameTime = maxGameTime;
+        stageConfig.MaxPlayersDisplayed = maxPlayersDisplayed;
+        stageConfig.UniqueTypes = uniqueTypes;
+        stageConfig.MaxPrompts = maxPrompts;
     }
 
     // Update is called once per frame
@@ -127,8 +128,8 @@ public class StageLevelManager : LevelManager
     // Begin the actual game, start recording metrics
     void StartGame()
     {
-        lcMetric.startRecording();
-        metricWriter = new MetricJSONWriter("Looking", DateTime.Now, seed); // initialize metric data writer
+        //lcMetric.startRecording();
+        //metricWriter = new MetricJSONWriter("Looking", DateTime.Now, seed); // initialize metric data writer
         gameStartTime = Time.time;
         //sound.clip = bite_sound;
     }
@@ -160,14 +161,14 @@ public class StageLevelManager : LevelManager
     {
         bool rightDecision = false;
 
-        if (Input.GetKeyDown(upKey) || Input.GetKeyDown(leftKey)
-            || Input.GetKeyDown(rightKey) || Input.GetKeyDown(downKey) || Input.GetKeyDown(noInput))
+        if (Input.GetKeyDown(yesKey) || Input.GetKeyDown(noKey)
+            || Input.GetKeyDown(rowOne) || Input.GetKeyDown(rowTwo) || Input.GetKeyDown(rowThree))
         {
-            if (Input.GetKeyDown(upKey))
+            if (Input.GetKeyDown(yesKey))
             {
                 
             }
-            else if (Input.GetKeyDown(leftKey))
+            else if (Input.GetKeyDown(noKey))
             {
                 
             }
@@ -212,19 +213,19 @@ public class StageLevelManager : LevelManager
 
     void Prompt()
     {
-        if (displayController.DisplayNext())
+        if (stageController.WalkNext())
         {
-            StartCoroutine(WaitForFoodDisplay(1.75f));
+            StartCoroutine(WaitForCharacters(1.75f));
         }
         else
         {
-            StartCoroutine(WaitForFoodDisplay(1f));
+            StartCoroutine(WaitForCharacters(1f));
         }
         gameState = GameState.DisplayOptions;
     }
 
     // Wait for the food dispensing animation
-    IEnumerator WaitForFoodDisplay(float wait)
+    IEnumerator WaitForCharacters(float wait)
     {
         yield return new WaitForSeconds(wait);
         gameState = GameState.WaitingForPlayer;
@@ -249,12 +250,12 @@ public class StageLevelManager : LevelManager
     // End game, stop animations, sounds, physics. Finish recording metrics
     void EndGame()
     {
-        lcMetric.finishRecording();
-        var str = metricWriter.GetLogMetrics(
-                    DateTime.Now,
-                    new List<AbstractMetric>() { lcMetric }
-                );
-        StartCoroutine(Post("looking_" + DateTime.Now.ToFileTime() + ".json", str));
+        //lcMetric.finishRecording();
+        //var str = metricWriter.GetLogMetrics(
+        //            DateTime.Now,
+        //            new List<AbstractMetric>() { lcMetric }
+        //        );
+        //StartCoroutine(Post("stage_" + DateTime.Now.ToFileTime() + ".json", str));
         //
         //dispenser.StopAllCoroutines();
         //dispenser.screenRed.SetActive(false);

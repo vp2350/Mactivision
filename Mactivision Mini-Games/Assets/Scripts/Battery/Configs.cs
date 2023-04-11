@@ -73,3 +73,15 @@ public class LookingConfig : GameConfig
     public int MaxPrompts { get; set; }
     public int DiffLevel { get; set; }
 }
+
+public class StageConfig : GameConfig
+{
+    public string TestName { get; set; }
+    public string Scene { get; set; }
+    public string Seed { get; set; }
+    public int UniqueTypes { get; set; }
+    public int MaxPlayersDisplayed { get; set; }
+    public float MaxGameTime { get; set; }
+    public int MaxPrompts { get; set; }
+    public int DiffLevel { get; set; }
+}
