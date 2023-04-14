@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using static UnityEngine.UI.Image;
+using UnityEngine.UIElements;
+using UnityEditor.PackageManager;
 
 // This class is responsible for managing the games foods, and dispensing of foods.
 public class StageController : MonoBehaviour
@@ -12,9 +15,20 @@ public class StageController : MonoBehaviour
     int difficulty;
     int playerCount;
     int rowMax;
+    float maxDistance;
+
+    int falseShephard;
+    bool faked;
+
+    public GameObject[] spawns = new GameObject[3];
 
     int lastUpdate = 0;         // number of foods dispensed since last food update
     int nextUpdate = 0;
+
+    public List<GameObject> spawnedPlayers = new List<GameObject>();
+    public List<Color> playerColors = new List<Color>();
+
+    public GameObject playerPrefab;
 
     public List<GameObject> playerTypes = new List<GameObject>();
     public DateTime choiceStartTime { private set; get; }   // the time the current food is dispensed and the player can make a choice
@@ -32,7 +46,7 @@ public class StageController : MonoBehaviour
         randomSeed = new System.Random(seed.GetHashCode());
         difficulty = diff;
         UpdatePlayerCount();
-
+        maxDistance = 10f;
     }
 
     public void UpdateDiff(int diff)
@@ -71,25 +85,38 @@ public class StageController : MonoBehaviour
 
         bool fake = randIdx == 0; 
 
-        Spawn(fake);
+        Spawn();
         Walk();
         return update;
     }
 
-    void Spawn(bool fake)
+    void Spawn()
     {
-        bool fromRight = false;
-        for(int i = rowMax; i >= rowMax - 2; i--)
+        int maxForThis = rowMax;
+        int left = -1;
+        for (int i = 0; i < 3; i++)
         {
+            for (int j = maxForThis; j >= maxForThis - 2; j--)
+            {
+                GameObject tempPlayer = Instantiate(playerPrefab, spawns[i].transform);
+                tempPlayer.transform.position = new Vector3(tempPlayer.transform.position.x + (maxForThis * left), tempPlayer.transform.position.y, tempPlayer.transform.position.z);
 
-            fromRight = !fromRight;
+                SpriteRenderer temp = tempPlayer.GetComponent<SpriteRenderer>();
+                Color tempColor = new Color(randomSeed.Next(255), randomSeed.Next(255), randomSeed.Next(255), 1f);
+                temp.color = tempColor;
+
+                spawnedPlayers.Add(tempPlayer);
+                playerColors.Add(tempColor); 
+            }
+            maxForThis -= 1;
+            left = -left;
         }
     }
 
     // Returns whether the choice to `feed` was correct or not
     public bool MakeChoice(bool feed)
     {
-        return true;//(Array.IndexOf(goodFoods, currentFood) >= 0 == feed);
+        return faked == feed ? true : false;
     }
 
     // The actual function that randomly chooses a food and dispenses it.
@@ -98,6 +125,21 @@ public class StageController : MonoBehaviour
     // Physics does the rest to make it fall out of the pipe.
     void Walk()
     {
+        int maxForThis = rowMax;
+        int left = -1;
+        int playerNumber = 0;
+        float speed = 2f;
+        for(int i = 0; i < 3 ; i++)
+        {
+            for (int j = maxForThis; j >= maxForThis - 2 && playerNumber < spawnedPlayers.Count; j--)
+            {
+                spawnedPlayers[playerNumber].GetComponent<Rigidbody2D>().MovePosition(new Vector2(spawnedPlayers[playerNumber].transform.position.x + ((maxDistance - maxDistance/maxForThis) * left),
+                    spawnedPlayers[playerNumber].transform.position.y));
+                playerNumber++;
+            }
+            maxForThis -= 1;
+            left = -left;
+        }
         //int randIdx;
         //randIdx = randomSeed.Next(gameFoods.Length);
         //currentFood = gameFoods[randIdx];
@@ -118,46 +160,6 @@ public class StageController : MonoBehaviour
         //pipe.Play("Base Layer.pipe_dispense");
         //sound.clip = dispense_sound;
         //sound.PlayDelayed(0f);
-    }
-
-    // Update the list of good and bad foods. Essentially swaps items between
-    // the good and bad lists. If there are less than two foods in the good list, 
-    // it will move a food from the bad list to the good list. 
-    // On update, this function will activate the flashing green or red screen
-    // depending on if a food was moved to the good or bad list, respectively.
-    void UpdateQueue()
-    {
-        // choose a food to update and swap it to the other list
-        //int randIdx = randomSeed.Next(gameFoods.Length);
-        //string food = badFoods[randIdx];
-        //if (goodFoodCount < 2)
-        //{
-        //    do
-        //    {
-        //        randIdx = randomSeed.Next(gameFoods.Length);
-        //        food = badFoods[randIdx];
-        //    } while (food == "");
-        //}
-        //badFoods[randIdx] = goodFoods[randIdx];
-        //goodFoods[randIdx] = food;
-        //
-        //// show the food to be updated on the monitor, and activate either
-        //// the green or red flashing screen animation and sound
-        //if (food == "")
-        //{
-        //    food = badFoods[randIdx];
-        //    screenRed.SetActive(true);
-        //    goodFoodCount--;
-        //}
-        //else
-        //{
-        //    screenGreen.SetActive(true);
-        //    goodFoodCount++;
-        //}
-        //food = food + " (screen)";
-        //screenFood = monitor.Find(food).gameObject;
-        //screenFood.SetActive(true);
-        //sound.PlayOneShot(screen_sound);
     }
 
     // Wait for the flashing screen animation and then dispense the next food.
