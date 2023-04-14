@@ -820,54 +820,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 632027444}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d38427f158d64459baf997d4e77b44a, type: 3}
+  m_Script: {fileID: 11500000, guid: 725d5d9fc6f6348adb2d58caee841b01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  postprocess: {fileID: 1417115599}
-  instructionParent: {fileID: 1641917307}
-  instructions:
-  - {fileID: 735819366}
-  - {fileID: 239155752}
-  - {fileID: 356975918}
-  - {fileID: 601015579}
+  postprocess: {fileID: 0}
+  instructionParent: {fileID: 0}
+  instructions: []
   instructionCount: 0
-  countdownText: {fileID: 2116514267}
+  countdownText: {fileID: 0}
   countDoneText: Start!
-  outroText: {fileID: 1825311818}
-  textBG: {fileID: 638110798}
-  textBG_Main: {fileID: 1429140085}
-  textBG_Edge: {fileID: 402332657}
-  textBG_LArm: {fileID: 1168493377}
-  textBG_RArm: {fileID: 1422094186}
-  sound: {fileID: 632027446}
+  outroText: {fileID: 0}
+  textBG: {fileID: 0}
+  textBG_Main: {fileID: 0}
+  textBG_Edge: {fileID: 0}
+  textBG_LArm: {fileID: 0}
+  textBG_RArm: {fileID: 0}
+  sound: {fileID: 0}
   lvlState: 0
   maxGameTime: 0
   gameStartTime: 0
   seed: 
   outputPath: 
-  displayController: {fileID: 0}
-  monitors:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  arrows:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  prompters:
-  - {fileID: 0}
-  - {fileID: 0}
   difficulty: 0
-  foods:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  player: {fileID: 0}
+  maxPrompts: 0
 --- !u!82 &632027446
 AudioSource:
   m_ObjectHideFlags: 0

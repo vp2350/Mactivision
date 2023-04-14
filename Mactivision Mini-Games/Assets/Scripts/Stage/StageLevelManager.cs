@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class StageLevelManager : LevelManager
@@ -54,6 +55,8 @@ public class StageLevelManager : LevelManager
 
     void Init()
     {
+        stageController.Init(seed, difficulty);
+
         InitConfig();
     }
 
@@ -86,6 +89,7 @@ public class StageLevelManager : LevelManager
         stageConfig.MaxPlayersDisplayed = maxPlayersDisplayed;
         stageConfig.UniqueTypes = uniqueTypes;
         stageConfig.MaxPrompts = maxPrompts;
+        stageController.UpdateDiff(difficulty);
     }
 
     // Update is called once per frame
@@ -213,14 +217,11 @@ public class StageLevelManager : LevelManager
 
     void Prompt()
     {
-        if (stageController.WalkNext())
+        if (stageController.SpawnNext())
         {
-            StartCoroutine(WaitForCharacters(1.75f));
+            StartCoroutine(WaitForCharacters(15f));
         }
-        else
-        {
-            StartCoroutine(WaitForCharacters(1f));
-        }
+        
         gameState = GameState.DisplayOptions;
     }
 
