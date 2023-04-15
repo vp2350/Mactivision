@@ -12,10 +12,13 @@ public class StageLevelManager : LevelManager
     KeyCode rowTwo = KeyCode.Alpha2;   //Down monitor
     KeyCode rowThree = KeyCode.Alpha3;           //Prompt not displayed on monitors
 
-    StageController stageController;
+    public StageController stageController;
 
     int uniqueTypes;                         // number of foods to be used in the current game
     int uniqueTokens;
+
+    bool prompting;
+    bool displayingOptions;
 
     int maxPlayersDisplayed;                   // maximum foods dispensed before game ends
     int playerTypeDisplayed;
@@ -42,6 +45,7 @@ public class StageLevelManager : LevelManager
     // Start is called before the first frame update
     void Start()
     {
+
         Setup();
         Init();
 
@@ -50,12 +54,13 @@ public class StageLevelManager : LevelManager
         randomSeed = new System.Random(seed.GetHashCode());
         gameState = GameState.Prompting;
 
-
     }
 
     void Init()
     {
         stageController.Init(seed, difficulty);
+        prompting = false;
+        displayingOptions = false;
 
         InitConfig();
     }
@@ -115,9 +120,18 @@ public class StageLevelManager : LevelManager
             switch (gameState)
             {
                 case GameState.Prompting:
-                    Prompt();
+                    if (!prompting)
+                    {
+                        Prompt();
+                        prompting = true;
+                    }
                     break;
                 case GameState.DisplayOptions:
+                    if (!displayingOptions)
+                    {
+                        ShowChoices();
+                        displayingOptions = true;
+                    }
                     break;
                 case GameState.WaitingForPlayer:
                     WaitForPlayer();
@@ -163,6 +177,7 @@ public class StageLevelManager : LevelManager
 
     void WaitForPlayer()
     {
+        displayingOptions = false;
         bool rightDecision = false;
 
         if (Input.GetKeyDown(yesKey) || Input.GetKeyDown(noKey)
@@ -180,18 +195,7 @@ public class StageLevelManager : LevelManager
             {
                 
             }
-            // set the angle the plate should tilt to. Play monster eating animation & sound if applicable
-            //if (Input.GetKeyDown(feedKey))
-            //{
-            //    monster.Play("Base Layer.monster_eat");
-            //    sound.PlayDelayed(0.85f);
-            //    tiltPlateTo = -33f;
-            //}
-            //else
-            //{
-            //    tiltPlateTo = 33f;
-            //}
-            //
+            
             // record the choice made
             //lcMetric.recordEvent(new LookingChoiceEvent(
             //    displayController.choiceStartTime,
@@ -217,19 +221,29 @@ public class StageLevelManager : LevelManager
 
     void Prompt()
     {
-        if (stageController.SpawnNext())
-        {
-            StartCoroutine(WaitForCharacters(15f));
-        }
-        
-        gameState = GameState.DisplayOptions;
+        stageController.SpawnNext(false);
+        StartCoroutine(WaitForCharacters(15f, false));
     }
 
+    void ShowChoices()
+    {
+        prompting = false;
+        stageController.SpawnNext(true);
+        StartCoroutine(WaitForCharacters(15f, true));
+    }
     // Wait for the food dispensing animation
-    IEnumerator WaitForCharacters(float wait)
+    IEnumerator WaitForCharacters(float wait, bool secondDisplay)
     {
         yield return new WaitForSeconds(wait);
-        gameState = GameState.WaitingForPlayer;
+        Debug.Log("Second");
+        if(!secondDisplay)
+        {
+            gameState = GameState.DisplayOptions;
+        }
+        else
+        {
+            gameState = GameState.WaitingForPlayer;
+        }
     }
 
     // Wait for the food dispensing animation

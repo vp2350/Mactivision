@@ -76,33 +76,39 @@ public class StageController : MonoBehaviour
 
     // Decides whether to update the list of liked foods.
     // Returns whether there is an update or not
-    public bool SpawnNext()
+    public void SpawnNext(bool secondDisplay)
     {
-        bool update = false;
+        faked = false;
 
-        int randIdx;
-        randIdx = randomSeed.Next(5);
+        for (int i = 0; i < spawnedPlayers.Count; i++)
+        {
+            Destroy(spawnedPlayers[i]);
+        }
+        spawnedPlayers.Clear();
+        playerColors.Clear();
 
-        bool fake = randIdx == 0; 
-
-        Spawn();
-        Walk();
-        return update;
+        Spawn(secondDisplay);
+        //Walk();
     }
 
-    void Spawn()
+    void Spawn(bool secondDisplay)
     {
         int maxForThis = rowMax;
         int left = -1;
+
         for (int i = 0; i < 3; i++)
         {
             for (int j = maxForThis; j >= maxForThis - 2; j--)
             {
-                GameObject tempPlayer = Instantiate(playerPrefab, spawns[i].transform);
+                GameObject tempPlayer = Instantiate(playerPrefab);
                 tempPlayer.transform.position = new Vector3(tempPlayer.transform.position.x + (maxForThis * left), tempPlayer.transform.position.y, tempPlayer.transform.position.z);
 
                 SpriteRenderer temp = tempPlayer.GetComponent<SpriteRenderer>();
-                Color tempColor = new Color(randomSeed.Next(255), randomSeed.Next(255), randomSeed.Next(255), 1f);
+                float r = randomSeed.Next(255);
+                float g = randomSeed.Next(255);
+                float b = randomSeed.Next(255);
+                Debug.Log(r + " " + g + " " + b);
+                Color tempColor = new Color(0, 0, 0, 1f);
                 temp.color = tempColor;
 
                 spawnedPlayers.Add(tempPlayer);
@@ -110,6 +116,34 @@ public class StageController : MonoBehaviour
             }
             maxForThis -= 1;
             left = -left;
+        }
+
+        for(int i = 0; i < spawnedPlayers.Count; i++)
+        {
+            SpriteRenderer temp = spawnedPlayers[i].GetComponent<SpriteRenderer>();
+            float r = randomSeed.Next(255);
+            float g = randomSeed.Next(255);
+            float b = randomSeed.Next(255);
+            Color tempColor = new Color(r, g, b);
+            temp.color = tempColor;
+        }
+
+        if(secondDisplay)
+        {
+            int randNew = randomSeed.Next(5);
+            if(randNew == 0 || randNew == 1)
+            {
+                randNew = randomSeed.Next(spawnedPlayers.Count);
+                GameObject objectToChange = spawnedPlayers[randNew];
+
+                SpriteRenderer temp = objectToChange.GetComponent<SpriteRenderer>();
+                Color tempColor = new Color(randomSeed.Next(255), randomSeed.Next(255), randomSeed.Next(255), 1f);
+                temp.color = tempColor;
+
+                playerColors[randNew] = tempColor;
+                faked = true;
+                falseShephard = randNew;
+            }
         }
     }
 
@@ -125,6 +159,7 @@ public class StageController : MonoBehaviour
     // Physics does the rest to make it fall out of the pipe.
     void Walk()
     {
+        Debug.Log("Called");
         int maxForThis = rowMax;
         int left = -1;
         int playerNumber = 0;
@@ -142,24 +177,6 @@ public class StageController : MonoBehaviour
         }
         //int randIdx;
         //randIdx = randomSeed.Next(gameFoods.Length);
-        //currentFood = gameFoods[randIdx];
-        //choiceStartTime = DateTime.Now;
-        //
-        //// find the current food GameObject and place it in the pipe
-        //foreach (GameObject obj in allFoods)
-        //{
-        //    if (obj.name == currentFood)
-        //    {
-        //        obj.SetActive(true);
-        //        obj.transform.position = new Vector3(0f, 4f, 0f);
-        //        break;
-        //    }
-        //}
-        //
-        //// dispensing animation and sound
-        //pipe.Play("Base Layer.pipe_dispense");
-        //sound.clip = dispense_sound;
-        //sound.PlayDelayed(0f);
     }
 
     // Wait for the flashing screen animation and then dispense the next food.
