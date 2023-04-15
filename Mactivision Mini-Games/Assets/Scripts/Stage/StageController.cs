@@ -46,7 +46,7 @@ public class StageController : MonoBehaviour
         randomSeed = new System.Random(seed.GetHashCode());
         difficulty = diff;
         UpdatePlayerCount();
-        maxDistance = 10f;
+        maxDistance = 20f;
     }
 
     public void UpdateDiff(int diff)
@@ -88,7 +88,7 @@ public class StageController : MonoBehaviour
         playerColors.Clear();
 
         Spawn(secondDisplay);
-        //Walk();
+        Walk();
     }
 
     void Spawn(bool secondDisplay)
@@ -101,14 +101,14 @@ public class StageController : MonoBehaviour
             for (int j = maxForThis; j >= maxForThis - 2; j--)
             {
                 GameObject tempPlayer = Instantiate(playerPrefab);
-                tempPlayer.transform.position = new Vector3(tempPlayer.transform.position.x + (maxForThis * left), tempPlayer.transform.position.y, tempPlayer.transform.position.z);
+                tempPlayer.transform.position = new Vector3(spawns[i].transform.position.x + (maxForThis * left), spawns[i].transform.position.y, spawns[i].transform.position.z);
 
                 SpriteRenderer temp = tempPlayer.GetComponent<SpriteRenderer>();
-                float r = randomSeed.Next(255);
-                float g = randomSeed.Next(255);
-                float b = randomSeed.Next(255);
+                float r = randomSeed.Next(100, 250);
+                float g = randomSeed.Next(100, 250);
+                float b = randomSeed.Next(100, 250);
                 Debug.Log(r + " " + g + " " + b);
-                Color tempColor = new Color(0, 0, 0, 1f);
+                Color tempColor = new Color(r/255f, g/255f, b/255f, 1f);
                 temp.color = tempColor;
 
                 spawnedPlayers.Add(tempPlayer);
@@ -118,15 +118,15 @@ public class StageController : MonoBehaviour
             left = -left;
         }
 
-        for(int i = 0; i < spawnedPlayers.Count; i++)
-        {
-            SpriteRenderer temp = spawnedPlayers[i].GetComponent<SpriteRenderer>();
-            float r = randomSeed.Next(255);
-            float g = randomSeed.Next(255);
-            float b = randomSeed.Next(255);
-            Color tempColor = new Color(r, g, b);
-            temp.color = tempColor;
-        }
+        //for(int i = 0; i < spawnedPlayers.Count; i++)
+        //{
+        //    SpriteRenderer temp = spawnedPlayers[i].GetComponent<SpriteRenderer>();
+        //    float r = randomSeed.Next(255);
+        //    float g = randomSeed.Next(255);
+        //    float b = randomSeed.Next(255);
+        //    Color tempColor = new Color(r / 255f, g / 255f, b / 255f, 1f);
+        //    temp.color = tempColor;
+        //}
 
         if(secondDisplay)
         {
@@ -168,8 +168,8 @@ public class StageController : MonoBehaviour
         {
             for (int j = maxForThis; j >= maxForThis - 2 && playerNumber < spawnedPlayers.Count; j--)
             {
-                spawnedPlayers[playerNumber].GetComponent<Rigidbody2D>().MovePosition(new Vector2(spawnedPlayers[playerNumber].transform.position.x + ((maxDistance - maxDistance/maxForThis) * left),
-                    spawnedPlayers[playerNumber].transform.position.y));
+                spawnedPlayers[playerNumber].transform.position = new Vector2(spawnedPlayers[playerNumber].transform.position.x + ((maxDistance - maxDistance/(j+1)) * left),
+                    spawnedPlayers[playerNumber].transform.position.y);
                 playerNumber++;
             }
             maxForThis -= 1;

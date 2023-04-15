@@ -848,7 +848,7 @@ MonoBehaviour:
   outputPath: 
   stageController: {fileID: 644834530}
   difficulty: 0
-  player: {fileID: 8310480427779240004, guid: e0cbf477f9fe549e8a3855464fa8b966, type: 3}
+  player: {fileID: 675962696853179645, guid: 89b623487b6c00c468e86b201cf58ad0, type: 3}
   maxPrompts: 0
 --- !u!82 &632027446
 AudioSource:
@@ -1036,7 +1036,7 @@ MonoBehaviour:
   - {fileID: 735830352}
   spawnedPlayers: []
   playerColors: []
-  playerPrefab: {fileID: 8310480427779240004, guid: e0cbf477f9fe549e8a3855464fa8b966, type: 3}
+  playerPrefab: {fileID: 675962696853179645, guid: 89b623487b6c00c468e86b201cf58ad0, type: 3}
   playerTypes: []
 --- !u!4 &644834531
 Transform:
