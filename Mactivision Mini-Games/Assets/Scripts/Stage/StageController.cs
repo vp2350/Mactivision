@@ -45,6 +45,7 @@ public class StageController : MonoBehaviour
         startTime = Time.time;
         playerCount = 0;
         randomSeed = new System.Random(seed.GetHashCode());
+        Debug.Log(seed.GetHashCode());
         difficulty = diff;
         UpdatePlayerCount();
         maxDistance = 20f;
@@ -79,14 +80,16 @@ public class StageController : MonoBehaviour
     // Returns whether there is an update or not
     public void SpawnNext(bool secondDisplay)
     {
-        faked = false;
-
-        for (int i = 0; i < spawnedPlayers.Count; i++)
+        if (!secondDisplay)
         {
-            Destroy(spawnedPlayers[i]);
+            faked = false;
+            for (int i = 0; i < spawnedPlayers.Count; i++)
+            {
+                Destroy(spawnedPlayers[i]);
+            }
+            spawnedPlayers.Clear();
+            playerColors.Clear();
         }
-        spawnedPlayers.Clear();
-        playerColors.Clear();
 
         Spawn(secondDisplay);
         Walk();
@@ -97,6 +100,7 @@ public class StageController : MonoBehaviour
         int maxForThis = rowMax;
         int left = 1;
 
+        int colourCount = 0;
         for (int i = 0; i < 3; i++)
         {
             for (int j = maxForThis; j > 0; j--)
@@ -108,25 +112,28 @@ public class StageController : MonoBehaviour
                 float r = randomSeed.Next(100, 250);
                 float g = randomSeed.Next(100, 250);
                 float b = randomSeed.Next(100, 250);
-                Color tempColor = new Color(r/255f, g/255f, b/255f, 1f);
-                temp.color = tempColor;
-
+                if (!secondDisplay)
+                {
+                    Color tempColor = new Color(r / 255f, g / 255f, b / 255f, 1f);
+                    temp.color = tempColor;
+                    playerColors.Add(tempColor);
+                }
+                else
+                {
+                    Debug.Log(playerColors.Count);
+                    Debug.Log(colourCount);
+                    if (colourCount < playerColors.Count)
+                    {
+                        Color tempColor = playerColors[colourCount];
+                        temp.color = tempColor;
+                    }
+                }
                 spawnedPlayers.Add(tempPlayer);
-                playerColors.Add(tempColor); 
+                colourCount++;
             }
             maxForThis -= 1;
             left = -left;
         }
-
-        //for(int i = 0; i < spawnedPlayers.Count; i++)
-        //{
-        //    SpriteRenderer temp = spawnedPlayers[i].GetComponent<SpriteRenderer>();
-        //    float r = randomSeed.Next(255);
-        //    float g = randomSeed.Next(255);
-        //    float b = randomSeed.Next(255);
-        //    Color tempColor = new Color(r / 255f, g / 255f, b / 255f, 1f);
-        //    temp.color = tempColor;
-        //}
 
         if(secondDisplay)
         {
@@ -167,15 +174,10 @@ public class StageController : MonoBehaviour
         {
             for (int j = maxForThis; j > 0 && playerNumber < spawnedPlayers.Count; j--)
             {
-                Vector2 startPos = spawnedPlayers[playerNumber].transform.position;
                 Vector2 endPos = new Vector2(spawnedPlayers[playerNumber].transform.position.x + (maxDistance * left),
                     spawnedPlayers[playerNumber].transform.position.y);
-                float journeyLength = Vector2.Distance(startPos, endPos);
-
-                float distCovered = (Time.time - startTime) * speed;
-                float fractionOfJourney = distCovered / journeyLength;
-
-                spawnedPlayers[playerNumber].transform.position = Vector2.Lerp(startPos, endPos, fractionOfJourney); 
+                
+                spawnedPlayers[playerNumber].GetComponent<PlayerStageMovement>().SetTarget(endPos);
                 playerNumber++;
             }
             maxForThis -= 1;

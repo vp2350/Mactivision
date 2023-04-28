@@ -115,3 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4110306d41dc44235b02b38b68e5571e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {x: 0, y: 0}
+  startTime: 0
+  speed: 0
+  actor: {fileID: 675962696853179644}

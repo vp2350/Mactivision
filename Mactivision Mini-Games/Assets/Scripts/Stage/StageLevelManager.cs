@@ -58,11 +58,12 @@ public class StageLevelManager : LevelManager
 
     void Init()
     {
-        stageController.Init(seed, difficulty);
         prompting = false;
         displayingOptions = false;
 
         InitConfig();
+
+        stageController.Init(seed, difficulty);
     }
 
     void InitConfig()
@@ -85,7 +86,7 @@ public class StageLevelManager : LevelManager
         maxGameTime = stageConfig.MaxGameTime > 0 ? stageConfig.MaxGameTime : Default(90f, "MaxGameTime");
         maxPlayersDisplayed = stageConfig.MaxPlayersDisplayed > 0 ? stageConfig.MaxPlayersDisplayed : Default(10, "MaxFoodDisplayed");
         uniqueTypes = stageConfig.UniqueTypes >= 2 && stageConfig.UniqueTypes <= stageController.playerTypes.Count ? stageConfig.UniqueTypes : Default(1, "UniqueTypes");
-        difficulty = stageConfig.DiffLevel > 0 ? stageConfig.DiffLevel : Default(1, "DiffLevel");
+        difficulty = stageConfig.DiffLevel > 0 ? stageConfig.DiffLevel : Default(2, "DiffLevel");
         maxPrompts = stageConfig.MaxPrompts > 0 ? stageConfig.MaxPrompts : Default(5, "MaxPrompts");
 
         // udpate battery config with actual/final values being used
