@@ -20,6 +20,7 @@ public class StageController : MonoBehaviour
     int falseShephard;
     bool faked;
 
+    public float startTime;
     public GameObject[] spawns = new GameObject[3];
 
     int lastUpdate = 0;         // number of foods dispensed since last food update
@@ -41,7 +42,7 @@ public class StageController : MonoBehaviour
     // strings the same length as `gameFoods` and `badFoods`.
     public void Init(string seed, int diff)
     {
-
+        startTime = Time.time;
         playerCount = 0;
         randomSeed = new System.Random(seed.GetHashCode());
         difficulty = diff;
@@ -94,20 +95,19 @@ public class StageController : MonoBehaviour
     void Spawn(bool secondDisplay)
     {
         int maxForThis = rowMax;
-        int left = -1;
+        int left = 1;
 
         for (int i = 0; i < 3; i++)
         {
-            for (int j = maxForThis; j >= maxForThis - 2; j--)
+            for (int j = maxForThis; j > 0; j--)
             {
                 GameObject tempPlayer = Instantiate(playerPrefab);
-                tempPlayer.transform.position = new Vector3(spawns[i].transform.position.x + (maxForThis * left), spawns[i].transform.position.y, spawns[i].transform.position.z);
+                tempPlayer.transform.position = new Vector3(spawns[i].transform.position.x + (j * maxDistance / (maxForThis + 1) * left), spawns[i].transform.position.y, spawns[i].transform.position.z);
 
                 SpriteRenderer temp = tempPlayer.GetComponent<SpriteRenderer>();
                 float r = randomSeed.Next(100, 250);
                 float g = randomSeed.Next(100, 250);
                 float b = randomSeed.Next(100, 250);
-                Debug.Log(r + " " + g + " " + b);
                 Color tempColor = new Color(r/255f, g/255f, b/255f, 1f);
                 temp.color = tempColor;
 
@@ -159,17 +159,23 @@ public class StageController : MonoBehaviour
     // Physics does the rest to make it fall out of the pipe.
     void Walk()
     {
-        Debug.Log("Called");
         int maxForThis = rowMax;
         int left = -1;
         int playerNumber = 0;
-        float speed = 2f;
+        float speed = 0.2f;
         for(int i = 0; i < 3 ; i++)
         {
-            for (int j = maxForThis; j >= maxForThis - 2 && playerNumber < spawnedPlayers.Count; j--)
+            for (int j = maxForThis; j > 0 && playerNumber < spawnedPlayers.Count; j--)
             {
-                spawnedPlayers[playerNumber].transform.position = new Vector2(spawnedPlayers[playerNumber].transform.position.x + ((maxDistance - maxDistance/(j+1)) * left),
+                Vector2 startPos = spawnedPlayers[playerNumber].transform.position;
+                Vector2 endPos = new Vector2(spawnedPlayers[playerNumber].transform.position.x + (maxDistance * left),
                     spawnedPlayers[playerNumber].transform.position.y);
+                float journeyLength = Vector2.Distance(startPos, endPos);
+
+                float distCovered = (Time.time - startTime) * speed;
+                float fractionOfJourney = distCovered / journeyLength;
+
+                spawnedPlayers[playerNumber].transform.position = Vector2.Lerp(startPos, endPos, fractionOfJourney); 
                 playerNumber++;
             }
             maxForThis -= 1;
