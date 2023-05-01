@@ -89,13 +89,17 @@ public class StageController : MonoBehaviour
             }
             spawnedPlayers.Clear();
             playerColors.Clear();
+            Spawn();
+            Walk();
+            WaitForDisplay(10f);
         }
-
-        Spawn(secondDisplay);
-        Walk();
+        else
+        {
+            SpawnOptions();
+        }
     }
 
-    void Spawn(bool secondDisplay)
+    void Spawn()
     {
         int maxForThis = rowMax;
         int left = 1;
@@ -112,22 +116,12 @@ public class StageController : MonoBehaviour
                 float r = randomSeed.Next(100, 250);
                 float g = randomSeed.Next(100, 250);
                 float b = randomSeed.Next(100, 250);
-                if (!secondDisplay)
-                {
-                    Color tempColor = new Color(r / 255f, g / 255f, b / 255f, 1f);
-                    temp.color = tempColor;
-                    playerColors.Add(tempColor);
-                }
-                else
-                {
-                    Debug.Log(playerColors.Count);
-                    Debug.Log(colourCount);
-                    if (colourCount < playerColors.Count)
-                    {
-                        Color tempColor = playerColors[colourCount];
-                        temp.color = tempColor;
-                    }
-                }
+
+               
+                Color tempColor = new Color(r / 255f, g / 255f, b / 255f, 1f);
+                temp.color = tempColor;
+                playerColors.Add(tempColor);
+                
                 spawnedPlayers.Add(tempPlayer);
                 colourCount++;
             }
@@ -135,23 +129,51 @@ public class StageController : MonoBehaviour
             left = -left;
         }
 
-        if(secondDisplay)
+    }
+
+    void SpawnOptions()
+    {
+        int randNew = randomSeed.Next(5);
+        if (randNew == 0 || randNew == 1)
         {
-            int randNew = randomSeed.Next(5);
-            if(randNew == 0 || randNew == 1)
-            {
-                randNew = randomSeed.Next(spawnedPlayers.Count);
-                GameObject objectToChange = spawnedPlayers[randNew];
+            randNew = randomSeed.Next(spawnedPlayers.Count);
+            GameObject objectToChange = spawnedPlayers[randNew];
 
-                SpriteRenderer temp = objectToChange.GetComponent<SpriteRenderer>();
-                Color tempColor = new Color(randomSeed.Next(255), randomSeed.Next(255), randomSeed.Next(255), 1f);
-                temp.color = tempColor;
+            SpriteRenderer temp = objectToChange.GetComponent<SpriteRenderer>();
+            Color tempColor = new Color(randomSeed.Next(255), randomSeed.Next(255), randomSeed.Next(255), 1f);
+            temp.color = tempColor;
 
-                playerColors[randNew] = tempColor;
-                faked = true;
-                falseShephard = randNew;
-            }
+            playerColors[randNew] = tempColor;
+            faked = true;
+            falseShephard = randNew;
         }
+
+        int maxForThis = rowMax;
+        int left = 1;
+
+        int colourCount = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = maxForThis; j > 0; j--)
+            {
+                GameObject tempPlayer = Instantiate(playerPrefab);
+                tempPlayer.transform.position = new Vector3(spawns[i].transform.position.x + (j * maxDistance / (maxForThis + 1) * left), spawns[i].transform.position.y, spawns[i].transform.position.z);
+
+                SpriteRenderer temp = tempPlayer.GetComponent<SpriteRenderer>();
+
+                if (colourCount < playerColors.Count)
+                {
+                    Color tempColor = playerColors[colourCount];
+                    temp.color = tempColor;
+                }
+
+                spawnedPlayers.Add(tempPlayer);
+                colourCount++;
+            }
+            maxForThis -= 1;
+            left = -left;
+        }
+
     }
 
     // Returns whether the choice to `feed` was correct or not
@@ -188,9 +210,10 @@ public class StageController : MonoBehaviour
     }
 
     // Wait for the flashing screen animation and then dispense the next food.
-    IEnumerator WaitForFoodUpdate(float wait)
+    IEnumerator WaitForDisplay(float wait)
     {
         yield return new WaitForSeconds(wait);
+        Walk();
         //screenGreen.SetActive(false);
         //screenRed.SetActive(false);
         //screenFood.SetActive(false);

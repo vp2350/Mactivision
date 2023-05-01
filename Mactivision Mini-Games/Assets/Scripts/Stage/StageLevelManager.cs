@@ -223,7 +223,7 @@ public class StageLevelManager : LevelManager
     void Prompt()
     {
         stageController.SpawnNext(false);
-        StartCoroutine(WaitForCharacters(15f, false));
+        StartCoroutine(WaitForCharacters(12f, false));
     }
 
     void ShowChoices()
