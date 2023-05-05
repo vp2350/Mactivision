@@ -86,7 +86,7 @@ public class StageLevelManager : LevelManager
         maxGameTime = stageConfig.MaxGameTime > 0 ? stageConfig.MaxGameTime : Default(90f, "MaxGameTime");
         maxPlayersDisplayed = stageConfig.MaxPlayersDisplayed > 0 ? stageConfig.MaxPlayersDisplayed : Default(10, "MaxFoodDisplayed");
         uniqueTypes = stageConfig.UniqueTypes >= 2 && stageConfig.UniqueTypes <= stageController.playerTypes.Count ? stageConfig.UniqueTypes : Default(1, "UniqueTypes");
-        difficulty = stageConfig.DiffLevel > 0 ? stageConfig.DiffLevel : Default(2, "DiffLevel");
+        difficulty = stageConfig.DiffLevel > 0 ? stageConfig.DiffLevel : Default(1, "DiffLevel");
         maxPrompts = stageConfig.MaxPrompts > 0 ? stageConfig.MaxPrompts : Default(5, "MaxPrompts");
 
         // udpate battery config with actual/final values being used
@@ -186,17 +186,14 @@ public class StageLevelManager : LevelManager
         {
             if (Input.GetKeyDown(yesKey))
             {
-                
+                rightDecision = stageController.MakeChoice(true);
             }
             else if (Input.GetKeyDown(noKey))
             {
-                
+                rightDecision = stageController.MakeChoice(false);
             }
-            else
-            {
-                
-            }
-            
+
+            Debug.Log(rightDecision);
             // record the choice made
             //lcMetric.recordEvent(new LookingChoiceEvent(
             //    displayController.choiceStartTime,
@@ -223,14 +220,14 @@ public class StageLevelManager : LevelManager
     void Prompt()
     {
         stageController.SpawnNext(false);
-        StartCoroutine(WaitForCharacters(12f, false));
+        StartCoroutine(WaitForCharacters(20f, false));
     }
 
     void ShowChoices()
     {
         prompting = false;
         stageController.SpawnNext(true);
-        StartCoroutine(WaitForCharacters(15f, true));
+        StartCoroutine(WaitForCharacters(6f, true));
     }
     // Wait for the food dispensing animation
     IEnumerator WaitForCharacters(float wait, bool secondDisplay)
