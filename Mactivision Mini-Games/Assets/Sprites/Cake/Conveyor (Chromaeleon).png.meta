@@ -1,0 +1,840 @@
+fileFormatVersion: 2
+guid: 31a43ff332e37447ca22dae0abaedbad
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8082146186048183423
+    second: Conveyor Belts sprite sheet_0
+  - first:
+      213: -7863333471368167943
+    second: Conveyor Belts sprite sheet_1
+  - first:
+      213: 7280317325634342116
+    second: Conveyor Belts sprite sheet_2
+  - first:
+      213: 8780142750146488694
+    second: Conveyor Belts sprite sheet_3
+  - first:
+      213: 3752278780602842318
+    second: Conveyor Belts sprite sheet_4
+  - first:
+      213: -5963569000646782215
+    second: Conveyor Belts sprite sheet_5
+  - first:
+      213: 4202894483998805487
+    second: Conveyor Belts sprite sheet_6
+  - first:
+      213: -6143157023445869900
+    second: Conveyor Belts sprite sheet_7
+  - first:
+      213: 5172100190204160116
+    second: Conveyor Belts sprite sheet_8
+  - first:
+      213: -8698436811162563019
+    second: Conveyor Belts sprite sheet_9
+  - first:
+      213: 3613952855041656054
+    second: Conveyor Belts sprite sheet_10
+  - first:
+      213: 6464281621991213047
+    second: Conveyor Belts sprite sheet_11
+  - first:
+      213: -2213563367524309662
+    second: Conveyor Belts sprite sheet_12
+  - first:
+      213: 8363286701342850506
+    second: Conveyor Belts sprite sheet_13
+  - first:
+      213: 5024077014936146285
+    second: Conveyor Belts sprite sheet_14
+  - first:
+      213: -3881427365867446728
+    second: Conveyor Belts sprite sheet_15
+  - first:
+      213: -7241202936840051534
+    second: Conveyor Belts sprite sheet_16
+  - first:
+      213: 8789842061582773072
+    second: Conveyor Belts sprite sheet_17
+  - first:
+      213: -2334621285587247203
+    second: Conveyor Belts sprite sheet_18
+  - first:
+      213: 8545440569531285990
+    second: Conveyor Belts sprite sheet_19
+  - first:
+      213: 5174991122367658299
+    second: Conveyor Belts sprite sheet_20
+  - first:
+      213: -3332266283658430667
+    second: Conveyor Belts sprite sheet_21
+  - first:
+      213: 484635666146639093
+    second: Conveyor Belts sprite sheet_22
+  - first:
+      213: -2195994577335047582
+    second: Conveyor Belts sprite sheet_23
+  - first:
+      213: 4770227826545424554
+    second: Conveyor Belts sprite sheet_24
+  - first:
+      213: -4374626268627548684
+    second: Conveyor Belts sprite sheet_25
+  - first:
+      213: -3233419332584153501
+    second: Conveyor Belts sprite sheet_26
+  - first:
+      213: -7131052344286129357
+    second: Conveyor Belts sprite sheet_27
+  - first:
+      213: 5177455759565377416
+    second: Conveyor Belts sprite sheet_28
+  - first:
+      213: -7297158759789022456
+    second: Conveyor Belts sprite sheet_29
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 70
+        width: 47
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7c1e2a922d892070800000000000000
+      internalID: 8082146186048183423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_1
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 70
+        width: 47
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fd39a89ed3dfd290800000000000000
+      internalID: -7863333471368167943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_2
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 70
+        width: 47
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ec8e8ee802e80560800000000000000
+      internalID: 7280317325634342116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_3
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 59
+        width: 113
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 679e3b3ef4559d970800000000000000
+      internalID: 8780142750146488694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_4
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 59
+        width: 116
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecc7118aba5c21430800000000000000
+      internalID: 3752278780602842318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_5
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 46
+        width: 47
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f2daea17952d3da0800000000000000
+      internalID: -5963569000646782215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_6
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 46
+        width: 47
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fed823be34ea35a30800000000000000
+      internalID: 4202894483998805487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_7
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 46
+        width: 47
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ba101a2c3f1fbaa0800000000000000
+      internalID: -6143157023445869900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_8
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 35
+        width: 68
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47869d358bdf6c740800000000000000
+      internalID: 5172100190204160116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_9
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 35
+        width: 64
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53e49797ec1f84780800000000000000
+      internalID: -8698436811162563019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_10
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 22
+        width: 22
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f444cf59f6572230800000000000000
+      internalID: 3613952855041656054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_11
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 22
+        width: 22
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f74fdec2edb5b950800000000000000
+      internalID: 6464281621991213047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_12
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 22
+        width: 22
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26565ee58d7d741e0800000000000000
+      internalID: -2213563367524309662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_13
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 22
+        width: 22
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acdf94cb1fc501470800000000000000
+      internalID: 8363286701342850506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_14
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 22
+        width: 22
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6159772d6b19b540800000000000000
+      internalID: 5024077014936146285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_15
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 22
+        width: 22
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83e9dfb1066622ac0800000000000000
+      internalID: -3881427365867446728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_16
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 8
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b422236b44128b90800000000000000
+      internalID: -7241202936840051534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_17
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 8
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05bad60d8cacbf970800000000000000
+      internalID: 8789842061582773072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_18
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 8
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9f91836f42c99fd0800000000000000
+      internalID: -2334621285587247203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_19
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 8
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e1cf1c1ce0879670800000000000000
+      internalID: 8545440569531285990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_20
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 8
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b39368ce10341d740800000000000000
+      internalID: 5174991122367658299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_21
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 8
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5373789587961c1d0800000000000000
+      internalID: -3332266283658430667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_22
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 8
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fcb7261295c9b600800000000000000
+      internalID: 484635666146639093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_23
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 8
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26aa24911924681e0800000000000000
+      internalID: -2195994577335047582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_24
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 8
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa87cea3fe0433240800000000000000
+      internalID: 4770227826545424554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_25
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 8
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f5cc5126943a43c0800000000000000
+      internalID: -4374626268627548684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_26
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 8
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36ed0779f369023d0800000000000000
+      internalID: -3233419332584153501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_27
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 8
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 333db10cca9690d90800000000000000
+      internalID: -7131052344286129357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_28
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 8
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88fc13df4940ad740800000000000000
+      internalID: 5177455759565377416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Conveyor Belts sprite sheet_29
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 2
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 803352d15c84bba90800000000000000
+      internalID: -7297158759789022456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
