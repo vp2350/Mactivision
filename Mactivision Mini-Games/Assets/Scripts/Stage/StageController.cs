@@ -148,7 +148,7 @@ public class StageController : MonoBehaviour
             float g = randomSeed.Next(50, 255);
             float b = randomSeed.Next(50, 255);
             SpriteRenderer temp = objectToChange.GetComponent<SpriteRenderer>();
-            Color tempColor = new Color(r, g, b, 1f);
+            Color tempColor = new Color(r/255, g/255, b/255, 1f);
             temp.color = tempColor;
 
             playerColors[randNew] = tempColor;
