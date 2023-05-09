@@ -262,7 +262,7 @@ public class LookingLevelManager : LevelManager
         }
         else
         {
-            StartCoroutine(WaitForFoodDisplay(0.5f));
+            StartCoroutine(WaitForFoodDisplay(0.2f));
         }
         gameState = GameState.DisplayOptions;
     }
