@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using static UnityEngine.UI.Image;
-using UnityEngine.UIElements;
-using UnityEditor.PackageManager;
 
 // This class is responsible for managing the games foods, and dispensing of foods.
 public class StageController : MonoBehaviour

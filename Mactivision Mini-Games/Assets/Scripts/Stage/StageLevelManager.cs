@@ -229,14 +229,14 @@ public class StageLevelManager : LevelManager
     void Prompt()
     {
         stageController.SpawnNext(false);
-        StartCoroutine(WaitForCharacters(17f, false));
+        StartCoroutine(WaitForCharacters(15f, false));
     }
 
     void ShowChoices()
     {
         prompting = false;
         stageController.SpawnNext(true);
-        StartCoroutine(WaitForCharacters(6f, true));
+        StartCoroutine(WaitForCharacters(4f, true));
     }
     // Wait for the food dispensing animation
     IEnumerator WaitForCharacters(float wait, bool secondDisplay)
