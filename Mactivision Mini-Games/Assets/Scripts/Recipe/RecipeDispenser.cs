@@ -143,15 +143,29 @@ public class RecipeDispenser : MonoBehaviour
         int rand = randomSeed.Next(5);
         if (rand == 0)
         {
-            wasCorrectDispensed = true;
-            goodFoodObjs[0].SetActive(true);
-            goodFoodObjs[0].transform.position = new Vector3(-1f, 4f, 0f);
-            dispensed[0] = goodFoodObjs[0].name;
+            rand = randomSeed.Next(2);
+            if(rand == 0)
+            {
+                wasCorrectDispensed = true;
+                goodFoodObjs[0].SetActive(true);
+                goodFoodObjs[0].transform.position = new Vector3(-1f, 4f, 0f);
+                dispensed[0] = goodFoodObjs[0].name;
 
-            goodFoodObjs[1].SetActive(true);
-            goodFoodObjs[1].transform.position = new Vector3(1f, 4f, 0f);
-            dispensed[1] = goodFoodObjs[1].name;
+                goodFoodObjs[1].SetActive(true);
+                goodFoodObjs[1].transform.position = new Vector3(1f, 4f, 0f);
+                dispensed[1] = goodFoodObjs[1].name;
+            }
+            else
+            {
+                wasCorrectDispensed = true;
+                goodFoodObjs[0].SetActive(true);
+                goodFoodObjs[0].transform.position = new Vector3(1f, 4f, 0f);
+                dispensed[0] = goodFoodObjs[0].name;
 
+                goodFoodObjs[1].SetActive(true);
+                goodFoodObjs[1].transform.position = new Vector3(-1f, 4f, 0f);
+                dispensed[1] = goodFoodObjs[1].name;
+            }
         }
         else
         {

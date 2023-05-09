@@ -17,6 +17,7 @@ public class StageLevelManager : LevelManager
     int uniqueTypes;                         // number of foods to be used in the current game
     int uniqueTokens;
 
+    bool rightDecision;
     bool prompting;
     bool displayingOptions;
 
@@ -32,6 +33,10 @@ public class StageLevelManager : LevelManager
     public int maxPrompts;
 
     List<GameObject> playersSpawned = new List<GameObject>();
+    public GameObject greenSquare;
+    public GameObject redSquare;
+    public GameObject greenCheck;
+    public GameObject redCross;
 
     enum GameState
     {
@@ -86,7 +91,7 @@ public class StageLevelManager : LevelManager
         maxGameTime = stageConfig.MaxGameTime > 0 ? stageConfig.MaxGameTime : Default(90f, "MaxGameTime");
         maxPlayersDisplayed = stageConfig.MaxPlayersDisplayed > 0 ? stageConfig.MaxPlayersDisplayed : Default(10, "MaxFoodDisplayed");
         uniqueTypes = stageConfig.UniqueTypes >= 2 && stageConfig.UniqueTypes <= stageController.playerTypes.Count ? stageConfig.UniqueTypes : Default(1, "UniqueTypes");
-        difficulty = stageConfig.DiffLevel > 0 ? stageConfig.DiffLevel : Default(1, "DiffLevel");
+        difficulty = stageConfig.DiffLevel > 0 ? stageConfig.DiffLevel : Default(2, "DiffLevel");
         maxPrompts = stageConfig.MaxPrompts > 0 ? stageConfig.MaxPrompts : Default(5, "MaxPrompts");
 
         // udpate battery config with actual/final values being used
@@ -179,7 +184,7 @@ public class StageLevelManager : LevelManager
     void WaitForPlayer()
     {
         displayingOptions = false;
-        bool rightDecision = false;
+        rightDecision = false;
 
         if (Input.GetKeyDown(yesKey) || Input.GetKeyDown(noKey)
             || Input.GetKeyDown(rowOne) || Input.GetKeyDown(rowTwo) || Input.GetKeyDown(rowThree))
@@ -217,14 +222,13 @@ public class StageLevelManager : LevelManager
 
     void GiveFeedback()
     {
-        StartCoroutine(WaitForFeedback(2f));
-        gameState = GameState.Prompting;
+        StartCoroutine(WaitForFeedback(3f));
     }
 
     void Prompt()
     {
         stageController.SpawnNext(false);
-        StartCoroutine(WaitForCharacters(20f, false));
+        StartCoroutine(WaitForCharacters(17f, false));
     }
 
     void ShowChoices()
@@ -251,7 +255,34 @@ public class StageLevelManager : LevelManager
     // Wait for the food dispensing animation
     IEnumerator WaitForFeedback(float wait)
     {
+        if(stageController.faked)
+        {
+            if(rightDecision && stageController.falseShephard != -1)
+            {
+                greenSquare.transform.position = stageController.spawnedPlayers[stageController.falseShephard].transform.position;
+            }
+            else if(stageController.falseShephard != -1)
+            {
+                redSquare.transform.position = stageController.spawnedPlayers[stageController.falseShephard].transform.position;
+            }
+        }
+        else
+        {
+            if (rightDecision)
+            {
+                greenCheck.transform.position = new Vector3(0, 0, 0);
+            }
+            else
+            {
+                redCross.transform.position = new Vector3(0, 0, 0);
+            }
+        }
         yield return new WaitForSeconds(wait);
+        redSquare.transform.position = new Vector3(10, 10, 10);
+        greenSquare.transform.position = new Vector3(10, 10, 10);
+        redCross.transform.position = new Vector3(10, 10, 10);
+        greenCheck.transform.position = new Vector3(10, 10, 10);
+
         gameState = GameState.Prompting;
     }
 

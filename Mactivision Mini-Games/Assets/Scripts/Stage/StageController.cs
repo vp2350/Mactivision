@@ -118,9 +118,9 @@ public class StageController : MonoBehaviour
                 tempPlayer.transform.position = new Vector3(spawns[i].transform.position.x + (j * maxDistance / (maxForThis + 1) * left), spawns[i].transform.position.y, spawns[i].transform.position.z);
 
                 SpriteRenderer temp = tempPlayer.GetComponent<SpriteRenderer>();
-                float r = randomSeed.Next(100, 250);
-                float g = randomSeed.Next(100, 250);
-                float b = randomSeed.Next(100, 250);
+                float r = randomSeed.Next(50, 255);
+                float g = randomSeed.Next(50, 255);
+                float b = randomSeed.Next(50, 255);
 
                
                 Color tempColor = new Color(r / 255f, g / 255f, b / 255f, 1f);

@@ -17,6 +17,7 @@ public class LookingLevelManager : LevelManager
 
     int maxFoodDisplayed;                   // maximum foods dispensed before game ends
     int foodDisplayed;
+    bool rightDecision;
 
     LookingChoiceMetric lcMetric;            // records choice data during the game
     MetricJSONWriter metricWriter;          // outputs recording metric (lcMetric) as a json file
@@ -34,7 +35,10 @@ public class LookingLevelManager : LevelManager
 
     public int difficulty;
     public GameObject[] foods = new GameObject[10];
+    public GameObject greenCheck;
+    public GameObject redCross;
 
+    public bool feedbackCalled;
     enum GameState
     {
         Prompting,
@@ -128,6 +132,7 @@ public class LookingLevelManager : LevelManager
             {
                 case GameState.Prompting:
                     Prompt();
+                    feedbackCalled = false;
                     break;
                 case GameState.DisplayOptions:
                     break;
@@ -135,7 +140,11 @@ public class LookingLevelManager : LevelManager
                     WaitForPlayer();
                     break;
                 case GameState.Response:
-                    GiveFeedback();
+                    if (!feedbackCalled)
+                    {
+                        GiveFeedback();
+                        feedbackCalled = true;
+                    }
                     break;
             }
         }
@@ -175,7 +184,7 @@ public class LookingLevelManager : LevelManager
 
     void WaitForPlayer()
     {
-        bool rightDecision = false;
+        rightDecision = false;
         
         if (Input.GetKeyDown(upKey) || Input.GetKeyDown(leftKey)
             || Input.GetKeyDown(rightKey) || Input.GetKeyDown(downKey) || Input.GetKeyDown(noInput))
@@ -241,8 +250,8 @@ public class LookingLevelManager : LevelManager
 
     void GiveFeedback()
     {
-        WaitForFeedback(2f);
-        gameState = GameState.Prompting;
+        StartCoroutine(WaitForFeedback(0.5f));
+        //gameState = GameState.Prompting;
     }
 
     void Prompt()
@@ -253,7 +262,7 @@ public class LookingLevelManager : LevelManager
         }
         else
         {
-            StartCoroutine(WaitForFoodDisplay(1f));
+            StartCoroutine(WaitForFoodDisplay(0.5f));
         }
         gameState = GameState.DisplayOptions;
     }
@@ -268,7 +277,23 @@ public class LookingLevelManager : LevelManager
     // Wait for the food dispensing animation
     IEnumerator WaitForFeedback(float wait)
     {
+        if(rightDecision)
+        {
+            greenCheck.SetActive(true);
+        }
+        else
+        {
+            redCross.SetActive(true);
+        }
         yield return new WaitForSeconds(wait);
+        if (rightDecision)
+        {
+            greenCheck.SetActive(false);
+        }
+        else
+        {
+            redCross.SetActive(false);
+        }
         gameState = GameState.Prompting;
     }
 

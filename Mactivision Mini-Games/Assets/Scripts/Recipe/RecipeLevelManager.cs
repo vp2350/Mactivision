@@ -195,7 +195,7 @@ public class RecipeLevelManager : LevelManager
             if (Input.GetKeyDown(feedKey))
             {
                 //monster.Play("Base Layer.monster_eat");
-                sound.PlayDelayed(0.85f);
+                //sound.PlayDelayed(0.85f);
                 tiltPlateTo = -33f;
             }
             else
