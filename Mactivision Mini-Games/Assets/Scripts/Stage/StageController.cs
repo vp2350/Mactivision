@@ -17,8 +17,9 @@ public class StageController : MonoBehaviour
     int rowMax;
     float maxDistance;
 
-    int falseShephard;
-    bool faked;
+    public int falseShephard;
+    public bool faked;
+    public Color ogColor;
 
     public float startTime;
     public GameObject[] spawns = new GameObject[3];
@@ -49,6 +50,8 @@ public class StageController : MonoBehaviour
         difficulty = diff;
         UpdatePlayerCount();
         maxDistance = 20f;
+        falseShephard = -1;
+        ogColor = new Color(0, 0, 0);
     }
 
     public void UpdateDiff(int diff)
@@ -83,6 +86,8 @@ public class StageController : MonoBehaviour
         if (!secondDisplay)
         {
             faked = false;
+            ogColor = new Color(0, 0, 0);
+            falseShephard = -1;
             for (int i = 0; i < spawnedPlayers.Count; i++)
             {
                 Destroy(spawnedPlayers[i]);
@@ -139,6 +144,8 @@ public class StageController : MonoBehaviour
         {
             randNew = randomSeed.Next(spawnedPlayers.Count);
             GameObject objectToChange = spawnedPlayers[randNew];
+
+            ogColor = playerColors[randNew];
 
             SpriteRenderer temp = objectToChange.GetComponent<SpriteRenderer>();
             Color tempColor = new Color(randomSeed.Next(255), randomSeed.Next(255), randomSeed.Next(255), 1f);
@@ -248,6 +255,24 @@ public class StageController : MonoBehaviour
         //Dispense();
     }
 
+    public Color GetOriginalColor()
+    {
+        if (faked)
+            return ogColor;
+        else
+            return new Color(0, 0, 0);
+    }
+    public Color GetChangedColor()
+    {
+        if (faked)
+            return playerColors[falseShephard];
+        else
+            return new Color(0, 0, 0);
+    }
+    public List<Color> GetColors()
+    {
+        return playerColors;
+    }
     int FoodsBetweenNextUpdate(float avg, float sd)
     {
         float rand = (float)randomSeed.NextDouble();

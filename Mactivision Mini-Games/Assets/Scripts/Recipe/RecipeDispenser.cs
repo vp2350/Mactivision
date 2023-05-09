@@ -21,6 +21,8 @@ public class RecipeDispenser : MonoBehaviour
     int lastUpdate = 0;         // number of foods dispensed since last food update
     int nextUpdate = 0;
 
+    public string[] dispensed;
+
     string[] gameFoods;                                 // foods being used in the current game
     GameObject[] gameFoodObjs;
     public string[] goodFoods { private set; get; }     // foods the monster will eat
@@ -45,6 +47,8 @@ public class RecipeDispenser : MonoBehaviour
     // strings the same length as `gameFoods` and `badFoods`.
     public void Init(string seed, int tf, float uf, float sd)
     {
+        dispensed = new string[2];
+
         screenGreen.SetActive(false);
         screenRed.SetActive(false);
         foreach (GameObject obj in allFoods) obj.SetActive(false);
@@ -82,6 +86,8 @@ public class RecipeDispenser : MonoBehaviour
     public bool DispenseNext()
     {
         bool update = false;
+        dispensed[0] = "";
+        dispensed[1] = "";
 
         if (++lastUpdate >= nextUpdate || goodFoodCount==0) {
             UpdateFoods();
@@ -126,13 +132,13 @@ public class RecipeDispenser : MonoBehaviour
         }
 
         // find the current food GameObject and place it in the pipe
-        foreach (GameObject obj in allFoods) {
-            if (obj.name==currentFood) {
-                obj.SetActive(true);
-                obj.transform.position = new Vector3(1f, 4f, 0f);
-                break;
-            }
-        }
+        //foreach (GameObject obj in allFoods) {
+        //    if (obj.name==currentFood) {
+        //        obj.SetActive(true);
+        //        obj.transform.position = new Vector3(1f, 4f, 0f);
+        //        break;
+        //    }
+        //}
 
         int rand = randomSeed.Next(5);
         if (rand == 0)
@@ -140,18 +146,29 @@ public class RecipeDispenser : MonoBehaviour
             wasCorrectDispensed = true;
             goodFoodObjs[0].SetActive(true);
             goodFoodObjs[0].transform.position = new Vector3(-1f, 4f, 0f);
-            
+            dispensed[0] = goodFoodObjs[0].name;
+
             goodFoodObjs[1].SetActive(true);
             goodFoodObjs[1].transform.position = new Vector3(1f, 4f, 0f);
+            dispensed[1] = goodFoodObjs[1].name;
+
         }
         else
         {
             wasCorrectDispensed = false;
             tempFoods[0].SetActive(true);
             tempFoods[0].transform.position = new Vector3(-1f, 4f, 0f);
+            dispensed[0] = tempFoods[0].name;
 
             tempFoods[1].SetActive(true);
             tempFoods[1].transform.position = new Vector3(1f, 4f, 0f);
+            dispensed[1] = tempFoods[1].name;
+
+            if ((tempFoods[0].name == goodFoodObjs[0].name && tempFoods[1].name == goodFoodObjs[1].name)
+                || (tempFoods[0].name == goodFoodObjs[1].name && tempFoods[1].name == goodFoodObjs[0].name))
+            {
+                wasCorrectDispensed = true;
+            }
         }
 
         // dispensing animation and sound

@@ -85,3 +85,15 @@ public class StageConfig : GameConfig
     public int MaxPrompts { get; set; }
     public int DiffLevel { get; set; }
 }
+
+public class RecipeConfig : GameConfig
+{
+    public string TestName { get; set; }
+    public string Scene { get; set; }
+    public string Seed { get; set; }
+    public float MaxGameTime { get; set; }
+    public int MaxFoodDispensed { get; set; }
+    public int UniqueFoods { get; set; }
+    public float AverageUpdateFrequency { get; set; }
+    public float UpdateFreqVariance { get; set; }
+}

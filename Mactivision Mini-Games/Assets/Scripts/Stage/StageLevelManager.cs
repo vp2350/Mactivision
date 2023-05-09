@@ -23,9 +23,9 @@ public class StageLevelManager : LevelManager
     int maxPlayersDisplayed;                   // maximum foods dispensed before game ends
     int playerTypeDisplayed;
 
-    //LookingChoiceMetric lcMetric;            // records choice data during the game
-    //MetricJSONWriter metricWriter;          // outputs recording metric (lcMetric) as a json file
-    //string recordKey;
+    StageChoiceMetric scMetric;            // records choice data during the game
+    MetricJSONWriter metricWriter;          // outputs recording metric (lcMetric) as a json file
+    string recordKey;
 
     public int difficulty;
     public GameObject player;
@@ -49,7 +49,7 @@ public class StageLevelManager : LevelManager
         Setup();
         Init();
 
-        //lcMetric = new LookingChoiceMetric(); // initialize metric recorder
+        scMetric = new StageChoiceMetric(); // initialize metric recorder
 
         randomSeed = new System.Random(seed.GetHashCode());
         gameState = GameState.Prompting;
@@ -147,8 +147,8 @@ public class StageLevelManager : LevelManager
     // Begin the actual game, start recording metrics
     void StartGame()
     {
-        //lcMetric.startRecording();
-        //metricWriter = new MetricJSONWriter("Looking", DateTime.Now, seed); // initialize metric data writer
+        scMetric.startRecording();
+        metricWriter = new MetricJSONWriter("Stage", DateTime.Now, seed); // initialize metric data writer
         gameStartTime = Time.time;
         //sound.clip = bite_sound;
     }
@@ -187,21 +187,25 @@ public class StageLevelManager : LevelManager
             if (Input.GetKeyDown(yesKey))
             {
                 rightDecision = stageController.MakeChoice(true);
+                recordKey = yesKey.ToString();
             }
             else if (Input.GetKeyDown(noKey))
             {
                 rightDecision = stageController.MakeChoice(false);
+                recordKey = noKey.ToString();
             }
 
-            Debug.Log(rightDecision);
             // record the choice made
-            //lcMetric.recordEvent(new LookingChoiceEvent(
-            //    displayController.choiceStartTime,
-            //    displayController.goodFood,
-            //    displayController.GetObjectsShown(),
-            //    recordKey,
-            //    DateTime.Now
-            //));
+            scMetric.recordEvent(new StageChoiceEvent(
+                stageController.choiceStartTime,
+                stageController.faked,
+                stageController.GetOriginalColor(),
+                stageController.GetChangedColor(),
+                rightDecision.ToString(),
+                stageController.GetColors(),
+                recordKey,
+                DateTime.Now
+            )); 
 
             //
             //// animate choice and play plate sound
@@ -213,7 +217,7 @@ public class StageLevelManager : LevelManager
 
     void GiveFeedback()
     {
-        WaitForFeedback(2f);
+        StartCoroutine(WaitForFeedback(2f));
         gameState = GameState.Prompting;
     }
 
@@ -263,14 +267,14 @@ public class StageLevelManager : LevelManager
     // End game, stop animations, sounds, physics. Finish recording metrics
     void EndGame()
     {
-        //lcMetric.finishRecording();
-        //var str = metricWriter.GetLogMetrics(
-        //            DateTime.Now,
-        //            new List<AbstractMetric>() { lcMetric }
-        //        );
-        //StartCoroutine(Post("stage_" + DateTime.Now.ToFileTime() + ".json", str));
-        //
-        //dispenser.StopAllCoroutines();
+        scMetric.finishRecording();
+        var str = metricWriter.GetLogMetrics(
+                    DateTime.Now,
+                    new List<AbstractMetric>() { scMetric }
+                );
+        StartCoroutine(Post("stage_" + DateTime.Now.ToFileTime() + ".json", str));
+        
+        stageController.StopAllCoroutines();
         //dispenser.screenRed.SetActive(false);
         //dispenser.screenGreen.SetActive(false);
         //dispenser.enabled = false;

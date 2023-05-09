@@ -23,10 +23,11 @@ public class RecipeLevelManager : LevelManager
     KeyCode feedKey = KeyCode.RightArrow;   // press to feed monster
     KeyCode trashKey = KeyCode.LeftArrow;   // press to throw away
 
-    MemoryChoiceMetric mcMetric;            // records choice data during the game
+    RecipeChoiceMetric rcMetric;            // records choice data during the game
     MetricJSONWriter metricWriter;          // outputs recording metric (mcMetric) as a json file
 
     float tiltPlateTo;                      // angle to tilt the plate (food will slide into trash or monster's mouth)
+    bool correct;
 
     // Represents the state of the game cycle
     enum GameState
@@ -50,8 +51,9 @@ public class RecipeLevelManager : LevelManager
         gameState = GameState.FoodExpended;
 
         countDoneText = "Feed!";
+        correct = false;
 
-        mcMetric = new MemoryChoiceMetric(); // initialize metric recorder
+        rcMetric = new RecipeChoiceMetric(); // initialize metric recorder
 
         dispenser.Init(seed, uniqueFoods, avgUpdateFreq, updateFreqVariance); // initialize the dispenser
     }
@@ -59,13 +61,13 @@ public class RecipeLevelManager : LevelManager
     // Initialize values using config file, or default values if config values not specified
     void InitConfigurable()
     {
-        FeederConfig feederConfig = new FeederConfig();
+        RecipeConfig recipeConfig = new RecipeConfig();
 
         // if running the game from the battery, override `feederConfig` with the config class from Battery
-        FeederConfig tempConfig = (FeederConfig)Battery.Instance.GetCurrentConfig();
+        RecipeConfig tempConfig = (RecipeConfig)Battery.Instance.GetCurrentConfig();
         if (tempConfig != null)
         {
-            feederConfig = tempConfig;
+            recipeConfig = tempConfig;
         }
         else
         {
@@ -73,20 +75,20 @@ public class RecipeLevelManager : LevelManager
         }
 
         // use battery's config values, or default values if running game by itself
-        seed = !String.IsNullOrEmpty(feederConfig.Seed) ? feederConfig.Seed : DateTime.Now.ToString(); // if no seed provided, use current DateTime
-        maxGameTime = feederConfig.MaxGameTime > 0 ? feederConfig.MaxGameTime : Default(90f, "MaxGameTime");
-        maxFoodDispensed = feederConfig.MaxFoodDispensed > 0 ? feederConfig.MaxFoodDispensed : Default(20, "MaxFoodDispensed");
-        uniqueFoods = feederConfig.UniqueFoods >= 2 && feederConfig.UniqueFoods <= dispenser.allFoods.Length ? feederConfig.UniqueFoods : Default(6, "UniqueFoods");
-        avgUpdateFreq = feederConfig.AverageUpdateFrequency > 0 ? feederConfig.AverageUpdateFrequency : Default(3f, "AverageUpdateFrequency");
-        updateFreqVariance = feederConfig.UpdateFreqVariance >= 0 && feederConfig.UpdateFreqVariance <= 1 ? feederConfig.UpdateFreqVariance : Default(0.3f, "UpdateFreqVariance");
+        seed = !String.IsNullOrEmpty(recipeConfig.Seed) ? recipeConfig.Seed : DateTime.Now.ToString(); // if no seed provided, use current DateTime
+        maxGameTime = recipeConfig.MaxGameTime > 0 ? recipeConfig.MaxGameTime : Default(90f, "MaxGameTime");
+        maxFoodDispensed = recipeConfig.MaxFoodDispensed > 0 ? recipeConfig.MaxFoodDispensed : Default(20, "MaxFoodDispensed");
+        uniqueFoods = recipeConfig.UniqueFoods >= 2 && recipeConfig.UniqueFoods <= dispenser.allFoods.Length ? recipeConfig.UniqueFoods : Default(6, "UniqueFoods");
+        avgUpdateFreq = recipeConfig.AverageUpdateFrequency > 0 ? recipeConfig.AverageUpdateFrequency : Default(3f, "AverageUpdateFrequency");
+        updateFreqVariance = recipeConfig.UpdateFreqVariance >= 0 && recipeConfig.UpdateFreqVariance <= 1 ? recipeConfig.UpdateFreqVariance : Default(0.3f, "UpdateFreqVariance");
 
         // udpate battery config with actual/final values being used
-        feederConfig.Seed = seed;
-        feederConfig.MaxGameTime = maxGameTime;
-        feederConfig.MaxFoodDispensed = maxFoodDispensed;
-        feederConfig.UniqueFoods = uniqueFoods;
-        feederConfig.AverageUpdateFrequency = avgUpdateFreq;
-        feederConfig.UpdateFreqVariance = updateFreqVariance;
+        recipeConfig.Seed = seed;
+        recipeConfig.MaxGameTime = maxGameTime;
+        recipeConfig.MaxFoodDispensed = maxFoodDispensed;
+        recipeConfig.UniqueFoods = uniqueFoods;
+        recipeConfig.AverageUpdateFrequency = avgUpdateFreq;
+        recipeConfig.UpdateFreqVariance = updateFreqVariance;
     }
 
     // Handles GUI events (keyboard, mouse, etc events)
@@ -119,7 +121,7 @@ public class RecipeLevelManager : LevelManager
         if (lvlState == 2)
         {
             // begin game, begin recording 
-            if (!mcMetric.isRecording) StartGame();
+            if (!rcMetric.isRecording) StartGame();
 
             // game automatically ends after maxGameTime seconds
             if (Time.time - gameStartTime >= maxGameTime || foodDispensed >= maxFoodDispensed)
@@ -149,20 +151,20 @@ public class RecipeLevelManager : LevelManager
     // Begin the actual game, start recording metrics
     void StartGame()
     {
-        mcMetric.startRecording();
-        metricWriter = new MetricJSONWriter("Feeder", DateTime.Now, seed); // initialize metric data writer
+        rcMetric.startRecording();
+        metricWriter = new MetricJSONWriter("Recipe", DateTime.Now, seed); // initialize metric data writer
         gameStartTime = Time.time;
     }
 
     // End game, stop animations, sounds, physics. Finish recording metrics
     void EndGame()
     {
-        mcMetric.finishRecording();
+        rcMetric.finishRecording();
         var str = metricWriter.GetLogMetrics(
                     DateTime.Now,
-                    new List<AbstractMetric>() { mcMetric }
+                    new List<AbstractMetric>() { rcMetric }
                 );
-        StartCoroutine(Post("feeder_" + DateTime.Now.ToFileTime() + ".json", str));
+        StartCoroutine(Post("recipe_" + DateTime.Now.ToFileTime() + ".json", str));
 
         dispenser.StopAllCoroutines();
         dispenser.screenRed.SetActive(false);
@@ -202,16 +204,18 @@ public class RecipeLevelManager : LevelManager
             }
 
             // record the choice made
-            mcMetric.recordEvent(new MemoryChoiceEvent(
+            rcMetric.recordEvent(new RecipeChoiceEvent(
                 dispenser.choiceStartTime,
                 new List<String>(dispenser.goodFoods),
-                dispenser.currentFood,
+                dispenser.dispensed,
                 Input.GetKeyDown(feedKey),
+                correct,
                 DateTime.Now
             ));
 
             // animate choice and play plate sound
             sound.PlayOneShot(plate_up);
+            correct = dispenser.MakeChoice(Input.GetKeyDown(feedKey));
             StartCoroutine(AnimateChoice(Input.GetKeyDown(feedKey) && !dispenser.MakeChoice(Input.GetKeyDown(feedKey))));
             gameState = GameState.TiltingPlate;
         }

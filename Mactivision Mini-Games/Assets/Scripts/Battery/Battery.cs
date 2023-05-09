@@ -29,7 +29,8 @@ public class Battery
         {"Feeder", new FeederConfig()},
         {"Rockstar", new RockstarConfig()},
         {"Looking", new LookingConfig() },
-        {"Recipe", new FeederConfig() }
+        {"Stage", new StageConfig() },
+        {"Recipe", new RecipeConfig() }
     };
 
     // Helpers

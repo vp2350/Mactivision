@@ -8,6 +8,7 @@ public class LookingChoiceEvent : AbstractMetricEvent
     // Current object presented to the user (ie. in the Feeder game, current food user must decide to feed to the monster or not).
     public string _goodObject { get; }
 
+    public string correct { get; }
     // Set of objects that are currently accepted (ie. in Feeder game, set of foods that the monster accepts)
     public List<string> objectsShown { get; }
 
@@ -18,13 +19,14 @@ public class LookingChoiceEvent : AbstractMetricEvent
     // Subtracting the two will give the time it took for the user to decide.
     public System.DateTime choiceTime { get; }
 
-    public LookingChoiceEvent(System.DateTime eventTime, string _goodObject, List<string> objectsShown, string choice, System.DateTime choiceTime) : base(eventTime)
+    public LookingChoiceEvent(System.DateTime eventTime, string _goodObject, string rightChoice, List<string> objectsShown, string choice, System.DateTime choiceTime) : base(eventTime)
     {
         if (choiceTime < eventTime)
         {
             throw new InvalidLookingChoiceTimeException("LookingChoiceEvent cannot be created: choiceTime cannot be earlier than eventTime");
         }
 
+        this.correct = rightChoice;
         this.objectsShown = objectsShown;
         this._goodObject = _goodObject;
         this.choice = choice;
