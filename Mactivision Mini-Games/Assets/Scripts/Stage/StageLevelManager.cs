@@ -113,7 +113,8 @@ public class StageLevelManager : LevelManager
         //left = 3
         if (lvlState == 2)
         {
-            StartGame();
+            if (!scMetric.isRecording) StartGame();
+
 
             // game automatically ends after maxGameTime seconds
             if (Time.time - gameStartTime >= maxGameTime)

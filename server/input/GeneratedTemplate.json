@@ -9,27 +9,16 @@
         "$type": "DiggerConfig, Battery",
         "TestName": null,
         "Scene": "Digger",
-        "MaxGameTime": 0.0,
+        "MaxGameTime":10.0,
         "DigAmount": 0,
         "DigKey": null
-      },
-      {
-        "$type": "FeederConfig, Battery",
-        "TestName": null,
-        "Scene": "Feeder",
-        "Seed": null,
-        "MaxGameTime": 0.0,
-        "MaxFoodDispensed": 0,
-        "UniqueFoods": 0,
-        "AverageUpdateFrequency": 0.0,
-        "UpdateFreqVariance": 0.0
       },
       {
         "$type": "RockstarConfig, Battery",
         "TestName": null,
         "Scene": "Rockstar",
         "Seed": null,
-        "MaxGameTime": 0.0,
+        "MaxGameTime": 10.0,
         "RockstarChangeFreq": 0.0,
         "RockstarVelocity": 0.0,
         "SpotlightVelocity": 0.0,
@@ -53,7 +42,7 @@
         "UniqueObjects": 0,
         "UpdateFreqVariance": 0.0,
         "MaxFoodDisplayed": 0,
-        "MaxGameTime": 0.0,
+        "MaxGameTime": 10.0,
         "MaxPrompts": 0,
         "DiffLevel": 0
       },

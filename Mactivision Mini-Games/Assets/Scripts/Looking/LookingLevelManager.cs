@@ -118,11 +118,12 @@ public class LookingLevelManager : LevelManager
         //left = 3
         if (lvlState == 2)
         {
-            StartGame();
+            if (!lcMetric.isRecording) StartGame();
 
             // game automatically ends after maxGameTime seconds
             if (Time.time - gameStartTime >= maxGameTime)
             {
+                Debug.Log("Loading Next Scene");
                 EndGame();
                 return;
             }
