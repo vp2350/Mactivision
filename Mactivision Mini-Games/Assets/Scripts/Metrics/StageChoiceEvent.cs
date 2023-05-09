@@ -35,7 +35,7 @@ public class StageChoiceEvent : AbstractMetricEvent
         this.correct = rightChoice;
         this.colorsShown = colorsShown;
         this.colorChanged = colorChanged;
-        this.colorOriginal = colorOriginal;
+        this.colorOriginal = original;
         this.colorNew = newColor;
         this.choice = choice;
         this.choiceTime = choiceTime;
