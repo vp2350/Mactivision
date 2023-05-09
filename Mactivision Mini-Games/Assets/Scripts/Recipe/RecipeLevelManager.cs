@@ -170,7 +170,7 @@ public class RecipeLevelManager : LevelManager
         dispenser.screenRed.SetActive(false);
         dispenser.screenGreen.SetActive(false);
         dispenser.enabled = false;
-        monster.speed = 0f;
+        //monster.speed = 0f;
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Food"))
         {
             obj.GetComponent<Rigidbody2D>().isKinematic = true;
