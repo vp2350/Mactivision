@@ -14,6 +14,8 @@ public class StageController : MonoBehaviour
     int rowMax;
     float maxDistance;
 
+    Color[] colorList;
+
     public int falseShephard;
     public bool faked;
     public Color ogColor;
@@ -49,6 +51,22 @@ public class StageController : MonoBehaviour
         maxDistance = 20f;
         falseShephard = -1;
         ogColor = new Color(0, 0, 0);
+
+        colorList = new Color[14] { Color.black,
+            Color.blue,
+            Color.cyan,
+            Color.gray,
+            Color.green,
+            Color.magenta,
+            Color.red,
+            Color.white,
+            Color.yellow,
+            new Color(1, 105/255, 180/255, 1),  //hot pink
+            new Color(251/255, 142/255, 147/255, 1), //orange
+            new Color(128/255, 0/255, 0/255, 1), //maroon
+            new Color(0, 0/255, 139/255, 1), //dark blue
+            new Color(102/255, 51/255, 0/255, 1) //brown
+            };
     }
 
     public void UpdateDiff(int diff)
@@ -142,16 +160,17 @@ public class StageController : MonoBehaviour
             randNew = randomSeed.Next(spawnedPlayers.Count);
             GameObject objectToChange = spawnedPlayers[randNew];
 
-            ogColor = playerColors[randNew];
+            int colorNext = randomSeed.Next(colorList.Length);
+            ogColor = playerColors[colorNext]; ;
 
-            float r = randomSeed.Next(50, 255);
-            float g = randomSeed.Next(50, 255);
-            float b = randomSeed.Next(50, 255);
+            //float r = randomSeed.Next(50, 255);
+            //float g = randomSeed.Next(50, 255);
+            //float b = randomSeed.Next(50, 255);
             SpriteRenderer temp = objectToChange.GetComponent<SpriteRenderer>();
-            Color tempColor = new Color(r/255, g/255, b/255, 1f);
+            Color tempColor = (colorList[colorNext]);
             temp.color = tempColor;
 
-            playerColors[randNew] = tempColor;
+            playerColors[colorNext] = tempColor;
             faked = true;
             falseShephard = randNew;
         }

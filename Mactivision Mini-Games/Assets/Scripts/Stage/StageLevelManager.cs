@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class StageLevelManager : LevelManager
 {
-    KeyCode yesKey = KeyCode.Y;   //Left monitor
-    KeyCode noKey = KeyCode.N;       //Up monitor
+    KeyCode yesKey = KeyCode.LeftShift;   //Left monitor
+    KeyCode noKey = KeyCode.RightShift;       //Up monitor
     KeyCode rowOne = KeyCode.Alpha1; //Right monitor
     KeyCode rowTwo = KeyCode.Alpha2;   //Down monitor
     KeyCode rowThree = KeyCode.Alpha3;           //Prompt not displayed on monitors
@@ -37,6 +37,7 @@ public class StageLevelManager : LevelManager
     public GameObject redSquare;
     public GameObject greenCheck;
     public GameObject redCross;
+    public GameObject prompt;
 
     enum GameState
     {
@@ -186,6 +187,7 @@ public class StageLevelManager : LevelManager
     {
         displayingOptions = false;
         rightDecision = false;
+        prompt.SetActive(true);
 
         if (Input.GetKeyDown(yesKey) || Input.GetKeyDown(noKey)
             || Input.GetKeyDown(rowOne) || Input.GetKeyDown(rowTwo) || Input.GetKeyDown(rowThree))
@@ -256,6 +258,7 @@ public class StageLevelManager : LevelManager
     // Wait for the food dispensing animation
     IEnumerator WaitForFeedback(float wait)
     {
+        prompt.SetActive(false);
         if(stageController.faked)
         {
             if(rightDecision && stageController.falseShephard != -1)
