@@ -19,6 +19,8 @@ public class StageController : MonoBehaviour
     public int falseShephard;
     public bool faked;
     public Color ogColor;
+    public int ogColorNumber;
+    public int changedColorNumber;
 
     public float startTime;
     public GameObject[] spawns = new GameObject[3];
@@ -133,12 +135,9 @@ public class StageController : MonoBehaviour
                 tempPlayer.transform.position = new Vector3(spawns[i].transform.position.x + (j * maxDistance / (maxForThis + 1) * left), spawns[i].transform.position.y, spawns[i].transform.position.z);
 
                 SpriteRenderer temp = tempPlayer.GetComponent<SpriteRenderer>();
-                float r = randomSeed.Next(50, 255);
-                float g = randomSeed.Next(50, 255);
-                float b = randomSeed.Next(50, 255);
+                int colorNext = randomSeed.Next(colorList.Length);
 
-               
-                Color tempColor = new Color(r / 255f, g / 255f, b / 255f, 1f);
+                Color tempColor = colorList[colorNext];
                 temp.color = tempColor;
                 playerColors.Add(tempColor);
                 
@@ -160,8 +159,26 @@ public class StageController : MonoBehaviour
             randNew = randomSeed.Next(spawnedPlayers.Count);
             GameObject objectToChange = spawnedPlayers[randNew];
 
-            int colorNext = randomSeed.Next(colorList.Length);
-            ogColor = playerColors[colorNext]; ;
+            int colorNext;
+
+            do
+            {
+                colorNext = randomSeed.Next(colorList.Length);
+            } while (playerColors[randNew].r != colorList[colorNext].r
+                && playerColors[randNew].g != colorList[colorNext].g
+                && playerColors[randNew].b != colorList[colorNext].b);
+
+            ogColor = playerColors[randNew]; 
+            for(int i = 0; i < colorList.Length; i++)
+            {
+                if(ogColor.r  == colorList[i].r 
+                    && ogColor.g == colorList[i].g
+                    && ogColor.b == colorList[i].b)
+                {
+                    ogColorNumber = i; 
+                    break;
+                }
+            }
 
             //float r = randomSeed.Next(50, 255);
             //float g = randomSeed.Next(50, 255);
@@ -170,7 +187,8 @@ public class StageController : MonoBehaviour
             Color tempColor = (colorList[colorNext]);
             temp.color = tempColor;
 
-            playerColors[colorNext] = tempColor;
+            changedColorNumber = colorNext;
+            playerColors[randNew] = tempColor;
             faked = true;
             falseShephard = randNew;
         }
@@ -220,7 +238,6 @@ public class StageController : MonoBehaviour
         int maxForThis = rowMax;
         int left = -1;
         int playerNumber = 0;
-        float speed = 0.2f;
         for(int i = 0; i < 3 ; i++)
         {
             for (int j = maxForThis; j > 0 && playerNumber < spawnedPlayers.Count; j--)
@@ -281,12 +298,27 @@ public class StageController : MonoBehaviour
         else
             return new Color(0, 0, 0);
     }
+
+    public int GetOriginalColorNumber()
+    {
+        if (faked)
+            return ogColorNumber;
+        else
+            return -1;
+    }
     public Color GetChangedColor()
     {
         if (faked)
             return playerColors[falseShephard];
         else
             return new Color(0, 0, 0);
+    }
+    public int GetChangedColorNumber()
+    {
+        if (faked)
+            return changedColorNumber;
+        else
+            return -1;
     }
     public List<Color> GetColors()
     {
