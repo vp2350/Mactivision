@@ -5,22 +5,27 @@ using UnityEngine;
 public class Sorter : MonoBehaviour
 {
     float velocity;         // just x velocity because y doesn't change
-    float minPos = -3.9f;   // the minimum value for position (left)
-    float maxPos = 3.9f;    // the maximum value for position (right)
+    float minPos = -2.6f;   // the minimum value for position (left)
+    float maxPos = -0.125f;    // the maximum value for position (right)
 
     // Initializes the spotlight
     public void Init(float v)
     {
-        velocity = v;
+        velocity = 2f;
     }
 
+    private void Start()
+    {
+        Init(2f);
+    }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.DownArrow))
+        if(Input.GetKey(KeyCode.DownArrow))
         {
             Move(false);
+            Debug.Log("Down");
         }
-        else if(Input.GetKeyDown(KeyCode.UpArrow))
+        else if(Input.GetKey(KeyCode.UpArrow))
         {
             Move(true);
         }
@@ -30,10 +35,11 @@ public class Sorter : MonoBehaviour
     // Parameter `right` is true to move right, false to move left
     public void Move(bool right)
     {
-        if (right && gameObject.transform.position.x <= maxPos)
+
+        if (right && gameObject.transform.position.y <= maxPos)
             gameObject.transform.Translate(Vector3.up * velocity * Time.deltaTime);
 
-        else if (!right && gameObject.transform.position.x >= minPos)
+        else if (!right && gameObject.transform.position.y >= minPos)
             gameObject.transform.Translate(Vector3.down * velocity * Time.deltaTime);
     }
 
