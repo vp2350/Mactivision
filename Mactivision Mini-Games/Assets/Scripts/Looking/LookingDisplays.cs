@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
 
 // This class is responsible for managing the games foods, and dispensing of foods.
 public class LookingDisplays : MonoBehaviour
@@ -20,7 +21,7 @@ public class LookingDisplays : MonoBehaviour
 
     bool goodObjectShown;
     public List<string> objectsDisplayed;
-    int i = 6; 
+
     System.Random randomSeed;   // seed of the current game
     float avgUpdateFreq;        // average number of foods dispensed between each food update
     float updateFreqVariance;   // variance of `avgUpdateFreq`
@@ -39,6 +40,10 @@ public class LookingDisplays : MonoBehaviour
     Vector3[] spawns;
     Vector3[] promptPoints;
 
+    public int cash;
+    public GameObject cashCounter;
+    public TextMeshPro cashCounterText;
+
     //GameObject screenFood;                                  // the food shown on the screen during a food update
     //public string currentFood { private set; get; }         // the current food the player has to decide on
     public DateTime choiceStartTime { private set; get; }   // the time the current food is dispensed and the player can make a choice
@@ -52,6 +57,10 @@ public class LookingDisplays : MonoBehaviour
     public void Init(string seed, int tf, float uf, float sd, Vector3[] spawnPoints, Vector3[] promptLocations, GameObject[] foods)
     {
         rng = new System.Random();
+
+        cash = 0;
+        cashCounterText = cashCounter.GetComponent<TextMeshPro>();
+        cashCounterText.text = cash.ToString();
 
         allFoods = new GameObject[foods.Length];
         for(int i = 0; i< foods.Length; i++)
@@ -94,6 +103,8 @@ public class LookingDisplays : MonoBehaviour
         if (++lastUpdate >= nextUpdate || goodFoodCount == 0)
         {
             UpdateObjects();
+            objectsDisplayed.Clear();
+
             update = true;
             lastUpdate = 0;
             nextUpdate = ObjectsBetweenNextUpdate(avgUpdateFreq, updateFreqVariance);
@@ -122,6 +133,13 @@ public class LookingDisplays : MonoBehaviour
                 result = true;
             }
         }
+
+        if(result)
+        {
+            cash += 100;
+            cashCounterText.text = cash.ToString();
+        }
+
         return result;
     }
 
@@ -159,12 +177,14 @@ public class LookingDisplays : MonoBehaviour
                     goodObjectShown = true;
                     goodObject.transform.position = new Vector3(spawns[correctMonitor].x, spawns[correctMonitor].y, -1);
                     objectsUsed[i] = goodObject;
+                    objectsDisplayed.Add(goodObject.name);
                 }
                 else
                 {
                     badObjects[i].SetActive(true);
                     badObjects[i].transform.position = new Vector3(spawns[i].x, spawns[i].y, -1);
                     objectsUsed[i] = badObjects[i];
+                    objectsDisplayed.Add(badObjects[i].name);
                 }
             }
         }

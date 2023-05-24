@@ -17,21 +17,22 @@ public class StageChoiceEvent : AbstractMetricEvent
 
     public bool colorChanged { get; }
 
-    public Color colorOriginal { get; }
+    public int colorOriginal { get; }
 
-    public Color colorNew { get; }
+    public int colorNew { get; }
 
     // Time the user makes the choice. the inherited variable eventTime records the time the choice is presented to the user. 
     // Subtracting the two will give the time it took for the user to decide.
     public System.DateTime choiceTime { get; }
 
-    public StageChoiceEvent(System.DateTime eventTime, bool colorChanged, Color original, Color newColor, string rightChoice, List<Color> colorsShown, string choice, System.DateTime choiceTime) : base(eventTime)
+    public StageChoiceEvent(System.DateTime eventTime, bool colorChanged, int original, int newColor, string rightChoice, List<Color> colorsShown, string choice, System.DateTime choiceTime) : base(eventTime)
     {
         if (choiceTime < eventTime)
         {
             throw new InvalidStageChoiceTimeException("StageChoiceEvent cannot be created: choiceTime cannot be earlier than eventTime");
         }
 
+        this.choiceTime = eventTime;
         this.correct = rightChoice;
         this.colorsShown = colorsShown;
         this.colorChanged = colorChanged;

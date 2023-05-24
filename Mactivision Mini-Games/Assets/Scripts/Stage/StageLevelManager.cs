@@ -207,8 +207,8 @@ public class StageLevelManager : LevelManager
             scMetric.recordEvent(new StageChoiceEvent(
                 stageController.choiceStartTime,
                 stageController.faked,
-                stageController.GetOriginalColor(),
-                stageController.GetChangedColor(),
+                stageController.GetOriginalColorNumber(),
+                stageController.GetChangedColorNumber(),
                 rightDecision.ToString(),
                 stageController.GetColors(),
                 recordKey,

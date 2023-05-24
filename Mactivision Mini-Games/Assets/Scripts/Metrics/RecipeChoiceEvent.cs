@@ -28,6 +28,7 @@ public class RecipeChoiceEvent : AbstractMetricEvent
             throw new InvalidRecipeChoiceTimeException("RecipeChoiceEvent cannot be created: choiceTime cannot be earlier than eventTime");
         }
 
+        this.choiceTime = eventTime;
         this.correct = correct;
         this.objectsSet = objectsSet;
         this._object = _object;

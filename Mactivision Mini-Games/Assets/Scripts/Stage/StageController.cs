@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 // This class is responsible for managing the games foods, and dispensing of foods.
 public class StageController : MonoBehaviour
@@ -322,7 +323,8 @@ public class StageController : MonoBehaviour
     }
     public List<Color> GetColors()
     {
-        return playerColors;
+        return colorList.ToList<Color>();
+        //return playerColors;
     }
     int FoodsBetweenNextUpdate(float avg, float sd)
     {
