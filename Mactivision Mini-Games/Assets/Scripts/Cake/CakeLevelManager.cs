@@ -15,11 +15,15 @@ public class CakeLevelManager : LevelManager
     public AudioClip bite_sound;            // nom nom nom
 
     int uniqueFoods;                         // number of foods to be used in the current game
-    float avgUpdateFreq;                    // average number of foods dispensed between each food update
-    float updateFreqVariance;               // variance of `avgUpdateFreq`
+    float avgDispenseFrequency;                    // average number of foods dispensed between each food update
+    float foodVelocity;               // variance of `avgUpdateFreq`
+
+    bool dispenseFirst;
 
     int maxFoodDispensed;                   // maximum foods dispensed before game ends
     int foodDispensed;
+
+    public GameObject[] allFoods;
 
     KeyCode feedKey = KeyCode.RightArrow;   // press to feed monster
     KeyCode trashKey = KeyCode.LeftArrow;   // press to throw away
@@ -54,19 +58,20 @@ public class CakeLevelManager : LevelManager
 
         mcMetric = new MemoryChoiceMetric(); // initialize metric recorder
 
-        dispenser.Init(seed, uniqueFoods, avgUpdateFreq, updateFreqVariance); // initialize the dispenser
+        dispenser.Init(seed, uniqueFoods, avgDispenseFrequency, foodVelocity); // initialize the dispenser
+        dispenseFirst = false;
     }
 
     // Initialize values using config file, or default values if config values not specified
     void InitConfigurable()
     {
-        FeederConfig feederConfig = new FeederConfig();
+        CakeConfig cakeConfig = new CakeConfig();
 
         // if running the game from the battery, override `feederConfig` with the config class from Battery
-        FeederConfig tempConfig = (FeederConfig)Battery.Instance.GetCurrentConfig();
+        CakeConfig tempConfig = (CakeConfig)Battery.Instance.GetCurrentConfig();
         if (tempConfig != null)
         {
-            feederConfig = tempConfig;
+            cakeConfig = tempConfig;
         }
         else
         {
@@ -74,20 +79,20 @@ public class CakeLevelManager : LevelManager
         }
 
         // use battery's config values, or default values if running game by itself
-        seed = !String.IsNullOrEmpty(feederConfig.Seed) ? feederConfig.Seed : DateTime.Now.ToString(); // if no seed provided, use current DateTime
-        maxGameTime = feederConfig.MaxGameTime > 0 ? feederConfig.MaxGameTime : Default(90f, "MaxGameTime");
-        maxFoodDispensed = feederConfig.MaxFoodDispensed > 0 ? feederConfig.MaxFoodDispensed : Default(20, "MaxFoodDispensed");
-        uniqueFoods = feederConfig.UniqueFoods >= 2 && feederConfig.UniqueFoods <= dispenser.allFoods.Length ? feederConfig.UniqueFoods : Default(6, "UniqueFoods");
-        avgUpdateFreq = feederConfig.AverageUpdateFrequency > 0 ? feederConfig.AverageUpdateFrequency : Default(3f, "AverageUpdateFrequency");
-        updateFreqVariance = feederConfig.UpdateFreqVariance >= 0 && feederConfig.UpdateFreqVariance <= 1 ? feederConfig.UpdateFreqVariance : Default(0.3f, "UpdateFreqVariance");
+        seed = !String.IsNullOrEmpty(cakeConfig.Seed) ? cakeConfig.Seed : DateTime.Now.ToString(); // if no seed provided, use current DateTime
+        maxGameTime = cakeConfig.MaxGameTime > 0 ? cakeConfig.MaxGameTime : Default(90f, "MaxGameTime");
+        maxFoodDispensed = cakeConfig.MaxFoodDispensed > 0 ? cakeConfig.MaxFoodDispensed : Default(20, "MaxFoodDispensed");
+        uniqueFoods = cakeConfig.UniqueFoods >= 2 && cakeConfig.UniqueFoods <= allFoods.Length ? cakeConfig.UniqueFoods : Default(6, "UniqueFoods");
+        avgDispenseFrequency = cakeConfig.AverageDispenseFrequency > 0 ? cakeConfig.AverageDispenseFrequency : Default(3f, "AverageDispenseFrequency");
+        foodVelocity = cakeConfig.FoodVelocity >= 0 && cakeConfig.FoodVelocity <= 10 ? cakeConfig.FoodVelocity : Default(3f, "UpdateFreqVariance");
 
         // udpate battery config with actual/final values being used
-        feederConfig.Seed = seed;
-        feederConfig.MaxGameTime = maxGameTime;
-        feederConfig.MaxFoodDispensed = maxFoodDispensed;
-        feederConfig.UniqueFoods = uniqueFoods;
-        feederConfig.AverageUpdateFrequency = avgUpdateFreq;
-        feederConfig.UpdateFreqVariance = updateFreqVariance;
+        cakeConfig.Seed = seed;
+        cakeConfig.MaxGameTime = maxGameTime;
+        cakeConfig.MaxFoodDispensed = maxFoodDispensed;
+        cakeConfig.UniqueFoods = uniqueFoods;
+        cakeConfig.AverageDispenseFrequency = avgDispenseFrequency;
+        cakeConfig.FoodVelocity = foodVelocity;
     }
 
     // Handles GUI events (keyboard, mouse, etc events)
@@ -130,19 +135,24 @@ public class CakeLevelManager : LevelManager
             }
 
             // The game cycle
-            switch (gameState)
+            //switch (gameState)
+            //{
+            //    case GameState.DispensingFood:
+            //        break;
+            //    case GameState.WaitingForPlayer:
+            //        WaitForPlayer();
+            //        break;
+            //    case GameState.TiltingPlate:
+            //        TiltPlate();
+            //        break;
+            //    case GameState.FoodExpended:
+            //        FoodExpended();
+            //        break;
+            //}
+            if (!dispenseFirst)
             {
-                case GameState.DispensingFood:
-                    break;
-                case GameState.WaitingForPlayer:
-                    WaitForPlayer();
-                    break;
-                case GameState.TiltingPlate:
-                    TiltPlate();
-                    break;
-                case GameState.FoodExpended:
-                    FoodExpended();
-                    break;
+                Dispense();
+                dispenseFirst = true;
             }
         }
     }
@@ -184,6 +194,12 @@ public class CakeLevelManager : LevelManager
         EndLevel(0f);
     }
 
+    void Dispense()
+    {
+        int rand = randomSeed.Next(uniqueFoods);
+        Instantiate(allFoods[rand], new Vector3(4f, -3f, -1f), Quaternion.identity);
+        StartCoroutine(DispenseNext(avgDispenseFrequency));
+    }
     // This function is called each frame the game is waiting for input from the player.
     // When the player makes a choice, it plays appropriate animations and  
     // records the metric event, and starts the choice wait coroutine.
@@ -279,5 +295,11 @@ public class CakeLevelManager : LevelManager
     {
         yield return new WaitForSeconds(wait);
         gameState = GameState.WaitingForPlayer;
+    }
+
+    IEnumerator DispenseNext(float frequency)
+    {
+        yield return new WaitForSeconds(frequency);
+        Dispense();
     }
 }

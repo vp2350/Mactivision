@@ -39,6 +39,18 @@ public class FeederConfig : GameConfig
     public float UpdateFreqVariance {get; set;}
 }
 
+public class CakeConfig : GameConfig
+{
+    public string TestName { get; set; }
+    public string Scene { get; set; }
+    public string Seed { get; set; }
+    public float MaxGameTime { get; set; }
+    public int MaxFoodDispensed { get; set; }
+    public int UniqueFoods { get; set; }
+    public float AverageDispenseFrequency { get; set; }
+    public float FoodVelocity { get; set; }
+}
+
 public class RockstarConfig : GameConfig
 {
     public string TestName {get; set;}
