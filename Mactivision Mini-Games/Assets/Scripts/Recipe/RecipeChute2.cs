@@ -13,9 +13,34 @@ public class RecipeChute2 : MonoBehaviour
     Color defaultCol = Color.white;
     AudioSource sound;
 
+    Animator m_Animator;
+    AnimatorClipInfo[] m_CurrentClipInfo;
+
+
+    bool correctChoice;
     void Start()
     {
         sound = gameObject.GetComponent<AudioSource>();
+        target = this.transform.position;
+        dispenser = GameObject.Find("pipe").GetComponent<RecipeDispenser>();
+        m_Animator = GetComponent<Animator>();
+        m_Animator.GetComponent<Animator>().enabled = false;
+
+    }
+
+    public Vector2 target;
+    public Vector2 newTarget;
+    public float startTime;
+    public float speed;
+
+    // Update is called once per frame
+    void Update()
+    {
+        float step = speed * Time.deltaTime; // calculate distance to move
+        if (Vector2.Distance(transform.position, target) > 0.01f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target, step);
+        }
     }
 
     // When the trashchute detects a food GameObject, it will determine
@@ -24,19 +49,42 @@ public class RecipeChute2 : MonoBehaviour
     // Food GameObject gets deactivated and rotation reset.
     void OnTriggerEnter2D(Collider2D other)
     {
-        recycleIcon.color = dispenser.MakeChoice(false) ? incorrect : correct;
+        correctChoice = dispenser.MakeChoice(true) ? true : false ;
         other.attachedRigidbody.velocity = Vector2.zero;
         other.gameObject.transform.eulerAngles = Vector3.zero;
         other.gameObject.SetActive(false);
-        sound.PlayDelayed(0f);
+        //sound.PlayDelayed(0f);
 
-        StartCoroutine(WaitForIconIndicator());
+        if(correctChoice)
+        {
+            newTarget = new Vector2(this.transform.position.x + 20, this.transform.position.y);
+        }
+        else
+        {
+            newTarget = new Vector2(this.transform.position.x, this.transform.position.y - 20);
+        }
+
+        StartCoroutine(WaitForTarget());
+        StartCoroutine(DestroyThis(10f));
     }
 
     // Wait a bit before returning the icon back to gray
-    IEnumerator WaitForIconIndicator()
+    IEnumerator WaitForTarget()
     {
         yield return new WaitForSeconds(1.5f);
-        recycleIcon.color = defaultCol;
+        m_Animator.GetComponent<Animator>().enabled = true;
+        m_CurrentClipInfo = this.m_Animator.GetCurrentAnimatorClipInfo(0);
+        m_CurrentClipInfo[0].clip.wrapMode = WrapMode.ClampForever;
+
+        target = newTarget;
+    }
+
+    // Wait a bit before returning the icon back to gray
+    IEnumerator DestroyThis(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        StopAllCoroutines();
+        Destroy(this);
     }
 }
+

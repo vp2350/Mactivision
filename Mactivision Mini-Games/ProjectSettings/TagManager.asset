@@ -8,6 +8,7 @@ TagManager:
   - Food
   - Monster
   - Firework
+  - FoodPro
   layers:
   - Default
   - TransparentFX

@@ -13,6 +13,8 @@ public class RecipeLevelManager : LevelManager
     public AudioClip plate_up;              // BRRRRRR
     public AudioClip plate_down;            // brrrrrr
 
+    public GameObject chest;
+
     int uniqueFoods;                         // number of foods to be used in the current game
     float avgUpdateFreq;                    // average number of foods dispensed between each food update
     float updateFreqVariance;               // variance of `avgUpdateFreq`
@@ -56,6 +58,7 @@ public class RecipeLevelManager : LevelManager
         rcMetric = new RecipeChoiceMetric(); // initialize metric recorder
 
         dispenser.Init(seed, uniqueFoods, avgUpdateFreq, updateFreqVariance); // initialize the dispenser
+        MakeNewChest();
     }
 
     // Initialize values using config file, or default values if config values not specified
@@ -197,6 +200,7 @@ public class RecipeLevelManager : LevelManager
                 //monster.Play("Base Layer.monster_eat");
                 //sound.PlayDelayed(0.85f);
                 tiltPlateTo = -33f;
+                StartCoroutine(WaitForNewChest());
             }
             else
             {
@@ -257,6 +261,10 @@ public class RecipeLevelManager : LevelManager
         gameState = GameState.DispensingFood;
     }
 
+    void MakeNewChest()
+    {
+        Instantiate(chest, new Vector3(3.65f, -2.01f, 0), Quaternion.identity);
+    }
     // Wait for the choice animation to finish. If the player feeds the monster
     // incorrectly, wait longer for the monster spit animation.
     IEnumerator AnimateChoice(bool spit)
@@ -281,5 +289,11 @@ public class RecipeLevelManager : LevelManager
     {
         yield return new WaitForSeconds(wait);
         gameState = GameState.WaitingForPlayer;
+    }
+
+    IEnumerator WaitForNewChest()
+    {
+        yield return new WaitForSeconds(3.5f);
+        MakeNewChest();
     }
 }

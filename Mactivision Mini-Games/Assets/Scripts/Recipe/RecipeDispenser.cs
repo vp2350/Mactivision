@@ -148,22 +148,22 @@ public class RecipeDispenser : MonoBehaviour
             {
                 wasCorrectDispensed = true;
                 goodFoodObjs[0].SetActive(true);
-                goodFoodObjs[0].transform.position = new Vector3(-1f, 4f, 0f);
+                goodFoodObjs[0].transform.position = new Vector3(-1f, 4f, -1f);
                 dispensed[0] = goodFoodObjs[0].name;
 
                 goodFoodObjs[1].SetActive(true);
-                goodFoodObjs[1].transform.position = new Vector3(1f, 4f, 0f);
+                goodFoodObjs[1].transform.position = new Vector3(1f, 4f, -1f);
                 dispensed[1] = goodFoodObjs[1].name;
             }
             else
             {
                 wasCorrectDispensed = true;
                 goodFoodObjs[0].SetActive(true);
-                goodFoodObjs[0].transform.position = new Vector3(1f, 4f, 0f);
+                goodFoodObjs[0].transform.position = new Vector3(1f, 4f, -1f);
                 dispensed[0] = goodFoodObjs[0].name;
 
                 goodFoodObjs[1].SetActive(true);
-                goodFoodObjs[1].transform.position = new Vector3(-1f, 4f, 0f);
+                goodFoodObjs[1].transform.position = new Vector3(-1f, 4f, -1f);
                 dispensed[1] = goodFoodObjs[1].name;
             }
         }
@@ -171,11 +171,11 @@ public class RecipeDispenser : MonoBehaviour
         {
             wasCorrectDispensed = false;
             tempFoods[0].SetActive(true);
-            tempFoods[0].transform.position = new Vector3(-1f, 4f, 0f);
+            tempFoods[0].transform.position = new Vector3(-1f, 4f, -1f);
             dispensed[0] = tempFoods[0].name;
 
             tempFoods[1].SetActive(true);
-            tempFoods[1].transform.position = new Vector3(1f, 4f, 0f);
+            tempFoods[1].transform.position = new Vector3(1f, 4f, -1f);
             dispensed[1] = tempFoods[1].name;
 
             if ((tempFoods[0].name == goodFoodObjs[0].name && tempFoods[1].name == goodFoodObjs[1].name)
