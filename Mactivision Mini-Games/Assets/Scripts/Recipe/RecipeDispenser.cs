@@ -61,7 +61,7 @@ public class RecipeDispenser : MonoBehaviour
         
         gameFoods = new string[tf];
         gameFoodObjs = new GameObject[tf];
-        goodFoods = new string[2];
+        goodFoods = new string[tf];
         goodFoodObjs = new GameObject[2];
         badFoods = new string[tf - 2];
         badFoodObjs = new GameObject[tf - 2];
