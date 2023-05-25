@@ -137,7 +137,7 @@ public class LookingDisplays : MonoBehaviour
         if(result)
         {
             cash += 100;
-            cashCounterText.text = cash.ToString();
+            cashCounterText.text = "$" + cash.ToString();
         }
 
         return result;
