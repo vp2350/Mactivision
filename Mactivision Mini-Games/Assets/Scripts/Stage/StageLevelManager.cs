@@ -120,7 +120,7 @@ public class StageLevelManager : LevelManager
 
 
             // game automatically ends after maxGameTime seconds
-            if (Time.time - gameStartTime >= maxGameTime || prompts<=maxPrompts)
+            if (Time.time - gameStartTime >= maxGameTime || prompts>=maxPrompts)
             {
                 EndGame();
                 return;
@@ -261,7 +261,6 @@ public class StageLevelManager : LevelManager
     IEnumerator WaitForFeedback(float wait)
     {
         prompt.SetActive(false);
-        prompts++;
         if(stageController.faked)
         {
             if(rightDecision && stageController.falseShephard != -1)
@@ -289,6 +288,7 @@ public class StageLevelManager : LevelManager
         greenSquare.transform.position = new Vector3(10, 10, 10);
         redCross.transform.position = new Vector3(10, 10, 10);
         greenCheck.transform.position = new Vector3(10, 10, 10);
+        prompts++;
 
         gameState = GameState.Prompting;
     }
