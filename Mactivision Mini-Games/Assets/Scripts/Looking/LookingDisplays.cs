@@ -195,6 +195,7 @@ public class LookingDisplays : MonoBehaviour
                 badObjects[i].SetActive(true);
                 badObjects[i].transform.position = new Vector3(spawns[i].x, spawns[i].y, -1);
                 objectsUsed[i] = badObjects[i];
+                objectsDisplayed.Add(badObjects[i].name);
             }
         }
         // find the current food GameObject and place it in the pipe
