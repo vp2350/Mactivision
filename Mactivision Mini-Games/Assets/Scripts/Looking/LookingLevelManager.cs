@@ -16,7 +16,7 @@ public class LookingLevelManager : LevelManager
     float updateFreqVariance;               // variance of `avgUpdateFreq`
 
     int maxFoodDisplayed;                   // maximum foods dispensed before game ends
-    int foodDisplayed;
+    public int foodDisplayed;
     bool rightDecision;
 
     LookingChoiceMetric lcMetric;            // records choice data during the game
@@ -60,7 +60,7 @@ public class LookingLevelManager : LevelManager
         gameState = GameState.Prompting;
 
         displayController.Init(seed, uniqueObjects, avgUpdateFreq, updateFreqVariance, spawnPoints, promptPoints, foods); // initialize the display controller
-
+        foodDisplayed = 0;
     }
 
     void Init()
@@ -94,7 +94,7 @@ public class LookingLevelManager : LevelManager
         // use battery's config values, or default values if running game by itself
         seed = !String.IsNullOrEmpty(lookingConfig.Seed) ? lookingConfig.Seed : DateTime.Now.ToString(); // if no seed provided, use current DateTime
         maxGameTime = lookingConfig.MaxGameTime > 0 ? lookingConfig.MaxGameTime : Default(90f, "MaxGameTime");
-        maxFoodDisplayed = lookingConfig.MaxFoodDisplayed > 0 ? lookingConfig.MaxFoodDisplayed : Default(20, "MaxFoodDisplayed");
+        maxFoodDisplayed = lookingConfig.MaxFoodDisplayed > 0 ? lookingConfig.MaxFoodDisplayed : Default(5, "MaxFoodDisplayed");
         uniqueObjects = lookingConfig.UniqueObjects >= 2 && lookingConfig.UniqueObjects <= displayController.allFoods.Length ? lookingConfig.UniqueObjects : Default(6, "UniqueObjects");
         avgUpdateFreq = lookingConfig.AverageUpdateFrequency > 0 ? lookingConfig.AverageUpdateFrequency : Default(3f, "AverageUpdateFrequency");
         updateFreqVariance = lookingConfig.UpdateFreqVariance >= 0 && lookingConfig.UpdateFreqVariance <= 1 ? lookingConfig.UpdateFreqVariance : Default(0.3f, "UpdateFreqVariance");
@@ -121,7 +121,7 @@ public class LookingLevelManager : LevelManager
             if (!lcMetric.isRecording) StartGame();
 
             // game automatically ends after maxGameTime seconds
-            if (Time.time - gameStartTime >= maxGameTime || foodDisplayed <= maxFoodDisplayed)
+            if (Time.time - gameStartTime >= maxGameTime || foodDisplayed >= maxFoodDisplayed)
             {
                 Debug.Log("Loading Next Scene");
                 EndGame();
@@ -266,7 +266,6 @@ public class LookingLevelManager : LevelManager
             StartCoroutine(WaitForFoodDisplay(0.2f));
         }
         gameState = GameState.DisplayOptions;
-        foodDisplayed++;
     }
 
     // Wait for the food dispensing animation
@@ -296,6 +295,9 @@ public class LookingLevelManager : LevelManager
         {
             redCross.SetActive(false);
         }
+        foodDisplayed++;
+        Debug.Log(foodDisplayed);
+        
         gameState = GameState.Prompting;
     }
 
