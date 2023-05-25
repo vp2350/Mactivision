@@ -121,7 +121,7 @@ public class LookingLevelManager : LevelManager
             if (!lcMetric.isRecording) StartGame();
 
             // game automatically ends after maxGameTime seconds
-            if (Time.time - gameStartTime >= maxGameTime)
+            if (Time.time - gameStartTime >= maxGameTime || foodDisplayed <= maxFoodDisplayed)
             {
                 Debug.Log("Loading Next Scene");
                 EndGame();
@@ -266,6 +266,7 @@ public class LookingLevelManager : LevelManager
             StartCoroutine(WaitForFoodDisplay(0.2f));
         }
         gameState = GameState.DisplayOptions;
+        foodDisplayed++;
     }
 
     // Wait for the food dispensing animation
