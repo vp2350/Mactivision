@@ -57,21 +57,21 @@ public class StageController : MonoBehaviour
         ogColor = new Color(0, 0, 0);
         colorsShown = new List<int>();
 
-        colorList = new Color[14] { new Color(69/255, 69/255, 69/255, 1), //black
-            new Color(173/255, 216/255, 230/255, 1),    //light blue
-            new Color(0/255, 0/255, 255/255, 1),    //dark blue
+        colorList = new Color[13] {  
+            new Color(173/255f, 216/255f, 230/255f, 1),    //light blue
+            new Color(0/255f, 0/255f, 255/255f, 1),    //dark blue
             Color.gray,
             Color.green,
             Color.magenta,
             Color.red,
             Color.white,
             Color.yellow,
-            new Color(1, 105/255, 180/255, 1),  //hot pink
-            new Color(251/255, 142/255, 147/255, 1), //orange
-            new Color(128/255, 0/255, 0/255, 1), //maroon
-            new Color(0, 0/255, 139/255, 1), //dark blue
-            new Color(102/255, 51/255, 0/255, 1) //brown
-            };
+            new Color(1f, 105/255f, 180/255f, 1),  //hot pink
+            new Color(251/255f, 142/255f, 147/255f, 1), //orange
+            new Color(128/255f, 0/255f, 0/255f, 1), //maroon
+            new Color(0, 0/255f, 139/255f, 1), //dark blue
+            new Color(102/255f, 51/255f, 0/255f, 1) //brown
+        };
     }
 
     public void UpdateDiff(int diff)
