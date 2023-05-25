@@ -169,6 +169,7 @@ public class CakeLevelManager : LevelManager
         {
             StartCoroutine(DispenseNext(avgDispenseFrequency));
         }
+        foodDispensed++;
     }
 
     public void RecordEvent(int objectNumber, string objectName, int boxNumber, bool correct, DateTime choiceStartTime)
