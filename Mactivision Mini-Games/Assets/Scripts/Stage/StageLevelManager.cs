@@ -31,6 +31,7 @@ public class StageLevelManager : LevelManager
     public int difficulty;
     public GameObject player;
     public int maxPrompts;
+    int prompts;
 
     List<GameObject> playersSpawned = new List<GameObject>();
     public GameObject greenSquare;
@@ -59,6 +60,7 @@ public class StageLevelManager : LevelManager
 
         randomSeed = new System.Random(seed.GetHashCode());
         gameState = GameState.Prompting;
+        prompts = 0;
 
     }
 
@@ -118,7 +120,7 @@ public class StageLevelManager : LevelManager
 
 
             // game automatically ends after maxGameTime seconds
-            if (Time.time - gameStartTime >= maxGameTime)
+            if (Time.time - gameStartTime >= maxGameTime || prompts<=maxPrompts)
             {
                 EndGame();
                 return;
@@ -259,6 +261,7 @@ public class StageLevelManager : LevelManager
     IEnumerator WaitForFeedback(float wait)
     {
         prompt.SetActive(false);
+        prompts++;
         if(stageController.faked)
         {
             if(rightDecision && stageController.falseShephard != -1)
