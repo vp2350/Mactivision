@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 19116149}
   - component: {fileID: 19116148}
   m_Layer: 0
-  m_Name: burger (screenRight)
+  m_Name: bluebean (screenRight)
   m_TagString: FoodPro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 19116145}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0.5, z: -2.52}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1328527284}
   m_RootOrder: 3
@@ -172,7 +172,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.4, y: 1.4}
     newSize: {x: 2.99, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -221,7 +221,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a01e113d01190b14ba04aa6afdae3c10, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 21bee7604bb331e4a975bc2c14c12657, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 85612922}
   - component: {fileID: 85612921}
   m_Layer: 0
-  m_Name: hotdog
+  m_Name: blueswirl
   m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -367,18 +367,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0033890102, y: 0.0033892542}
+  m_Offset: {x: 0.017142415, y: 0.012557924}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.6, y: 1.6}
     newSize: {x: 2.94, y: 1.98}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.11742543, y: 0.17505741}
+  m_Size: {x: 1.5752091, y: 1.6053365}
   m_EdgeRadius: 0
 --- !u!212 &85612923
 SpriteRenderer:
@@ -420,7 +420,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ce97bee2fed74dc4990ae7252f3d3a2e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8be439579f9a9474f8e0f0ae422be0be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -440,7 +440,7 @@ Transform:
   m_GameObject: {fileID: 85612920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.75, y: 6.98, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 105382314}
   - component: {fileID: 105382313}
   m_Layer: 0
-  m_Name: icecream
+  m_Name: brownmm
   m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -498,18 +498,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0024799965, y: 0.006922096}
+  m_Offset: {x: -0.011356175, y: 0.0014252663}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.28, y: 1.28}
     newSize: {x: 1.39, y: 2.96}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.14107034, y: 0.17445046}
+  m_Size: {x: 1.2227057, y: 1.196881}
   m_EdgeRadius: 0
 --- !u!212 &105382315
 SpriteRenderer:
@@ -551,7 +551,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0399aee3243d6344fb7bf3ca2f3c3986, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b5e6dad3e0a5b864c93b2ee2272fbb9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -571,7 +571,7 @@ Transform:
   m_GameObject: {fileID: 105382312}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11, y: 6.95, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
@@ -1050,7 +1050,7 @@ GameObject:
   - component: {fileID: 244764834}
   - component: {fileID: 244764833}
   m_Layer: 0
-  m_Name: pizza (screenRight)
+  m_Name: pinkswirl (screenRight)
   m_TagString: FoodPro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1065,7 +1065,7 @@ Transform:
   m_GameObject: {fileID: 244764830}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0.5, z: -2.52}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1328527284}
   m_RootOrder: 11
@@ -1087,7 +1087,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.6, y: 1.6}
     newSize: {x: 2.97, y: 2.46}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1136,7 +1136,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6169a9282d8c7b447b137845fe65f3ab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ca5584701bf537648b6188d868d4656b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1207,7 +1207,7 @@ GameObject:
   - component: {fileID: 266014994}
   - component: {fileID: 266014993}
   m_Layer: 0
-  m_Name: burger (screenLeft)
+  m_Name: bluebean (screenLeft)
   m_TagString: FoodPro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1222,7 +1222,7 @@ Transform:
   m_GameObject: {fileID: 266014990}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.5, y: 0.5, z: -2.52}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1328527284}
   m_RootOrder: 2
@@ -1244,7 +1244,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.4, y: 1.4}
     newSize: {x: 2.99, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1293,7 +1293,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a01e113d01190b14ba04aa6afdae3c10, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 21bee7604bb331e4a975bc2c14c12657, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1316,7 +1316,7 @@ GameObject:
   - component: {fileID: 301179969}
   - component: {fileID: 301179968}
   m_Layer: 0
-  m_Name: taco (screenRight)
+  m_Name: redwrap (screenRight)
   m_TagString: FoodPro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1331,7 +1331,7 @@ Transform:
   m_GameObject: {fileID: 301179965}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0.5, z: -2.52}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1328527284}
   m_RootOrder: 13
@@ -1353,7 +1353,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.76, y: 0.96}
     newSize: {x: 2.96, y: 1.71}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1402,7 +1402,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c4748370eda42a54a9d527a89f49c435, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 117c0b83faca0a744ab7a29f3ac9306a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1654,7 +1654,7 @@ GameObject:
   - component: {fileID: 329221162}
   - component: {fileID: 329221161}
   m_Layer: 0
-  m_Name: pizza
+  m_Name: pinkswirl
   m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1694,18 +1694,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0020768344, y: -0.0040030815}
+  m_Offset: {x: -0.0067326427, y: -0.0040032566}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.6, y: 1.6}
     newSize: {x: 2.97, y: 2.46}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.17546621, y: 0.15768728}
+  m_Size: {x: 1.5443355, y: 1.5172441}
   m_EdgeRadius: 0
 --- !u!212 &329221163
 SpriteRenderer:
@@ -1747,7 +1747,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6169a9282d8c7b447b137845fe65f3ab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ca5584701bf537648b6188d868d4656b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1767,7 +1767,7 @@ Transform:
   m_GameObject: {fileID: 329221160}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.01, y: 6.947049, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
@@ -1859,7 +1859,7 @@ GameObject:
   - component: {fileID: 367572446}
   - component: {fileID: 367572445}
   m_Layer: 0
-  m_Name: donut (screenRight)
+  m_Name: greenjelly (screenRight)
   m_TagString: FoodPro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1874,7 +1874,7 @@ Transform:
   m_GameObject: {fileID: 367572442}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0.5, z: -2.52}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1328527284}
   m_RootOrder: 1
@@ -1896,7 +1896,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.4, y: 1.2}
     newSize: {x: 2.9, y: 2.44}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1945,7 +1945,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e4d471df90ca69949b63fa6032cb03d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c1845cd5b388c84896532aaa2168bc2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2859,7 +2859,7 @@ GameObject:
   - component: {fileID: 679397077}
   - component: {fileID: 679397076}
   m_Layer: 0
-  m_Name: taco (screenLeft)
+  m_Name: redwrap (screenLeft)
   m_TagString: FoodPro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2874,7 +2874,7 @@ Transform:
   m_GameObject: {fileID: 679397073}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.5, y: 0.5, z: -2.52}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1328527284}
   m_RootOrder: 12
@@ -2896,7 +2896,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.76, y: 0.96}
     newSize: {x: 2.96, y: 1.71}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2945,7 +2945,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c4748370eda42a54a9d527a89f49c435, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 117c0b83faca0a744ab7a29f3ac9306a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3145,7 +3145,7 @@ GameObject:
   - component: {fileID: 715515904}
   - component: {fileID: 715515903}
   m_Layer: 0
-  m_Name: muffin (screenRight)
+  m_Name: pinkstar (screenRight)
   m_TagString: FoodPro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3160,7 +3160,7 @@ Transform:
   m_GameObject: {fileID: 715515900}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0.5, z: -2.52}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1328527284}
   m_RootOrder: 9
@@ -3182,7 +3182,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.12, y: 1.12}
     newSize: {x: 2.96, y: 2.98}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3231,7 +3231,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 023cdeb1c0fb576429dc4f705ba3f1a0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e4b316614209d294683baa72c628d554, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3317,7 +3317,7 @@ GameObject:
   - component: {fileID: 757152736}
   - component: {fileID: 757152735}
   m_Layer: 0
-  m_Name: icecream (screenRight)
+  m_Name: brownmm (screenRight)
   m_TagString: FoodPro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3332,7 +3332,7 @@ Transform:
   m_GameObject: {fileID: 757152732}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0.5, z: -2.52}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1328527284}
   m_RootOrder: 7
@@ -3354,7 +3354,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.28, y: 1.28}
     newSize: {x: 1.39, y: 2.96}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3403,7 +3403,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0399aee3243d6344fb7bf3ca2f3c3986, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b5e6dad3e0a5b864c93b2ee2272fbb9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3427,7 +3427,7 @@ GameObject:
   - component: {fileID: 758241851}
   - component: {fileID: 758241850}
   m_Layer: 0
-  m_Name: muffin
+  m_Name: pinkstar
   m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3467,18 +3467,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0038534254, y: -0.0024802126}
+  m_Offset: {x: -0.0038540363, y: 0.006673813}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.12, y: 1.12}
     newSize: {x: 2.96, y: 2.98}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16131255, y: 0.16964951}
+  m_Size: {x: 1.1316664, y: 1.1216934}
   m_EdgeRadius: 0
 --- !u!212 &758241852
 SpriteRenderer:
@@ -3520,7 +3520,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 023cdeb1c0fb576429dc4f705ba3f1a0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e4b316614209d294683baa72c628d554, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3540,7 +3540,7 @@ Transform:
   m_GameObject: {fileID: 758241849}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.55, y: 7.05, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
@@ -4168,7 +4168,7 @@ GameObject:
   - component: {fileID: 923036226}
   - component: {fileID: 923036225}
   m_Layer: 0
-  m_Name: hotdog (screenRight)
+  m_Name: blueswirl (screenRight)
   m_TagString: FoodPro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4183,7 +4183,7 @@ Transform:
   m_GameObject: {fileID: 923036222}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0.5, z: -2.52}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1328527284}
   m_RootOrder: 5
@@ -4205,7 +4205,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.6, y: 1.6}
     newSize: {x: 2.94, y: 1.98}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4254,7 +4254,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ce97bee2fed74dc4990ae7252f3d3a2e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8be439579f9a9474f8e0f0ae422be0be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4772,7 +4772,7 @@ GameObject:
   - component: {fileID: 1147491300}
   - component: {fileID: 1147491299}
   m_Layer: 0
-  m_Name: muffin (screenLeft)
+  m_Name: pinkstar (screenLeft)
   m_TagString: FoodPro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4787,7 +4787,7 @@ Transform:
   m_GameObject: {fileID: 1147491296}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.5, y: 0.5, z: -2.52}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1328527284}
   m_RootOrder: 8
@@ -4809,7 +4809,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.12, y: 1.12}
     newSize: {x: 2.96, y: 2.98}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4858,7 +4858,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 023cdeb1c0fb576429dc4f705ba3f1a0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e4b316614209d294683baa72c628d554, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5246,7 +5246,7 @@ GameObject:
   - component: {fileID: 1239558208}
   - component: {fileID: 1239558207}
   m_Layer: 0
-  m_Name: taco
+  m_Name: redwrap
   m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5286,18 +5286,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.000000029802322, y: 0.0042655542}
+  m_Offset: {x: -0.0041187406, y: 0.012502655}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.76, y: 0.96}
     newSize: {x: 2.96, y: 1.71}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.17882484, y: 0.16946577}
+  m_Size: {x: 1.3403124, y: 0.96026576}
   m_EdgeRadius: 0
 --- !u!212 &1239558209
 SpriteRenderer:
@@ -5339,7 +5339,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c4748370eda42a54a9d527a89f49c435, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 117c0b83faca0a744ab7a29f3ac9306a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5359,7 +5359,7 @@ Transform:
   m_GameObject: {fileID: 1239558206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.14, y: 6.87, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 14
@@ -5587,7 +5587,7 @@ GameObject:
   - component: {fileID: 1319489801}
   - component: {fileID: 1319489800}
   m_Layer: 0
-  m_Name: icecream (screenLeft)
+  m_Name: brownmm (screenLeft)
   m_TagString: FoodPro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5602,7 +5602,7 @@ Transform:
   m_GameObject: {fileID: 1319489797}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.5, y: 0.5, z: -2.52}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1328527284}
   m_RootOrder: 6
@@ -5624,7 +5624,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.28, y: 1.28}
     newSize: {x: 1.39, y: 2.96}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -5673,7 +5673,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0399aee3243d6344fb7bf3ca2f3c3986, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b5e6dad3e0a5b864c93b2ee2272fbb9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5795,7 +5795,7 @@ GameObject:
   - component: {fileID: 1383243289}
   - component: {fileID: 1383243288}
   m_Layer: 0
-  m_Name: pizza (screenLeft)
+  m_Name: pinkswirl (screenLeft)
   m_TagString: FoodPro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5810,7 +5810,7 @@ Transform:
   m_GameObject: {fileID: 1383243285}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.5, y: 0.5, z: -2.52}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1328527284}
   m_RootOrder: 10
@@ -5832,7 +5832,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.6, y: 1.6}
     newSize: {x: 2.97, y: 2.46}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -5881,7 +5881,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6169a9282d8c7b447b137845fe65f3ab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ca5584701bf537648b6188d868d4656b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6518,7 +6518,7 @@ GameObject:
   - component: {fileID: 1566126728}
   - component: {fileID: 1566126727}
   m_Layer: 0
-  m_Name: burger
+  m_Name: bluebean
   m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6558,18 +6558,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0019986667, y: -0.0013201982}
+  m_Offset: {x: 0.044208586, y: -0.067450106}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.4, y: 1.4}
     newSize: {x: 2.99, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1332944, y: 0.14782548}
+  m_Size: {x: 1.6524631, y: 1.4766191}
   m_EdgeRadius: 0
 --- !u!212 &1566126729
 SpriteRenderer:
@@ -6611,7 +6611,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a01e113d01190b14ba04aa6afdae3c10, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 21bee7604bb331e4a975bc2c14c12657, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6631,7 +6631,7 @@ Transform:
   m_GameObject: {fileID: 1566126726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -16.53137, y: 7.005327, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -6895,7 +6895,7 @@ GameObject:
   - component: {fileID: 1628515691}
   - component: {fileID: 1628515690}
   m_Layer: 0
-  m_Name: donut
+  m_Name: greenjelly
   m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6935,18 +6935,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.004695639, y: 0.005869478}
+  m_Offset: {x: 0.0010370612, y: 0.005869806}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.4, y: 1.2}
     newSize: {x: 2.9, y: 2.44}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16303793, y: 0.18368074}
+  m_Size: {x: 1.3556861, y: 1.1934065}
   m_EdgeRadius: 0
 --- !u!212 &1628515692
 SpriteRenderer:
@@ -6988,7 +6988,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e4d471df90ca69949b63fa6032cb03d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c1845cd5b388c84896532aaa2168bc2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7008,7 +7008,7 @@ Transform:
   m_GameObject: {fileID: 1628515689}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.75, y: 6.97, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
@@ -7173,7 +7173,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 3.52, y: -0.75}
+  m_Offset: {x: 3.52, y: -0.6098565}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7184,7 +7184,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.28, y: 1.7}
+  m_Size: {x: 2.2799997, y: 1.9802873}
   m_EdgeRadius: 0
 --- !u!212 &1692714331
 SpriteRenderer:
@@ -7382,7 +7382,7 @@ GameObject:
   - component: {fileID: 1889071331}
   - component: {fileID: 1889071330}
   m_Layer: 0
-  m_Name: donut (screenLeft)
+  m_Name: greenjelly (screenLeft)
   m_TagString: FoodPro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7397,7 +7397,7 @@ Transform:
   m_GameObject: {fileID: 1889071327}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.5, y: 0.5, z: -2.52}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1328527284}
   m_RootOrder: 0
@@ -7419,7 +7419,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.4, y: 1.2}
     newSize: {x: 2.9, y: 2.44}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -7468,7 +7468,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e4d471df90ca69949b63fa6032cb03d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c1845cd5b388c84896532aaa2168bc2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7703,7 +7703,7 @@ GameObject:
   - component: {fileID: 2083947365}
   - component: {fileID: 2083947364}
   m_Layer: 0
-  m_Name: hotdog (screenLeft)
+  m_Name: blueswirl (screenLeft)
   m_TagString: FoodPro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7718,7 +7718,7 @@ Transform:
   m_GameObject: {fileID: 2083947361}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.5, y: 0.5, z: -2.52}
-  m_LocalScale: {x: 6, y: 6, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 1328527284}
   m_RootOrder: 4
@@ -7740,7 +7740,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.6, y: 1.6}
     newSize: {x: 2.94, y: 1.98}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -7789,7 +7789,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ce97bee2fed74dc4990ae7252f3d3a2e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8be439579f9a9474f8e0f0ae422be0be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
