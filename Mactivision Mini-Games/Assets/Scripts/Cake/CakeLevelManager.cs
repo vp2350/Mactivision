@@ -170,8 +170,8 @@ public class CakeLevelManager : LevelManager
         if (Time.time - gameStartTime <= maxGameTime || foodDispensed <= maxFoodDispensed)
         {
             StartCoroutine(DispenseNext(avgDispenseFrequency));
+            foodDispensed++;
         }
-        foodDispensed++;
     }
 
     public void RecordEvent(int objectNumber, string objectName, int boxNumber, bool correct, DateTime choiceStartTime)
