@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class SaladBox : MonoBehaviour
 {
+    public GameObject managerObject;
+    public CakeLevelManager levelManager;
+
+    public GameObject screengreen;
+    public GameObject screenred;
+
     bool correct;
     string boxName;
     int boxNumber;
@@ -17,6 +23,7 @@ public class SaladBox : MonoBehaviour
         boxNumber = 3;
         inputObjectNumber = -1;
         inputObjectName = "";
+        levelManager = managerObject.GetComponent<CakeLevelManager>();
     }
 
     // Update is called once per frame
@@ -25,14 +32,18 @@ public class SaladBox : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Entered");
         inputObjectNumber = -1;
         inputObjectName = "";
         if (collision.tag == "Salad")
         {
             correct = true;
             inputObjectNumber = 3;
+
+            screengreen.SetActive(true);
+            StartCoroutine(DisableGreen(1f));
         }
         else
         {
@@ -45,10 +56,31 @@ public class SaladBox : MonoBehaviour
             {
                 inputObjectNumber = 1;
             }
+            screenred.SetActive(true);
+            StartCoroutine(DisableRed(1f));
         }
 
         inputObjectName = collision.name;
+
+        Debug.Log(inputObjectNumber);
+        Debug.Log(correct);
+        Debug.Log(boxNumber);
+
+        //levelManager.RecordEvent(inputObjectNumber, boxNumber, correct);
+
         collision.gameObject.transform.eulerAngles = Vector3.zero;
         Destroy(collision.gameObject);
+    }
+
+    IEnumerator DisableGreen(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        screengreen.SetActive(false);
+    }
+
+    IEnumerator DisableRed(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        screenred.SetActive(false);
     }
 }

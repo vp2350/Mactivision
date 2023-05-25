@@ -9,6 +9,9 @@ TagManager:
   - Monster
   - Firework
   - FoodPro
+  - Salad
+  - Entree
+  - Dessert
   layers:
   - Default
   - TransparentFX

@@ -12,7 +12,7 @@ public class CakeLevelManager : LevelManager
     public Dispenser dispenser;             // responsible for choosing and dispensing foods
     public AudioClip plate_up;              // BRRRRRR
     public AudioClip plate_down;            // brrrrrr
-    public AudioClip bite_sound;            // nom nom nom
+    //public AudioClip bite_sound;            // nom nom nom
 
     int uniqueFoods;                         // number of foods to be used in the current game
     float avgDispenseFrequency;                    // average number of foods dispensed between each food update
@@ -58,7 +58,7 @@ public class CakeLevelManager : LevelManager
 
         mcMetric = new MemoryChoiceMetric(); // initialize metric recorder
 
-        dispenser.Init(seed, uniqueFoods, avgDispenseFrequency, foodVelocity); // initialize the dispenser
+        //dispenser.Init(seed, uniqueFoods, avgDispenseFrequency, foodVelocity); // initialize the dispenser
         dispenseFirst = false;
     }
 
@@ -82,9 +82,9 @@ public class CakeLevelManager : LevelManager
         seed = !String.IsNullOrEmpty(cakeConfig.Seed) ? cakeConfig.Seed : DateTime.Now.ToString(); // if no seed provided, use current DateTime
         maxGameTime = cakeConfig.MaxGameTime > 0 ? cakeConfig.MaxGameTime : Default(90f, "MaxGameTime");
         maxFoodDispensed = cakeConfig.MaxFoodDispensed > 0 ? cakeConfig.MaxFoodDispensed : Default(20, "MaxFoodDispensed");
-        uniqueFoods = cakeConfig.UniqueFoods >= 2 && cakeConfig.UniqueFoods <= allFoods.Length ? cakeConfig.UniqueFoods : Default(6, "UniqueFoods");
-        avgDispenseFrequency = cakeConfig.AverageDispenseFrequency > 0 ? cakeConfig.AverageDispenseFrequency : Default(3f, "AverageDispenseFrequency");
-        foodVelocity = cakeConfig.FoodVelocity >= 0 && cakeConfig.FoodVelocity <= 10 ? cakeConfig.FoodVelocity : Default(3f, "UpdateFreqVariance");
+        uniqueFoods = cakeConfig.UniqueFoods >= 2 && cakeConfig.UniqueFoods <= allFoods.Length ? cakeConfig.UniqueFoods : Default(9, "UniqueFoods");
+        avgDispenseFrequency = cakeConfig.AverageDispenseFrequency > 0 ? cakeConfig.AverageDispenseFrequency : Default(4f, "AverageDispenseFrequency");
+        foodVelocity = cakeConfig.FoodVelocity >= 0 && cakeConfig.FoodVelocity <= 10 ? cakeConfig.FoodVelocity : Default(1.75f, "UpdateFreqVariance");
 
         // udpate battery config with actual/final values being used
         cakeConfig.Seed = seed;
@@ -163,7 +163,7 @@ public class CakeLevelManager : LevelManager
         mcMetric.startRecording();
         metricWriter = new MetricJSONWriter("Feeder", DateTime.Now, seed); // initialize metric data writer
         gameStartTime = Time.time;
-        sound.clip = bite_sound;
+        //sound.clip = bite_sound;
     }
 
     // End game, stop animations, sounds, physics. Finish recording metrics
@@ -197,8 +197,24 @@ public class CakeLevelManager : LevelManager
     void Dispense()
     {
         int rand = randomSeed.Next(uniqueFoods);
-        Instantiate(allFoods[rand], new Vector3(4f, -3f, -1f), Quaternion.identity);
-        StartCoroutine(DispenseNext(avgDispenseFrequency));
+        GameObject tempFood = Instantiate(allFoods[rand], new Vector3(-4f, -2.35f, -2f), Quaternion.identity);
+        tempFood.GetComponent<MoveFood>().Init(2f);
+        if (Time.time - gameStartTime <= maxGameTime || foodDispensed <= maxFoodDispensed)
+        {
+            StartCoroutine(DispenseNext(avgDispenseFrequency));
+        }
+    }
+
+    public void RecordEvent(int objectNumber, int boxNumber, bool correct)
+    {
+        mcMetric.recordEvent(new MemoryChoiceEvent(
+                dispenser.choiceStartTime,
+                new List<String>(dispenser.goodFoods),
+                dispenser.currentFood,
+                Input.GetKeyDown(feedKey),
+                DateTime.Now
+            ));
+        Debug.Log("Correct");
     }
     // This function is called each frame the game is waiting for input from the player.
     // When the player makes a choice, it plays appropriate animations and  

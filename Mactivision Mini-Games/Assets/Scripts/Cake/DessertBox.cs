@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class DessertBox : MonoBehaviour
 {
+    public GameObject managerObject;
+    public CakeLevelManager levelManager;
+
+    public GameObject screengreen;
+    public GameObject screenred;
+
     bool correct;
     string boxName;
     int boxNumber;
@@ -17,6 +23,7 @@ public class DessertBox : MonoBehaviour
         boxNumber = 1;
         inputObjectNumber = -1;
         inputObjectName = "";
+        levelManager = managerObject.GetComponent<CakeLevelManager>();
     }
 
     // Update is called once per frame
@@ -25,7 +32,7 @@ public class DessertBox : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         inputObjectNumber = -1;
         inputObjectName = "";
@@ -33,6 +40,8 @@ public class DessertBox : MonoBehaviour
         {
             correct = true;
             inputObjectNumber = 1;
+            screengreen.SetActive(true);
+            StartCoroutine(DisableGreen(1f));
         }
         else
         {
@@ -45,10 +54,29 @@ public class DessertBox : MonoBehaviour
             {
                 inputObjectNumber = 3;
             }
+            screenred.SetActive(true);
+            StartCoroutine(DisableRed(1f));
         }
 
         inputObjectName = collision.name;
+
+        Debug.Log(inputObjectNumber);
+        Debug.Log(correct);
+        Debug.Log(boxNumber);
+        //levelManager.RecordEvent(inputObjectNumber, boxNumber, correct);
         collision.gameObject.transform.eulerAngles = Vector3.zero;
         Destroy(collision.gameObject);
+    }
+
+    IEnumerator DisableGreen(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        screengreen.SetActive(false);
+    }
+
+    IEnumerator DisableRed(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        screenred.SetActive(false);
     }
 }

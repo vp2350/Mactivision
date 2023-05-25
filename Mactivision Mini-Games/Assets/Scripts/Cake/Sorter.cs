@@ -5,8 +5,13 @@ using UnityEngine;
 public class Sorter : MonoBehaviour
 {
     float velocity;         // just x velocity because y doesn't change
-    float minPos = -2.6f;   // the minimum value for position (left)
+    float minPos = -2.75f;   // the minimum value for position (left)
     float maxPos = -0.125f;    // the maximum value for position (right)
+
+    public GameObject redUp;
+    public GameObject redDown;
+    public GameObject orangeUp;
+    public GameObject orangeDown;
 
     // Initializes the spotlight
     public void Init(float v)
@@ -23,11 +28,26 @@ public class Sorter : MonoBehaviour
         if(Input.GetKey(KeyCode.DownArrow))
         {
             Move(false);
-            Debug.Log("Down");
+            redDown.SetActive(false);
+            orangeDown.SetActive(true);
+            redUp.SetActive(true);
+            orangeUp.SetActive(false);
         }
         else if(Input.GetKey(KeyCode.UpArrow))
         {
             Move(true);
+            redDown.SetActive(true);
+            orangeDown.SetActive(false);
+            redUp.SetActive(false);
+            orangeUp.SetActive(true);
+        }
+        else
+        {
+            redUp.SetActive(true);
+            redDown.SetActive(true);
+
+            orangeUp.SetActive(false);
+            orangeDown.SetActive(false);
         }
     }
 
