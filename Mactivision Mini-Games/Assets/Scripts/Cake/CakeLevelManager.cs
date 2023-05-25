@@ -14,9 +14,10 @@ public class CakeLevelManager : LevelManager
 
     int maxFoodDispensed;                   // maximum foods dispensed before game ends
     int foodDispensed;
+    int foodRegistered;
 
     public GameObject[] allFoods;
-
+   
     CakeChoiceMetric ccMetric;            // records choice data during the game
     MetricJSONWriter metricWriter;          // outputs recording metric (mcMetric) as a json file
 
@@ -41,6 +42,7 @@ public class CakeLevelManager : LevelManager
         foodDispensed = 0;
         gameState = GameState.FoodExpended;
 
+        foodRegistered = 0;
         countDoneText = "Feed!";
 
         ccMetric = new CakeChoiceMetric(); // initialize metric recorder
@@ -115,7 +117,7 @@ public class CakeLevelManager : LevelManager
             if (!ccMetric.isRecording) StartGame();
 
             // game automatically ends after maxGameTime seconds
-            if (Time.time - gameStartTime >= maxGameTime || foodDispensed >= maxFoodDispensed)
+            if (Time.time - gameStartTime >= maxGameTime || foodRegistered >= maxFoodDispensed)
             {
                 EndGame();
                 return;
@@ -183,6 +185,7 @@ public class CakeLevelManager : LevelManager
                 DateTime.Now
             ));
         Debug.Log("Correct");
+        foodRegistered++;
     }
 
     IEnumerator DispenseNext(float frequency)
