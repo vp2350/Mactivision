@@ -123,6 +123,7 @@ public class StageController : MonoBehaviour
         else
         {
             SpawnOptions();
+            choiceStartTime = DateTime.Now;
         }
     }
 

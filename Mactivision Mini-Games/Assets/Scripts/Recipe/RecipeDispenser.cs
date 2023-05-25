@@ -115,6 +115,7 @@ public class RecipeDispenser : MonoBehaviour
     void Dispense()
     {
         int n = gameFoods.Length;
+        choiceStartTime = DateTime.Now;
         GameObject[] tempFoods = new GameObject[n];
         for (int i = 0; i < n; i++)
         {
