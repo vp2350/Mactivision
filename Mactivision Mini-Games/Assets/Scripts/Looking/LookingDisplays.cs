@@ -60,7 +60,7 @@ public class LookingDisplays : MonoBehaviour
 
         cash = 0;
         cashCounterText = cashCounter.GetComponent<TextMeshPro>();
-        cashCounterText.text = cash.ToString();
+        cashCounterText.text = "$" + cash.ToString();
 
         allFoods = new GameObject[foods.Length];
         for(int i = 0; i< foods.Length; i++)
