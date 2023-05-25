@@ -30,7 +30,8 @@ public class Battery
         {"Rockstar", new RockstarConfig()},
         {"Looking", new LookingConfig() },
         {"Stage", new StageConfig() },
-        {"Recipe", new RecipeConfig() }
+        {"Recipe", new RecipeConfig() },
+        {"Cake", new RecipeConfig() }
     };
 
     // Helpers

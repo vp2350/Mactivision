@@ -16,6 +16,7 @@ public class StageController : MonoBehaviour
     float maxDistance;
 
     Color[] colorList;
+    List<int> colorsShown;
 
     public int falseShephard;
     public bool faked;
@@ -54,6 +55,7 @@ public class StageController : MonoBehaviour
         maxDistance = 20f;
         falseShephard = -1;
         ogColor = new Color(0, 0, 0);
+        colorsShown = new List<int>();
 
         colorList = new Color[14] { Color.black,
             Color.blue,
@@ -106,12 +108,14 @@ public class StageController : MonoBehaviour
             faked = false;
             ogColor = new Color(0, 0, 0);
             falseShephard = -1;
+
             for (int i = 0; i < spawnedPlayers.Count; i++)
             {
                 Destroy(spawnedPlayers[i]);
             }
             spawnedPlayers.Clear();
             playerColors.Clear();
+            colorsShown.Clear();
             Spawn();
             Walk();
             StartCoroutine(WaitForWalk(10f));
@@ -137,6 +141,7 @@ public class StageController : MonoBehaviour
 
                 SpriteRenderer temp = tempPlayer.GetComponent<SpriteRenderer>();
                 int colorNext = randomSeed.Next(colorList.Length);
+                colorsShown.Add(colorNext);
 
                 Color tempColor = colorList[colorNext];
                 temp.color = tempColor;
@@ -144,6 +149,7 @@ public class StageController : MonoBehaviour
                 
                 spawnedPlayers.Add(tempPlayer);
                 colourCount++;
+                
             }
             maxForThis -= 1;
             left = -left;
@@ -321,9 +327,9 @@ public class StageController : MonoBehaviour
         else
             return -1;
     }
-    public List<Color> GetColors()
+    public List<int> GetColors()
     {
-        return colorList.ToList<Color>();
+        return colorsShown;
         //return playerColors;
     }
     int FoodsBetweenNextUpdate(float avg, float sd)

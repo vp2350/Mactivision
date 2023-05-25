@@ -10,7 +10,7 @@ public class StageChoiceEvent : AbstractMetricEvent
 
     public string correct { get; }
     // Set of objects that are currently accepted (ie. in Feeder game, set of foods that the monster accepts)
-    public List<Color> colorsShown { get; }
+    public List<int> colorsShown { get; }
 
     // Choice that the user made on _object. If _object is a member of objectsSet, the user wants choice should be true.
     public string choice { get; }
@@ -25,7 +25,7 @@ public class StageChoiceEvent : AbstractMetricEvent
     // Subtracting the two will give the time it took for the user to decide.
     public System.DateTime choiceTime { get; }
 
-    public StageChoiceEvent(System.DateTime eventTime, bool colorChanged, int original, int newColor, string rightChoice, List<Color> colorsShown, string choice, System.DateTime choiceTime) : base(eventTime)
+    public StageChoiceEvent(System.DateTime eventTime, bool colorChanged, int original, int newColor, string rightChoice, List<int> colorsShown, string choice, System.DateTime choiceTime) : base(eventTime)
     {
         if (choiceTime < eventTime)
         {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -61,12 +62,9 @@ public class SaladBox : MonoBehaviour
         }
 
         inputObjectName = collision.name;
+        DateTime choiceTime = collision.GetComponent<MoveFood>().choiceStartTime;
 
-        Debug.Log(inputObjectNumber);
-        Debug.Log(correct);
-        Debug.Log(boxNumber);
-
-        //levelManager.RecordEvent(inputObjectNumber, boxNumber, correct);
+        levelManager.RecordEvent(inputObjectNumber, inputObjectName, boxNumber, correct, choiceTime);
 
         collision.gameObject.transform.eulerAngles = Vector3.zero;
         Destroy(collision.gameObject);
