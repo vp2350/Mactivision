@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Recipe.unity
     guid: 490c6572c4df84cee8a110fe0a498c12
+  - enabled: 1
+    path: Assets/Scenes/Cake.unity
+    guid: d41f1c448d374465487dcfa1011a67c1
   m_configObjects: {}

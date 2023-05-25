@@ -57,9 +57,9 @@ public class StageController : MonoBehaviour
         ogColor = new Color(0, 0, 0);
         colorsShown = new List<int>();
 
-        colorList = new Color[14] { Color.black,
-            Color.blue,
-            Color.cyan,
+        colorList = new Color[14] { new Color(69/255, 69/255, 69/255, 1), //black
+            new Color(173/255, 216/255, 230/255, 1),    //light blue
+            new Color(0/255, 0/255, 255/255, 1),    //dark blue
             Color.gray,
             Color.green,
             Color.magenta,

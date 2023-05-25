@@ -31,7 +31,7 @@ public class Battery
         {"Looking", new LookingConfig() },
         {"Stage", new StageConfig() },
         {"Recipe", new RecipeConfig() },
-        {"Cake", new RecipeConfig() }
+        {"Cake", new CakeConfig() }
     };
 
     // Helpers

@@ -16,7 +16,7 @@ public class Sorter : MonoBehaviour
     // Initializes the spotlight
     public void Init(float v)
     {
-        velocity = 2f;
+        velocity = 3.5f;
     }
 
     private void Start()
