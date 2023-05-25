@@ -167,10 +167,10 @@ public class CakeLevelManager : LevelManager
         int rand = randomSeed.Next(uniqueFoods);
         GameObject tempFood = Instantiate(allFoods[rand], new Vector3(-4f, -2.35f, -2f), Quaternion.identity);
         tempFood.GetComponent<MoveFood>().Init(2f);
-        if (Time.time - gameStartTime <= maxGameTime || foodDispensed <= maxFoodDispensed)
+        foodDispensed++;
+	if (Time.time - gameStartTime <= maxGameTime && foodDispensed < maxFoodDispensed)
         {
-            StartCoroutine(DispenseNext(avgDispenseFrequency));
-            foodDispensed++;
+           StartCoroutine(DispenseNext(avgDispenseFrequency));
         }
     }
 
