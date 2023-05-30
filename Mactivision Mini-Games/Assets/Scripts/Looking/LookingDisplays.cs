@@ -88,6 +88,8 @@ public class LookingDisplays : MonoBehaviour
         promptPoints = promptLocations;
 
         objectsUsed = new GameObject[4];
+        objectsDisplayed = new List<string>();
+
     }
 
     // Decides whether to update the list of liked foods.
@@ -154,7 +156,6 @@ public class LookingDisplays : MonoBehaviour
         correctMonitor = randomSeed.Next(4);
         choiceStartTime = DateTime.Now;
         objectsUsed = new GameObject[4];
-        objectsDisplayed = new List<string>();
         goodObjectShown = false;
 
         int n = badObjects.Count;
