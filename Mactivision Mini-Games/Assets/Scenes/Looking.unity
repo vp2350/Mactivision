@@ -2771,13 +2771,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The monster has been well fed!
-
+  m_text: 'Good job!
 
     Level Complete<line-height=30>
 
-    <size=20>Press
-    any key to continue</size></line-height>'
+    <size=20>Press any
+    key to continue</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
