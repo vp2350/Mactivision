@@ -61,7 +61,7 @@ public class RecipeDispenser : MonoBehaviour
         
         gameFoods = new string[tf];
         gameFoodObjs = new GameObject[tf];
-        goodFoods = new string[tf];
+        goodFoods = new string[2];
         goodFoodObjs = new GameObject[2];
         badFoods = new string[tf - 2];
         badFoodObjs = new GameObject[tf - 2];
@@ -75,10 +75,12 @@ public class RecipeDispenser : MonoBehaviour
             if (Array.IndexOf(gameFoods, food)<0) {
                 gameFoods[i] = food;
                 gameFoodObjs[i] = allFoods[i];
-                goodFoods[i] = "";
                 i++;
             }
         }
+        goodFoods[0] = "";
+        goodFoods[1] = "";
+
     }
 
     // Decides whether to update the list of liked foods.
