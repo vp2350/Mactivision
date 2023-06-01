@@ -20,6 +20,7 @@ public class StageLevelManager : LevelManager
     bool rightDecision;
     bool prompting;
     bool displayingOptions;
+    bool feedbackGiven;
 
     int maxPlayersDisplayed;                   // maximum foods dispensed before game ends
     int playerTypeDisplayed;
@@ -68,6 +69,7 @@ public class StageLevelManager : LevelManager
     {
         prompting = false;
         displayingOptions = false;
+        feedbackGiven = false;
 
         InitConfig();
 
@@ -92,7 +94,7 @@ public class StageLevelManager : LevelManager
         // use battery's config values, or default values if running game by itself
         seed = !String.IsNullOrEmpty(stageConfig.Seed) ? stageConfig.Seed : DateTime.Now.ToString(); // if no seed provided, use current DateTime
         maxGameTime = stageConfig.MaxGameTime > 0 ? stageConfig.MaxGameTime : Default(90f, "MaxGameTime");
-        maxPlayersDisplayed = stageConfig.MaxPlayersDisplayed > 0 ? stageConfig.MaxPlayersDisplayed : Default(10, "MaxFoodDisplayed");
+        maxPlayersDisplayed = stageConfig.MaxPlayersDisplayed > 0 ? stageConfig.MaxPlayersDisplayed : Default(10, "MaxPlayersDisplayed");
         uniqueTypes = stageConfig.UniqueTypes >= 2 && stageConfig.UniqueTypes <= stageController.playerTypes.Count ? stageConfig.UniqueTypes : Default(1, "UniqueTypes");
         difficulty = stageConfig.DiffLevel > 0 ? stageConfig.DiffLevel : Default(2, "DiffLevel");
         maxPrompts = stageConfig.MaxPrompts > 0 ? stageConfig.MaxPrompts : Default(5, "MaxPrompts");
@@ -147,7 +149,8 @@ public class StageLevelManager : LevelManager
                     WaitForPlayer();
                     break;
                 case GameState.Response:
-                    GiveFeedback();
+                    if(!feedbackGiven)
+                        GiveFeedback();
                     break;
             }
         }
@@ -226,12 +229,13 @@ public class StageLevelManager : LevelManager
     }
 
     void GiveFeedback()
-    {
+    {      
         StartCoroutine(WaitForFeedback(3f));
     }
 
     void Prompt()
     {
+        feedbackGiven = false;
         stageController.SpawnNext(false);
         StartCoroutine(WaitForCharacters(15f, false));
     }
@@ -260,6 +264,7 @@ public class StageLevelManager : LevelManager
     // Wait for the food dispensing animation
     IEnumerator WaitForFeedback(float wait)
     {
+        feedbackGiven = true;
         prompt.SetActive(false);
         if(stageController.faked)
         {
@@ -276,11 +281,11 @@ public class StageLevelManager : LevelManager
         {
             if (rightDecision)
             {
-                greenCheck.transform.position = new Vector3(0, 0, 0);
+                greenCheck.transform.position = new Vector3(0, 0, -1);
             }
             else
             {
-                redCross.transform.position = new Vector3(0, 0, 0);
+                redCross.transform.position = new Vector3(0, 0, -1);
             }
         }
         yield return new WaitForSeconds(wait);
@@ -288,6 +293,7 @@ public class StageLevelManager : LevelManager
         greenSquare.transform.position = new Vector3(10, 10, 10);
         redCross.transform.position = new Vector3(10, 10, 10);
         greenCheck.transform.position = new Vector3(10, 10, 10);
+        Debug.Log("Adding prompts");
         prompts++;
 
         gameState = GameState.Prompting;
@@ -317,12 +323,10 @@ public class StageLevelManager : LevelManager
         //dispenser.screenGreen.SetActive(false);
         //dispenser.enabled = false;
         //monster.speed = 0f;
-        //foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Food"))
-        //{
-        //    obj.GetComponent<Rigidbody2D>().isKinematic = true;
-        //    obj.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        //    obj.GetComponent<Rigidbody2D>().angularVelocity = 0f;
-        //}
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            obj.SetActive(false);
+        }
         foreach (AudioSource aud in FindObjectsOfType(typeof(AudioSource)) as AudioSource[])
         {
             aud.Stop();
