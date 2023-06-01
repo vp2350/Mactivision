@@ -8,10 +8,9 @@ using TMPro;
 public class LookingDisplays : MonoBehaviour
 {
     private System.Random rng;
-    public Animator pipe;               // this class will play the pipe dispensing animation
-    //public Transform monitor;           // the monitor that shows food updates
-    public GameObject screenGreen1;      // monitor flashes green when food is updated to preferred
-    public GameObject screenGreen2;        // monitor flashes red when food is updated to unpreferred
+    //public Transform monitor;         // the monitor that shows food updates
+    public GameObject screenGreen1;     // monitor flashes green when food is updated to preferred
+    public GameObject screenGreen2;     // monitor flashes red when food is updated to unpreferred
     public GameObject[] allFoods;       // array of all possible foods
     public GameObject goodObject;
     public List<GameObject> badObjects;
@@ -29,26 +28,24 @@ public class LookingDisplays : MonoBehaviour
     int nextUpdate = 0;
 
     string[] gameFoods;                                 // foods being used in the current game
-    public string goodFood { private set; get; }     // foods the monster will eat
+    public string goodFood { private set; get; }        // correct food
     public int goodFoodNumber { private set; get; }
-    string[] badFoods;                                  // foods the monster will spit out
+    string[] badFoods;                                  // wrong foods
     int goodFoodCount = 0;                              // number of foods the monster likes
 
-    GameObject[] objectsUsed;
-    int correctMonitor;
+    GameObject[] objectsUsed;                           // objects currently shown on the monitors
+    int correctMonitor;                                 // the monitor with the correct object
 
     Vector3[] spawns;
     Vector3[] promptPoints;
 
-    public int cash;
+    public int cash;                                    // curent cash total
     public GameObject cashCounter;
     public TextMeshPro cashCounterText;
 
-    //GameObject screenFood;                                  // the food shown on the screen during a food update
-    //public string currentFood { private set; get; }         // the current food the player has to decide on
     public DateTime choiceStartTime { private set; get; }   // the time the current food is dispensed and the player can make a choice
 
-    // Initializes the dispenser with the seed.
+    // Initializes the display with the seed.
     // Randomly chooses which foods will be used in the game.
     // `gameFoods` has the list of `tf` food items that will
     // be used in the game, and initially, `badFoods` = `gameFoods`,
@@ -58,10 +55,12 @@ public class LookingDisplays : MonoBehaviour
     {
         rng = new System.Random();
 
+        // initalize the cash and counter
         cash = 0;
         cashCounterText = cashCounter.GetComponent<TextMeshPro>();
         cashCounterText.text = "$" + cash.ToString();
 
+        // assign the foods
         allFoods = new GameObject[foods.Length];
         for(int i = 0; i< foods.Length; i++)
         {
@@ -90,7 +89,7 @@ public class LookingDisplays : MonoBehaviour
         objectsUsed = new GameObject[4];
     }
 
-    // Decides whether to update the list of liked foods.
+    // Decides whether to update the liked food.
     // Returns whether there is an update or not
     public bool DisplayNext()
     {
@@ -108,11 +107,11 @@ public class LookingDisplays : MonoBehaviour
             update = true;
             lastUpdate = 0;
             nextUpdate = ObjectsBetweenNextUpdate(avgUpdateFreq, updateFreqVariance);
-            StartCoroutine(WaitForObjectUpdate(1.75f)); // wait for a food update and then dispense next
+            StartCoroutine(WaitForObjectUpdate(1.75f)); // wait for a food update and then dislay next
         }
         else
         {
-            StartCoroutine(WaitForObjectUpdate(0f)); // instantly dispense next food
+            StartCoroutine(WaitForObjectUpdate(0f)); // instantly display next food
         }
 
         return update;
@@ -143,10 +142,9 @@ public class LookingDisplays : MonoBehaviour
         return result;
     }
 
-    // The actual function that randomly chooses a food and dispenses it.
+    // The actual function that randomly chooses 4 foods and dispenses them.
     // Sets the `choiceStartTime` to the current time and activate the 
-    // food GameObject and places it "in the pipe".
-    // Physics does the rest to make it fall out of the pipe.
+    // food GameObjects
     void Display()
     {
         int randIdx;
@@ -198,21 +196,6 @@ public class LookingDisplays : MonoBehaviour
                 objectsDisplayed.Add(badObjects[i].name);
             }
         }
-        // find the current food GameObject and place it in the pipe
-        //foreach (GameObject obj in allFoods)
-        //{
-        //    if (obj.name == currentFood)
-        //    {
-        //        obj.SetActive(true);
-        //        obj.transform.position = new Vector3(-1f, 4f, 0f);
-        //        break;
-        //    }
-        //}
-
-        // dispensing animation and sound
-        //pipe.Play("Base Layer.pipe_dispense");
-        //sound.clip = dispense_sound;
-        //sound.PlayDelayed(0f);
     }
 
     // Update the list of good and bad foods. Essentially swaps items between
@@ -242,7 +225,7 @@ public class LookingDisplays : MonoBehaviour
         screenGreen2.SetActive(true);
     }
 
-    // Wait for the flashing screen animation and then dispense the next food.
+    // Wait for the flashing screen animation and then display the next foods.
     IEnumerator WaitForObjectUpdate(float wait)
     {
         yield return new WaitForSeconds(wait);
@@ -256,12 +239,14 @@ public class LookingDisplays : MonoBehaviour
         Display();
     }
 
+    // returns how long to wait before updating the current object
     int ObjectsBetweenNextUpdate(float avg, float sd)
     {
         float rand = (float)randomSeed.NextDouble();
         return (int)Mathf.Round((sd + 0.1333f) * 30f * Mathf.Pow(rand - 0.5f, 3f) + avg);
     }
 
+    // returns the list of the 4 objects displayed 
     public List<string> GetObjectsShown()
     {
         return objectsDisplayed;
