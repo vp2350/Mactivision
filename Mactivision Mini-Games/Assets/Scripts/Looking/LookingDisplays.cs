@@ -88,8 +88,6 @@ public class LookingDisplays : MonoBehaviour
         promptPoints = promptLocations;
 
         objectsUsed = new GameObject[4];
-        objectsDisplayed = new List<string>();
-
     }
 
     // Decides whether to update the list of liked foods.
@@ -105,7 +103,7 @@ public class LookingDisplays : MonoBehaviour
         if (++lastUpdate >= nextUpdate || goodFoodCount == 0)
         {
             UpdateObjects();
-            objectsDisplayed.Clear();
+            //objectsDisplayed.Clear();
 
             update = true;
             lastUpdate = 0;
@@ -156,6 +154,7 @@ public class LookingDisplays : MonoBehaviour
         correctMonitor = randomSeed.Next(4);
         choiceStartTime = DateTime.Now;
         objectsUsed = new GameObject[4];
+        objectsDisplayed = new List<string>();
         goodObjectShown = false;
 
         int n = badObjects.Count;
@@ -241,37 +240,6 @@ public class LookingDisplays : MonoBehaviour
 
         screenGreen1.SetActive(true);
         screenGreen2.SetActive(true);
-        // choose a food to update and swap it to the other list
-        //int randIdx = randomSeed.Next(gameFoods.Length);
-        //string food = badFoods[randIdx];
-        //if (goodFoodCount < 2)
-        //{
-        //    do
-        //    {
-        //        randIdx = randomSeed.Next(gameFoods.Length);
-        //        food = badFoods[randIdx];
-        //    } while (food == "");
-        //}
-        //badFoods[randIdx] = goodFoods[randIdx];
-        //goodFoods[randIdx] = food;
-        //
-        //// show the food to be updated on the monitor, and activate either
-        //// the green or red flashing screen animation and sound
-        //if (food == "")
-        //{
-        //    food = badFoods[randIdx];
-        //    screenRed.SetActive(true);
-        //    goodFoodCount--;
-        //}
-        //else
-        //{
-        //    screenGreen.SetActive(true);
-        //    goodFoodCount++;
-        //}
-        //food = food + " (screen)";
-        //screenFood = monitor.Find(food).gameObject;
-        //screenFood.SetActive(true);
-        //sound.PlayOneShot(screen_sound);
     }
 
     // Wait for the flashing screen animation and then dispense the next food.

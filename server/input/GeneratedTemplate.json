@@ -11,10 +11,23 @@
         "Scene": "Cake",
         "Seed": null,
         "MaxGameTime": 0.0,
-        "MaxFoodDispensed": 0,
+        "MaxFoodDispensed": 4,
         "UniqueFoods": 0,
         "AverageDispenseFrequency": 0.0,
         "FoodVelocity": 0.0
+      },
+      {
+        "$type": "LookingConfig, Battery",
+        "TestName": null,
+        "Scene": "Looking",
+        "Seed": null,
+        "AverageUpdateFrequency": 0.0,
+        "UniqueObjects": 0,
+        "UpdateFreqVariance": 0.0,
+        "MaxFoodDisplayed": 0,
+        "MaxGameTime": 0.0,
+        "MaxPrompts": 10,
+        "DiffLevel": 0
       }
     ]
   }

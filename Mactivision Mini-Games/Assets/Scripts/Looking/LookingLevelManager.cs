@@ -219,18 +219,8 @@ public class LookingLevelManager : LevelManager
                 rightDecision = displayController.MakeChoice(-1);
                 recordKey = "X";
             }
-            // set the angle the plate should tilt to. Play monster eating animation & sound if applicable
-            //if (Input.GetKeyDown(feedKey))
-            //{
-            //    monster.Play("Base Layer.monster_eat");
-            //    sound.PlayDelayed(0.85f);
-            //    tiltPlateTo = -33f;
-            //}
-            //else
-            //{
-            //    tiltPlateTo = 33f;
-            //}
-            //
+
+            Debug.Log(displayController.GetObjectsShown().Count);
             // record the choice made
             lcMetric.recordEvent(new LookingChoiceEvent(
                 displayController.choiceStartTime,
@@ -241,10 +231,6 @@ public class LookingLevelManager : LevelManager
                 DateTime.Now
             )); 
 
-            //
-            //// animate choice and play plate sound
-            //sound.PlayOneShot(plate_up);
-            //StartCoroutine(AnimateChoice(Input.GetKeyDown(feedKey) && !dispenser.MakeChoice(Input.GetKeyDown(feedKey))));
             gameState = GameState.Response;
         }
     }
@@ -252,7 +238,6 @@ public class LookingLevelManager : LevelManager
     void GiveFeedback()
     {
         StartCoroutine(WaitForFeedback(0.5f));
-        //gameState = GameState.Prompting;
     }
 
     void Prompt()
@@ -296,7 +281,6 @@ public class LookingLevelManager : LevelManager
             redCross.SetActive(false);
         }
         foodDisplayed++;
-        Debug.Log(foodDisplayed);
         
         gameState = GameState.Prompting;
     }
@@ -320,17 +304,8 @@ public class LookingLevelManager : LevelManager
                 );
         StartCoroutine(Post("looking_" + DateTime.Now.ToFileTime() + ".json", str));
         //
-        //dispenser.StopAllCoroutines();
-        //dispenser.screenRed.SetActive(false);
-        //dispenser.screenGreen.SetActive(false);
-        //dispenser.enabled = false;
-        //monster.speed = 0f;
-        //foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Food"))
-        //{
-        //    obj.GetComponent<Rigidbody2D>().isKinematic = true;
-        //    obj.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        //    obj.GetComponent<Rigidbody2D>().angularVelocity = 0f;
-        //}
+        displayController.StopAllCoroutines();
+
         foreach (AudioSource aud in FindObjectsOfType(typeof(AudioSource)) as AudioSource[])
         {
             aud.Stop();
