@@ -5,40 +5,39 @@ using UnityEngine;
 
 public class LookingLevelManager : LevelManager
 {
-    KeyCode leftKey = KeyCode.LeftArrow;   //Left monitor
-    KeyCode upKey = KeyCode.UpArrow;       //Up monitor
-    KeyCode rightKey = KeyCode.RightArrow; //Right monitor
-    KeyCode downKey = KeyCode.DownArrow;   //Down monitor
-    KeyCode noInput = KeyCode.X;           //Prompt not displayed on monitors
+    KeyCode leftKey = KeyCode.LeftArrow;    // Left monitor
+    KeyCode upKey = KeyCode.UpArrow;        // Up monitor
+    KeyCode rightKey = KeyCode.RightArrow;  // Right monitor
+    KeyCode downKey = KeyCode.DownArrow;    // Down monitor
+    KeyCode noInput = KeyCode.X;            // Prompt not displayed on monitors
 
-    int uniqueObjects;                         // number of foods to be used in the current game
-    float avgUpdateFreq;                    // average number of foods dispensed between each food update
+    int uniqueObjects;                      // number of foods to be used in the current game
+    float avgUpdateFreq;                    // average number of foods displayed between each food update
     float updateFreqVariance;               // variance of `avgUpdateFreq`
 
-    int maxFoodDisplayed;                   // maximum foods dispensed before game ends
-    public int foodDisplayed;
-    bool rightDecision;
+    int maxFoodDisplayed;                   // maximum foods displayed before game ends
+    public int foodDisplayed;               // current number of foods displayed
+    bool rightDecision;                     // was the choice made correct
 
-    LookingChoiceMetric lcMetric;            // records choice data during the game
+    LookingChoiceMetric lcMetric;           // records choice data during the game
     MetricJSONWriter metricWriter;          // outputs recording metric (lcMetric) as a json file
-    string recordKey;
+    string recordKey;                       // the input key used
 
-    public LookingDisplays displayController;
+    public LookingDisplays displayController;           // controls the displays
     //The monitors and their positions
-    public GameObject[] monitors = new GameObject[4];
-    Vector3[] spawnPoints = new Vector3[4];
-    public GameObject[] arrows = new GameObject[4];
+    public GameObject[] monitors = new GameObject[4];   // the main display monitors
+    Vector3[] spawnPoints = new Vector3[4];             // where the food is positioned in the monitors
+    public GameObject[] arrows = new GameObject[4];     // the direction arrows
 
     //The prompters for the right object and their positions
-    public GameObject[] prompters = new GameObject[2];
+    public GameObject[] prompters = new GameObject[2];  // top right prompter
     Vector3[] promptPoints = new Vector3[2];
 
-    public int difficulty;
-    public GameObject[] foods = new GameObject[10];
-    public GameObject greenCheck;
-    public GameObject redCross;
+    public GameObject[] foods = new GameObject[10];     // all foods
+    public GameObject greenCheck;                       // check for right answer
+    public GameObject redCross;                         // cross for wrong answer
 
-    public bool feedbackCalled;
+    public bool feedbackCalled;                         // ensures feedback function is only called once
     enum GameState
     {
         Prompting,
@@ -65,6 +64,7 @@ public class LookingLevelManager : LevelManager
 
     void Init()
     {
+        // monitor locations
         for(int i = 0; i<monitors.Length; i++)
         {
             spawnPoints[i] = monitors[i].transform.position;
@@ -111,11 +111,11 @@ public class LookingLevelManager : LevelManager
     // Update is called once per frame
     void Update()
     {
-        //monitors are in the order
-        //up = 0
-        //right = 1
-        //down = 2
-        //left = 3
+        // monitors are in the order
+        // up = 0
+        // right = 1
+        // down = 2
+        // left = 3
         if (lvlState == 2)
         {
             if (!lcMetric.isRecording) StartGame();
@@ -157,7 +157,6 @@ public class LookingLevelManager : LevelManager
         lcMetric.startRecording();
         metricWriter = new MetricJSONWriter("Looking", DateTime.Now, seed); // initialize metric data writer
         gameStartTime = Time.time;
-        //sound.clip = bite_sound;
     }
     // Handles GUI events (keyboard, mouse, etc events)
     void OnGUI()
@@ -186,7 +185,8 @@ public class LookingLevelManager : LevelManager
     void WaitForPlayer()
     {
         rightDecision = false;
-        
+
+        //wait for user input
         if (Input.GetKeyDown(upKey) || Input.GetKeyDown(leftKey)
             || Input.GetKeyDown(rightKey) || Input.GetKeyDown(downKey) || Input.GetKeyDown(noInput))
         {
@@ -253,14 +253,14 @@ public class LookingLevelManager : LevelManager
         gameState = GameState.DisplayOptions;
     }
 
-    // Wait for the food dispensing animation
+    // Wait for the food display animation
     IEnumerator WaitForFoodDisplay(float wait)
     {
         yield return new WaitForSeconds(wait);
         gameState = GameState.WaitingForPlayer;
     }
 
-    // Wait for the food dispensing animation
+    // Wait for the input feedback
     IEnumerator WaitForFeedback(float wait)
     {
         if(rightDecision)
@@ -285,7 +285,7 @@ public class LookingLevelManager : LevelManager
         gameState = GameState.Prompting;
     }
 
-    // Wait for the food dispensing animation
+    // Darken the input arrow 
     IEnumerator DarkenArrow(float wait, GameObject arrow)
     {
         SpriteRenderer temp = arrow.GetComponent<SpriteRenderer>();
@@ -303,7 +303,7 @@ public class LookingLevelManager : LevelManager
                     new List<AbstractMetric>() { lcMetric }
                 );
         StartCoroutine(Post("looking_" + DateTime.Now.ToFileTime() + ".json", str));
-        //
+        
         displayController.StopAllCoroutines();
 
         foreach (AudioSource aud in FindObjectsOfType(typeof(AudioSource)) as AudioSource[])
