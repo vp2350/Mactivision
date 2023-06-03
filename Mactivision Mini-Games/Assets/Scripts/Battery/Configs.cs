@@ -82,8 +82,6 @@ public class LookingConfig : GameConfig
     public float UpdateFreqVariance { get; set; }
     public int MaxFoodDisplayed { get; set; }
     public float MaxGameTime { get; set; }
-    public int MaxPrompts { get; set; }
-    public int DiffLevel { get; set; }
 }
 
 public class StageConfig : GameConfig

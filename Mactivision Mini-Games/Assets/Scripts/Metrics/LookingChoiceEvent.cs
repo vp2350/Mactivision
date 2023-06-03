@@ -19,7 +19,7 @@ public class LookingChoiceEvent : AbstractMetricEvent
     // Subtracting the two will give the time it took for the user to decide.
     public System.DateTime choiceTime { get; }
 
-    public LookingChoiceEvent(System.DateTime eventTime, string _goodObject, string rightChoice, List<string> objectsShown, string choice, System.DateTime choiceTime) : base(eventTime)
+    public LookingChoiceEvent(System.DateTime eventTime, string rightChoice, string _goodObject, List<string> objectsShown, string choice, System.DateTime choiceTime) : base(eventTime)
     {
         if (choiceTime < eventTime)
         {

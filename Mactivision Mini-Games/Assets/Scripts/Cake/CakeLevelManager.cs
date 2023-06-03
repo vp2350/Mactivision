@@ -184,7 +184,6 @@ public class CakeLevelManager : LevelManager
                 correct,
                 DateTime.Now
             ));
-        Debug.Log("Correct");
         foodRegistered++;
     }
 
