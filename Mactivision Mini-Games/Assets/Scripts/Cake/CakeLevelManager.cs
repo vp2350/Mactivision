@@ -10,6 +10,9 @@ public class CakeLevelManager : LevelManager
     float avgDispenseFrequency;                    // average number of foods dispensed between each food update
     float foodVelocity;               // variance of `avgUpdateFreq`
 
+    public AudioSource bgmPlayer;
+    public AudioClip bgm;
+
     bool dispenseFirst;
 
     int maxFoodDispensed;                   // maximum foods dispensed before game ends
@@ -137,6 +140,9 @@ public class CakeLevelManager : LevelManager
         ccMetric.startRecording();
         metricWriter = new MetricJSONWriter("Feeder", DateTime.Now, seed); // initialize metric data writer
         gameStartTime = Time.time;
+        bgmPlayer.loop = true;
+        bgmPlayer.clip = bgm;
+        bgmPlayer.Play();
     }
 
     // End game, stop animations, sounds, physics. Finish recording metrics

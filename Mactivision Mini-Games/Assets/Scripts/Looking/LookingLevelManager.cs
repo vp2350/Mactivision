@@ -11,6 +11,10 @@ public class LookingLevelManager : LevelManager
     KeyCode downKey = KeyCode.DownArrow;    // Down monitor
     KeyCode noInput = KeyCode.X;            // Prompt not displayed on monitors
 
+    public AudioSource bgmPlayer;
+    public AudioClip bgm;
+    public AudioClip cash;
+
     int uniqueObjects;                      // number of foods to be used in the current game
     float avgUpdateFreq;                    // average number of foods displayed between each food update
     float updateFreqVariance;               // variance of `avgUpdateFreq`
@@ -157,6 +161,9 @@ public class LookingLevelManager : LevelManager
         lcMetric.startRecording();
         metricWriter = new MetricJSONWriter("Looking", DateTime.Now, seed); // initialize metric data writer
         gameStartTime = Time.time;
+        bgmPlayer.loop = true;
+        bgmPlayer.clip = bgm;
+        bgmPlayer.Play();
     }
     // Handles GUI events (keyboard, mouse, etc events)
     void OnGUI()

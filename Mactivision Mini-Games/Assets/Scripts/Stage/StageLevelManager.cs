@@ -12,6 +12,9 @@ public class StageLevelManager : LevelManager
     KeyCode rowTwo = KeyCode.Alpha2;   //Down monitor
     KeyCode rowThree = KeyCode.Alpha3;           //Prompt not displayed on monitors
 
+    public AudioSource bgmPlayer;
+    public AudioClip bgm;
+
     public StageController stageController;
 
     int uniqueTypes;                         // number of foods to be used in the current game
@@ -162,6 +165,9 @@ public class StageLevelManager : LevelManager
         scMetric.startRecording();
         metricWriter = new MetricJSONWriter("Stage", DateTime.Now, seed); // initialize metric data writer
         gameStartTime = Time.time;
+        bgmPlayer.loop = true;
+        bgmPlayer.clip = bgm;
+        bgmPlayer.Play();
         //sound.clip = bite_sound;
     }
     // Handles GUI events (keyboard, mouse, etc events)
