@@ -1,0 +1,21 @@
+{
+  "$type": "BatteryConfig, Battery",
+  "StartTime": null,
+  "EndTime": null,
+  "Games": {
+    "$type": "System.Collections.Generic.List`1[[GameConfig, Battery]], mscorlib",
+    "$values": [
+      {
+        "$type": "StageConfig, Battery",
+        "TestName": null,
+        "Scene": "Stage",
+        "Seed": null,
+        "UniqueTypes": 0,
+        "MaxPlayersDisplayed": 0,
+        "MaxGameTime": 130.0,
+        "MaxPrompts": 0,
+        "DiffLevel": 0
+      }
+    ]
+  }
+}

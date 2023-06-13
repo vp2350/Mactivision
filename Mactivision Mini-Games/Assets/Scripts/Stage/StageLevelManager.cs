@@ -214,17 +214,68 @@ public class StageLevelManager : LevelManager
                 recordKey = noKey.ToString();
             }
 
-            // record the choice made
-            scMetric.recordEvent(new StageChoiceEvent(
+            int ogColor = stageController.GetOriginalColorNumber();
+            int changedColor = stageController.GetChangedColorNumber();
+            List<int> colors = stageController.GetColors();
+
+            StageChoiceEvent tempEvent;
+            if (colors.Count == 3)
+            {
+                tempEvent = new StageChoiceEvent(
                 stageController.choiceStartTime,
                 stageController.faked,
-                stageController.GetOriginalColorNumber(),
-                stageController.GetChangedColorNumber(),
+                ogColor,
+                changedColor,
                 rightDecision.ToString(),
-                stageController.GetColors(),
                 recordKey,
-                DateTime.Now
-            )); 
+                DateTime.Now,
+                colors[0],
+                colors[1],
+                colors[2]
+                );
+            }
+            else if (colors.Count == 6)
+            {
+                tempEvent = new StageChoiceEvent(
+                stageController.choiceStartTime,
+                stageController.faked,
+                ogColor,
+                changedColor,
+                rightDecision.ToString(),
+                recordKey,
+                DateTime.Now,
+                colors[0],
+                colors[1],
+                colors[2],
+                colors[3],
+                colors[4],
+                colors[5]
+                );
+            }
+            else
+            {
+                tempEvent = new StageChoiceEvent(
+                stageController.choiceStartTime,
+                stageController.faked,
+                ogColor,
+                changedColor,
+                rightDecision.ToString(),
+                recordKey,
+                DateTime.Now,
+                colors[0],
+                colors[1],
+                colors[2],
+                colors[3],
+                colors[4],
+                colors[5],
+                colors[6],
+                colors[7],
+                colors[8]
+                );
+            }
+
+            // record the choice made
+            scMetric.recordEvent(tempEvent); 
 
             //
             //// animate choice and play plate sound

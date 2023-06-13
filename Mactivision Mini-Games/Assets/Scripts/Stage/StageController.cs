@@ -105,17 +105,12 @@ public class StageController : MonoBehaviour
     {
         if (!secondDisplay)
         {
-            faked = false;
-            ogColor = new Color(0, 0, 0);
-            falseShephard = -1;
 
             for (int i = 0; i < spawnedPlayers.Count; i++)
             {
                 Destroy(spawnedPlayers[i]);
             }
-            spawnedPlayers.Clear();
-            playerColors.Clear();
-            colorsShown.Clear();
+
             Spawn();
             Walk();
             StartCoroutine(WaitForWalk(10f));
@@ -129,6 +124,14 @@ public class StageController : MonoBehaviour
 
     void Spawn()
     {
+        faked = false;
+        ogColor = new Color(0, 0, 0);
+        falseShephard = -1;
+
+        spawnedPlayers.Clear();
+        playerColors.Clear();
+        colorsShown.Clear();
+
         int maxForThis = rowMax;
         int left = 1;
 
@@ -201,33 +204,7 @@ public class StageController : MonoBehaviour
             falseShephard = randNew;
         }
         WalkOpp();
-        //int maxForThis = rowMax;
-        //int left = 1;
-        //
-        //int playerCount = 0;
-        //int colourCount = 0;
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    for (int j = maxForThis; j > 0; j--)
-        //    {
-        //        GameObject tempPlayer = Instantiate(playerPrefab);
-        //        tempPlayer.transform.position = new Vector3(spawns[i].transform.position.x + (j * maxDistance / (maxForThis + 1) * left), spawns[i].transform.position.y, spawns[i].transform.position.z);
-        //
-        //        SpriteRenderer temp = tempPlayer.GetComponent<SpriteRenderer>();
-        //
-        //        if (colourCount < playerColors.Count)
-        //        {
-        //            Color tempColor = playerColors[colourCount];
-        //            temp.color = tempColor;
-        //        }
-        //
-        //        spawnedPlayers.Add(tempPlayer);
-        //        colourCount++;
-        //        playerCount++;
-        //    }
-        //    maxForThis -= 1;
-        //    left = -left;
-        //}
+
 
     }
 
