@@ -169,15 +169,15 @@ public class StageController : MonoBehaviour
         {
             randNew = randomSeed.Next(spawnedPlayers.Count);
             GameObject objectToChange = spawnedPlayers[randNew];
-
+            Color compareColor = objectToChange.GetComponent<SpriteRenderer>().color;
             int colorNext;
 
             do
             {
                 colorNext = randomSeed.Next(colorList.Length);
-            } while (playerColors[randNew].r != colorList[colorNext].r
-                && playerColors[randNew].g != colorList[colorNext].g
-                && playerColors[randNew].b != colorList[colorNext].b);
+            } while (compareColor.r == colorList[colorNext].r
+                && compareColor.g == colorList[colorNext].g
+                && compareColor.b == colorList[colorNext].b);
 
             ogColor = playerColors[randNew]; 
             for(int i = 0; i < colorList.Length; i++)
