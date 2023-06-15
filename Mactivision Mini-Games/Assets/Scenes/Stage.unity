@@ -3556,7 +3556,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Did anything change (LShift: Yes, RShift: No)'
+  m_text: 'Did anything change (RShift: Yes, LShift: No)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6547,7 +6547,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press Left Shift if there is a difference and Right Shift if there is
+  m_text: 'Press Right Shift if there is a difference and Left Shift if there is
     none<line-height=35>
 
     <size=20>Press B to go back or N to start!</size></line-height>'

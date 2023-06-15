@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class StageLevelManager : LevelManager
 {
-    KeyCode yesKey = KeyCode.LeftShift;   //Left monitor
-    KeyCode noKey = KeyCode.RightShift;       //Up monitor
+    KeyCode yesKey = KeyCode.RightShift;   //Left monitor
+    KeyCode noKey = KeyCode.LeftShift;       //Up monitor
     KeyCode rowOne = KeyCode.Alpha1; //Right monitor
     KeyCode rowTwo = KeyCode.Alpha2;   //Down monitor
     KeyCode rowThree = KeyCode.Alpha3;           //Prompt not displayed on monitors
