@@ -4183,14 +4183,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   postprocess: {fileID: 339341186}
-  introText: {fileID: 0}
-  outroText: {fileID: 1311983252}
-  countdownText: {fileID: 720354453}
-  countDoneText: Start!
   instructionParent: {fileID: 1326103142}
   instructions:
   - {fileID: 1115475973}
   instructionCount: 0
+  countdownText: {fileID: 720354453}
+  countDoneText: Start!
+  outroText: {fileID: 1311983252}
   textBG: {fileID: 1875444285}
   textBG_Main: {fileID: 473482976}
   textBG_Edge: {fileID: 1538848487}
@@ -4236,7 +4235,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 57345996c05237c4cad6f49e6e6da724, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
