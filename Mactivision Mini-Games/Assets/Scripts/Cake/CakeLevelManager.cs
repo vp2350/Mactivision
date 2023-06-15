@@ -76,7 +76,7 @@ public class CakeLevelManager : LevelManager
         maxFoodDispensed = cakeConfig.MaxFoodDispensed > 0 ? cakeConfig.MaxFoodDispensed : Default(20, "MaxFoodDispensed");
         uniqueFoods = cakeConfig.UniqueFoods >= 2 && cakeConfig.UniqueFoods <= allFoods.Length ? cakeConfig.UniqueFoods : Default(9, "UniqueFoods");
         avgDispenseFrequency = cakeConfig.AverageDispenseFrequency > 0 ? cakeConfig.AverageDispenseFrequency : Default(3f, "AverageDispenseFrequency");
-        foodVelocity = cakeConfig.FoodVelocity >= 0 && cakeConfig.FoodVelocity <= 10 ? cakeConfig.FoodVelocity : Default(2.25f, "UpdateFreqVariance");
+        foodVelocity = cakeConfig.FoodVelocity > 0 && cakeConfig.FoodVelocity <= 10 ? cakeConfig.FoodVelocity : Default(2.25f, "UpdateFreqVariance");
 
         // udpate battery config with actual/final values being used
         cakeConfig.Seed = seed;
