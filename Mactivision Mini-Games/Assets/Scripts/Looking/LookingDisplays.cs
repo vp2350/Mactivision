@@ -132,12 +132,26 @@ public class LookingDisplays : MonoBehaviour
                 result = true;
             }
         }
-
-        if(result)
+        double deltaTime = (DateTime.Now - choiceStartTime).TotalSeconds;
+        Debug.Log(deltaTime);
+        if(result && deltaTime < 0.5)
         {
             cash += 100;
-            cashCounterText.text = "$" + cash.ToString();
         }
+        else if(result && deltaTime >= 0.5 && deltaTime < 1)
+        {
+            cash += 80;
+        }
+        else if (result && deltaTime >= 1 && deltaTime < 1.5)
+        {
+            cash += 60;
+        }
+        else if (result && deltaTime >= 1.5)
+        {
+            cash += 50;
+        }
+
+        cashCounterText.text = "$" + cash.ToString();
 
         return result;
     }

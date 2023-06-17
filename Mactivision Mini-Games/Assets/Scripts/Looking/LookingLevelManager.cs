@@ -227,7 +227,6 @@ public class LookingLevelManager : LevelManager
                 recordKey = "X";
             }
 
-            Debug.Log(displayController.GetObjectsShown().Count);
             // record the choice made
             lcMetric.recordEvent(new LookingChoiceEvent(
                 displayController.choiceStartTime,

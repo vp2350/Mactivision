@@ -1107,10 +1107,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The item looking for changes every few turns, only look for the latest
-    one!<line-height=35>
+  m_text: 'The item you are looking for may change, only look for the latest one!<line-height=35>
 
-    <size=20>Press B to go back or N to go next</size></line-height>'
+    <size=20>Press
+    B to go back or N to go next</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
@@ -1630,7 +1630,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You get $100 for every right decision. Make as much money as you can!<line-height=35>
+  m_text: 'You get between $50 to $100 for every right decision depending on how
+    fast you respond. Make as much money as you can!<line-height=35>
 
     <size=20>Press
     B to go back or N to start!</size></line-height>'
@@ -5091,7 +5092,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The montor on the top-right will display the object the player is currently
+  m_text: 'The monitor on the top-right will display the object the player is currently
     looking for<line-height=35>
 
     <size=20>Press B to go back or N to go next</size></line-height>'
