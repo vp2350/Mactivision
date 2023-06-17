@@ -1,0 +1,166 @@
+{
+  "$type": "BatteryConfig, Battery",
+  "StartTime": null,
+  "EndTime": null,
+  "Games": {
+    "$type": "System.Collections.Generic.List`1[[GameConfig, Battery]], mscorlib",
+    "$values": [
+      {
+        "$type": "DiggerConfig, Battery",
+        "TestName": null,
+        "Scene": "Digger",
+        "MaxGameTime": 0.0,
+        "DigAmount": 35,
+        "DigKey": null
+      },
+      {
+        "$type": "LookingConfig, Battery",
+        "TestName": null,
+        "Scene": "Looking",
+        "Seed": null,
+        "AverageUpdateFrequency": 18.0,
+        "UniqueObjects": 0,
+        "UpdateFreqVariance": 0.0,
+        "MaxFoodDisplayed": 18,
+        "MaxGameTime": 0.0
+      },
+	  {
+        "$type": "StageConfig, Battery",
+        "TestName": null,
+        "Scene": "Stage",
+        "Seed": null,
+        "UniqueTypes": 0,
+        "MaxPlayersDisplayed": 0,
+        "MaxGameTime": 120.0,
+        "MaxPrompts": 0,
+        "DiffLevel": 1
+      },
+      {
+        "$type": "RecipeConfig, Battery",
+        "TestName": null,
+        "Scene": "Recipe",
+        "Seed": null,
+        "MaxGameTime": 0.0,
+        "MaxFoodDispensed": 18,
+        "UniqueFoods": 0,
+        "AverageUpdateFrequency": 18.0,
+        "UpdateFreqVariance": 0.0
+      },
+      {
+        "$type": "CakeConfig, Battery",
+        "TestName": null,
+        "Scene": "Cake",
+        "Seed": null,
+        "MaxGameTime": 0.0,
+        "MaxFoodDispensed": 0,
+        "UniqueFoods": 0,
+        "AverageDispenseFrequency": 2.0,
+        "FoodVelocity": 2.5
+      },
+      {
+        "$type": "LookingConfig, Battery",
+        "TestName": null,
+        "Scene": "Looking",
+        "Seed": null,
+        "AverageUpdateFrequency": 6.0,
+        "UniqueObjects": 0,
+        "UpdateFreqVariance": 0.0,
+        "MaxFoodDisplayed": 18,
+        "MaxGameTime": 0.0
+      },
+      {
+        "$type": "RecipeConfig, Battery",
+        "TestName": null,
+        "Scene": "Recipe",
+        "Seed": null,
+        "MaxGameTime": 0.0,
+        "MaxFoodDispensed": 18,
+        "UniqueFoods": 0,
+        "AverageUpdateFrequency": 6.0,
+        "UpdateFreqVariance": 0.0
+      },
+      {
+        "$type": "StageConfig, Battery",
+        "TestName": null,
+        "Scene": "Stage",
+        "Seed": null,
+        "UniqueTypes": 0,
+        "MaxPlayersDisplayed": 0,
+        "MaxGameTime": 120.0,
+        "MaxPrompts": 0,
+        "DiffLevel": 2
+      },
+      {
+        "$type": "CakeConfig, Battery",
+        "TestName": null,
+        "Scene": "Cake",
+        "Seed": null,
+        "MaxGameTime": 0.0,
+        "MaxFoodDispensed": 0,
+        "UniqueFoods": 0,
+        "AverageDispenseFrequency": 1.5,
+        "FoodVelocity": 3
+      },
+      {
+        "$type": "DiggerConfig, Battery",
+        "TestName": null,
+        "Scene": "Digger",
+        "MaxGameTime": 0.0,
+        "DigAmount": 60,
+        "DigKey": null
+      },
+      {
+        "$type": "StageConfig, Battery",
+        "TestName": null,
+        "Scene": "Stage",
+        "Seed": null,
+        "UniqueTypes": 0,
+        "MaxPlayersDisplayed": 0,
+        "MaxGameTime": 120.0,
+        "MaxPrompts": 0,
+        "DiffLevel": 3
+      },
+      {
+        "$type": "LookingConfig, Battery",
+        "TestName": null,
+        "Scene": "Looking",
+        "Seed": null,
+        "AverageUpdateFrequency": 3.0,
+        "UniqueObjects": 0,
+        "UpdateFreqVariance": 0.0,
+        "MaxFoodDisplayed": 18,
+        "MaxGameTime": 0.0
+      },
+      {
+        "$type": "RecipeConfig, Battery",
+        "TestName": null,
+        "Scene": "Recipe",
+        "Seed": null,
+        "MaxGameTime": 0.0,
+        "MaxFoodDispensed": 18,
+        "UniqueFoods": 0,
+        "AverageUpdateFrequency": 3.0,
+        "UpdateFreqVariance": 0.0
+      },
+      {
+        "$type": "DiggerConfig, Battery",
+        "TestName": null,
+        "Scene": "Digger",
+        "MaxGameTime": 0.0,
+        "DigAmount": 80,
+        "DigKey": null
+      },
+      {
+        "$type": "CakeConfig, Battery",
+        "TestName": null,
+        "Scene": "Cake",
+        "Seed": null,
+        "MaxGameTime": 0.0,
+        "MaxFoodDispensed": 0,
+        "UniqueFoods": 0,
+        "AverageDispenseFrequency": 1.0,
+        "FoodVelocity": 3.5
+      }                                                                       
+    ]
+  }
+}
