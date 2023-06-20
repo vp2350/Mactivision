@@ -18,6 +18,9 @@ public class DiggerLevelManager : LevelManager
     int digAmount;                  // total amount of presses required; must be > 0, rounds up to nearest 10
     KeyCode digKey;                 // keyboard key used to dig
 
+    public AudioSource bgmPlayer;
+    public AudioClip bgm;
+
     ButtonPressingMetric bpMetric;  // records button pressing data during the game
     MetricJSONWriter metricWriter;  // outputs recording metric (bpMetric) as a json file
     
@@ -92,7 +95,9 @@ public class DiggerLevelManager : LevelManager
         bpMetric.startRecording();
         metricWriter = new MetricJSONWriter("Digger", DateTime.Now); // initialize metric data writer
         gameStartTime = Time.time;
-    
+        bgmPlayer.loop = true;
+        bgmPlayer.clip = bgm;
+        bgmPlayer.Play();
     }
 
     // End game, finish recording metrics

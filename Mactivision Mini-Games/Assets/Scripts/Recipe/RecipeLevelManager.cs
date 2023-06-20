@@ -13,6 +13,9 @@ public class RecipeLevelManager : LevelManager
     public AudioClip plate_up;              // BRRRRRR
     public AudioClip plate_down;            // brrrrrr
 
+    public AudioSource bgmPlayer;
+    public AudioClip bgm;
+
     public GameObject chest;
 
     int uniqueFoods;                         // number of foods to be used in the current game
@@ -157,6 +160,9 @@ public class RecipeLevelManager : LevelManager
         rcMetric.startRecording();
         metricWriter = new MetricJSONWriter("Recipe", DateTime.Now, seed); // initialize metric data writer
         gameStartTime = Time.time;
+        bgmPlayer.loop = true;
+        bgmPlayer.clip = bgm;
+        bgmPlayer.Play();
     }
 
     // End game, stop animations, sounds, physics. Finish recording metrics
