@@ -134,7 +134,8 @@ public class DiggerLevelManager : LevelManager
         if (e.type == EventType.KeyDown && !keysDown.Contains(e.keyCode)) {
             keysDown.Add(e.keyCode);
             if (e.keyCode==digKey) {
-                bpMetric.recordEvent(new ButtonPressingEvent(DateTime.Now, e.keyCode, true));
+                if(lvlState == 2)
+                    bpMetric.recordEvent(new ButtonPressingEvent(DateTime.Now, e.keyCode, true));
                 player.DigDown();
                 DigGround();
             }
