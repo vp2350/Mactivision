@@ -133,15 +133,15 @@ public class DiggerLevelManager : LevelManager
         // We don't want to record when a key is HELD down
         if (e.type == EventType.KeyDown && !keysDown.Contains(e.keyCode)) {
             keysDown.Add(e.keyCode);
-            bpMetric.recordEvent(new ButtonPressingEvent(DateTime.Now, e.keyCode, true));
             if (e.keyCode==digKey) {
+                bpMetric.recordEvent(new ButtonPressingEvent(DateTime.Now, e.keyCode, true));
                 player.DigDown();
                 DigGround();
             }
         // Remove key from list
         } else if (e.type == EventType.KeyUp) {
             keysDown.Remove(e.keyCode);
-            bpMetric.recordEvent(new ButtonPressingEvent(DateTime.Now, e.keyCode, false));
+            //bpMetric.recordEvent(new ButtonPressingEvent(DateTime.Now, e.keyCode, false));
             if (e.keyCode==digKey) player.DigUp();
         }
     }
