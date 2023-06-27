@@ -138,7 +138,7 @@ public class CakeLevelManager : LevelManager
     void StartGame()
     {
         ccMetric.startRecording();
-        metricWriter = new MetricJSONWriter("Feeder", DateTime.Now, seed); // initialize metric data writer
+        metricWriter = new MetricJSONWriter("Cake", DateTime.Now, seed); // initialize metric data writer
         gameStartTime = Time.time;
         bgmPlayer.loop = true;
         bgmPlayer.clip = bgm;

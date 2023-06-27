@@ -1052,7 +1052,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 421961055}
-  - component: {fileID: 421961054}
   - component: {fileID: 421961053}
   - component: {fileID: 421961056}
   m_Layer: 0
@@ -1158,50 +1157,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &421961054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 421961052}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d5b839d39068014898506560b70ca8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  postprocess: {fileID: 1279709807}
-  instructionParent: {fileID: 967719593}
-  instructions:
-  - {fileID: 1783103440}
-  - {fileID: 1792247228}
-  - {fileID: 672102669}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 1020268764}
-  instructionCount: 0
-  countdownText: {fileID: 1417296803}
-  countDoneText: Feed!
-  outroText: {fileID: 1905056724}
-  textBG: {fileID: 691421321}
-  textBG_Main: {fileID: 168657737}
-  textBG_Edge: {fileID: 552814416}
-  textBG_LArm: {fileID: 627708233}
-  textBG_RArm: {fileID: 465225041}
-  sound: {fileID: 421961053}
-  lvlState: 2
-  maxGameTime: 0
-  gameStartTime: 0
-  seed: 
-  outputPath: 
-  monster: {fileID: 0}
-  plate: {fileID: 0}
-  lever: {fileID: 0}
-  dispenser: {fileID: 0}
-  plate_up: {fileID: 8300000, guid: 4802f2c780770204c9a2a2c85ec1a517, type: 3}
-  plate_down: {fileID: 8300000, guid: 0a95c4f2217b29147b75883f351904dd, type: 3}
-  bite_sound: {fileID: 8300000, guid: b22eeec3ff78e924b83a232ee15d9a26, type: 3}
 --- !u!4 &421961055
 Transform:
   m_ObjectHideFlags: 0
