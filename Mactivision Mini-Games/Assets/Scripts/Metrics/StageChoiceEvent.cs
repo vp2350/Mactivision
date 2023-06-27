@@ -8,7 +8,7 @@ public class StageChoiceEvent : AbstractMetricEvent
     // Set of objects that are currently accepted (ie. in Feeder game, set of foods that the monster accepts)
     public List<int> colorsShown { get; }
 
-    public string correct { get; }
+    public bool correct { get; }
 
     // Choice that the user made on _object. If _object is a member of objectsSet, the user wants choice should be true.
     public string choice { get; }
@@ -33,7 +33,7 @@ public class StageChoiceEvent : AbstractMetricEvent
     // Subtracting the two will give the time it took for the user to decide.
     public System.DateTime choiceTime { get; }
 
-    public StageChoiceEvent(System.DateTime eventTime, bool colorChanged, int original, int newColor, string rightChoice, string choice, System.DateTime choiceTime,
+    public StageChoiceEvent(System.DateTime eventTime, bool colorChanged, int original, int newColor, bool rightChoice, string choice, System.DateTime choiceTime,
         int color1, int color2, int color3, int color4, int color5, int color6, int color7, int color8, int color9) : base(eventTime)
     {
         if (choiceTime < eventTime)
@@ -59,7 +59,7 @@ public class StageChoiceEvent : AbstractMetricEvent
         this.color8 = color8;
         this.color9 = color9;
     }
-    public StageChoiceEvent(System.DateTime eventTime, bool colorChanged, int original, int newColor, string rightChoice, string choice, System.DateTime choiceTime,
+    public StageChoiceEvent(System.DateTime eventTime, bool colorChanged, int original, int newColor, bool rightChoice, string choice, System.DateTime choiceTime,
         int color1, int color2, int color3) : base(eventTime)
     {
         if (choiceTime < eventTime)
@@ -85,7 +85,7 @@ public class StageChoiceEvent : AbstractMetricEvent
         color8 = -1;
         color9 = -1;
     }
-    public StageChoiceEvent(System.DateTime eventTime, bool colorChanged, int original, int newColor, string rightChoice, string choice, System.DateTime choiceTime,
+    public StageChoiceEvent(System.DateTime eventTime, bool colorChanged, int original, int newColor, bool rightChoice, string choice, System.DateTime choiceTime,
         int color1, int color2, int color3, int color4, int color5, int color6) : base(eventTime)
     {
         if (choiceTime < eventTime)

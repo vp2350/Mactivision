@@ -230,7 +230,7 @@ public class LookingLevelManager : LevelManager
             // record the choice made
             lcMetric.recordEvent(new LookingChoiceEvent(
                 displayController.choiceStartTime,
-                rightDecision.ToString(),
+                rightDecision,
                 displayController.goodFood,
                 displayController.GetObjectsShown(),
                 recordKey,
