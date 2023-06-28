@@ -31,7 +31,7 @@ public class RecipeChoiceEvent : AbstractMetricEvent
         this.choiceTime = eventTime;
         this.correct = correct;
         this.objectsSet = objectsSet;
-        this._object = _object;
+        this._object = new string[2] { _object[0], _object[1] };
         this.choice = choice;
         this.choiceTime = choiceTime;
     }

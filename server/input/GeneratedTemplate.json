@@ -6,15 +6,15 @@
     "$type": "System.Collections.Generic.List`1[[GameConfig, Battery]], mscorlib",
     "$values": [
       {
-        "$type": "LookingConfig, Battery",
+        "$type": "RecipeConfig, Battery",
         "TestName": null,
-        "Scene": "Looking",
+        "Scene": "Recipe",
         "Seed": null,
+        "MaxGameTime": 30.0,
+        "MaxFoodDispensed": 0,
+        "UniqueFoods": 0,
         "AverageUpdateFrequency": 0.0,
-        "UniqueObjects": 0,
-        "UpdateFreqVariance": 0.0,
-        "MaxFoodDisplayed": 8,
-        "MaxGameTime": 0.0
+        "UpdateFreqVariance": 0.0
       }
     ]
   }
