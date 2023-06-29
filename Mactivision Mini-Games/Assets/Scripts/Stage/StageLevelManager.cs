@@ -294,7 +294,7 @@ public class StageLevelManager : LevelManager
     {
         feedbackGiven = false;
         stageController.SpawnNext(false);
-        StartCoroutine(WaitForCharacters(15f, false));
+        StartCoroutine(WaitForCharacters(9f, false));
     }
 
     void ShowChoices()

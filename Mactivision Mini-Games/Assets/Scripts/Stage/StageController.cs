@@ -106,7 +106,7 @@ public class StageController : MonoBehaviour
 
             Spawn();
             Walk();
-            StartCoroutine(WaitForWalk(10f));
+            StartCoroutine(WaitForWalk(5f));
         }
         else
         {
@@ -157,8 +157,9 @@ public class StageController : MonoBehaviour
     void SpawnOptions()
     {
         Debug.Log("Spawning 2");
-        int randNew = randomSeed.Next(5);
-        if (randNew == 0 || randNew == 1)
+        int randNew = randomSeed.Next(10);
+        if (randNew == 0 || randNew == 1 || randNew == 2
+            || randNew == 3 || randNew == 4)
         {
             randNew = randomSeed.Next(spawnedPlayers.Count);
             GameObject objectToChange = spawnedPlayers[randNew];

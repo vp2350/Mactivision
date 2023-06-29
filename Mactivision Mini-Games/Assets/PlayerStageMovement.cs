@@ -14,7 +14,7 @@ public class PlayerStageMovement : MonoBehaviour
     void Start()
     {
         startTime = Time.time;
-        speed = 5f;
+        speed = 8f;
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class PlayerStageMovement : MonoBehaviour
         float step = speed * Time.deltaTime; // calculate distance to move
         if (Vector2.Distance(transform.position, target) > 0.01f)
         {
-            actor.SetFloat("Velocity", 5);
+            actor.SetFloat("Velocity", 8);
             transform.position = Vector3.MoveTowards(transform.position, target, step);
             if(target.x <= transform.position.x)
             {
