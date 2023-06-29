@@ -287,21 +287,21 @@ public class StageLevelManager : LevelManager
 
     void GiveFeedback()
     {      
-        StartCoroutine(WaitForFeedback(3f));
+        StartCoroutine(WaitForFeedback(2f));
     }
 
     void Prompt()
     {
         feedbackGiven = false;
         stageController.SpawnNext(false);
-        StartCoroutine(WaitForCharacters(9f, false));
+        StartCoroutine(WaitForCharacters(8.25f, false));
     }
 
     void ShowChoices()
     {
         prompting = false;
         stageController.SpawnNext(true);
-        StartCoroutine(WaitForCharacters(4f, true));
+        StartCoroutine(WaitForCharacters(2.5f, true));
     }
     // Wait for the food dispensing animation
     IEnumerator WaitForCharacters(float wait, bool secondDisplay)
