@@ -10,7 +10,7 @@
         "TestName": null,
         "Scene": "Recipe",
         "Seed": null,
-        "MaxGameTime": 30.0,
+        "MaxGameTime": 60.0,
         "MaxFoodDispensed": 0,
         "UniqueFoods": 0,
         "AverageUpdateFrequency": 0.0,

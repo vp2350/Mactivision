@@ -84,7 +84,7 @@ public class RecipeLevelManager : LevelManager
         seed = !String.IsNullOrEmpty(recipeConfig.Seed) ? recipeConfig.Seed : DateTime.Now.ToString(); // if no seed provided, use current DateTime
         maxGameTime = recipeConfig.MaxGameTime > 0 ? recipeConfig.MaxGameTime : Default(90f, "MaxGameTime");
         maxFoodDispensed = recipeConfig.MaxFoodDispensed > 0 ? recipeConfig.MaxFoodDispensed : Default(20, "MaxFoodDispensed");
-        uniqueFoods = recipeConfig.UniqueFoods >= 2 && recipeConfig.UniqueFoods <= dispenser.allFoods.Length ? recipeConfig.UniqueFoods : Default(6, "UniqueFoods");
+        uniqueFoods = recipeConfig.UniqueFoods >= 2 && recipeConfig.UniqueFoods <= dispenser.allFoods.Length ? recipeConfig.UniqueFoods : Default(11, "UniqueFoods");
         avgUpdateFreq = recipeConfig.AverageUpdateFrequency > 0 ? recipeConfig.AverageUpdateFrequency : Default(3f, "AverageUpdateFrequency");
         updateFreqVariance = recipeConfig.UpdateFreqVariance >= 0 && recipeConfig.UpdateFreqVariance <= 1 ? recipeConfig.UpdateFreqVariance : Default(0.3f, "UpdateFreqVariance");
 
