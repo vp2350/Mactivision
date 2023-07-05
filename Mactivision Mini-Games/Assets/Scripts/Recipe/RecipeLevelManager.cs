@@ -213,6 +213,8 @@ public class RecipeLevelManager : LevelManager
                 tiltPlateTo = 33f;
             }
 
+            correct = dispenser.MakeChoice(Input.GetKeyDown(feedKey));
+
             // record the choice made
             rcMetric.recordEvent(new RecipeChoiceEvent(
                 dispenser.choiceStartTime,
@@ -225,7 +227,6 @@ public class RecipeLevelManager : LevelManager
 
             // animate choice and play plate sound
             sound.PlayOneShot(plate_up);
-            correct = dispenser.MakeChoice(Input.GetKeyDown(feedKey));
             StartCoroutine(AnimateChoice(Input.GetKeyDown(feedKey) && !dispenser.MakeChoice(Input.GetKeyDown(feedKey))));
             gameState = GameState.TiltingPlate;
         }

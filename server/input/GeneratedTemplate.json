@@ -11,9 +11,9 @@
         "Scene": "Recipe",
         "Seed": null,
         "MaxGameTime": 60.0,
-        "MaxFoodDispensed": 0,
+        "MaxFoodDispensed": 10,
         "UniqueFoods": 0,
-        "AverageUpdateFrequency": 0.0,
+        "AverageUpdateFrequency": 5.0,
         "UpdateFreqVariance": 0.0
       }
     ]
