@@ -94,14 +94,14 @@ public class CakeLevelManager : LevelManager
         // navigate through the instructions before the game starts
         if (lvlState == 0 && e.type == EventType.KeyUp)
         {
-            if (e.keyCode == KeyCode.B && instructionCount > 0)
+            if (e.keyCode == KeyCode.LeftArrow && instructionCount > 0)
             {
                 ShowInstruction(--instructionCount);
             }
-            else if (e.keyCode == KeyCode.N && instructionCount < instructions.Length)
+            else if (e.keyCode == KeyCode.RightArrow && instructionCount < instructions.Length)
             {
                 ShowInstruction(++instructionCount);
-            }
+            } 
         }
 
         // game is over, go to next game/finish battery
@@ -119,11 +119,15 @@ public class CakeLevelManager : LevelManager
             // begin game, begin recording 
             if (!ccMetric.isRecording) StartGame();
 
-            // game automatically ends after maxGameTime seconds
-            if (Time.time - gameStartTime >= maxGameTime || foodRegistered >= maxFoodDispensed)
+            // game automatically ends after maxGameTime seconds or once all the food is sorted
+            if ((Time.time - gameStartTime >= maxGameTime) || (foodRegistered >= maxFoodDispensed))
             {
-                EndGame();
-                return;
+                //This should ensure that if the game triggers max time it waits for the food to be sorted before ending
+                if (foodRegistered >= maxFoodDispensed)
+                {
+                    EndGame();
+                    return;
+                }
             }
 
             if (!dispenseFirst)

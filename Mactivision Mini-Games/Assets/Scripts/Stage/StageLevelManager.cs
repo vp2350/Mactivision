@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class StageLevelManager : LevelManager
 {
-    KeyCode yesKey = KeyCode.RightShift;   //Left monitor
-    KeyCode noKey = KeyCode.LeftShift;       //Up monitor
+    KeyCode yesKey = KeyCode.C;   //Left monitor
+    KeyCode noKey = KeyCode.N;       //Up monitor
     KeyCode rowOne = KeyCode.Alpha1; //Right monitor
     KeyCode rowTwo = KeyCode.Alpha2;   //Down monitor
     KeyCode rowThree = KeyCode.Alpha3;           //Prompt not displayed on monitors
@@ -177,11 +177,11 @@ public class StageLevelManager : LevelManager
         // navigate through the instructions before the game starts
         if (lvlState == 0 && e.type == EventType.KeyUp)
         {
-            if (e.keyCode == KeyCode.B && instructionCount > 0)
+            if (e.keyCode == KeyCode.LeftArrow && instructionCount > 0)
             {
                 ShowInstruction(--instructionCount);
             }
-            else if (e.keyCode == KeyCode.N && instructionCount < instructions.Length)
+            else if (e.keyCode == KeyCode.RightArrow && instructionCount < instructions.Length)
             {
                 ShowInstruction(++instructionCount);
             }

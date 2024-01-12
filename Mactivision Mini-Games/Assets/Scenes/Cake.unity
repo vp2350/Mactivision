@@ -374,16 +374,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128535985}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 672102670}
+  m_Father: {fileID: 1792247229}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1130, y: 401}
+  m_AnchoredPosition: {x: 878, y: 398}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &128535987
@@ -525,7 +525,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.020987868, y: 0.010535002}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -536,7 +536,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9782617, y: 1.1089835}
+  m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &129218434
 MonoBehaviour:
@@ -819,10 +819,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Line the sorter up with the respective foods<line-height=35>
+  m_text: 'Make sure to choose the right bin for each item!<line-height=35>
 
     <size=20>Press
-    B to go back or N to start feeding!</size></line-height>'
+    [<-] to go back or [->] to start the game!</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
@@ -1190,7 +1190,6 @@ MonoBehaviour:
   instructions:
   - {fileID: 1783103440}
   - {fileID: 1792247228}
-  - {fileID: 672102669}
   - {fileID: 1020268764}
   instructionCount: 5
   countdownText: {fileID: 1417296803}
@@ -2045,16 +2044,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 570766417}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 672102670}
+  m_Father: {fileID: 1792247229}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1130, y: 561}
+  m_AnchoredPosition: {x: 878, y: 558}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &570766419
@@ -2129,7 +2128,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1279.4625, y: 957}
+  m_AnchoredPosition: {x: 1289, y: 775}
   m_SizeDelta: {x: 343.5752, y: 94.4096}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &592869517
@@ -2154,7 +2153,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Sort the foods!<line-height=35>
 
-    <size=20>Press N to go next</size></line-height>'
+    <size=20>Press [->] to for next slide</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
@@ -2417,8 +2416,6 @@ Transform:
   m_Children:
   - {fileID: 1137765547}
   - {fileID: 875116149}
-  - {fileID: 570766418}
-  - {fileID: 128535986}
   m_Father: {fileID: 967719594}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2662,11 +2659,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Sort the foods into their respective food groups: desserts, entrees and
-    raw fruits/vegetables<line-height=35>
+  m_text: 'Use the up and down arrow keys to line up the sorting bins with the conveyor
+    belt.<line-height=35>
 
-    <size=20>Press B to go back or N to
-    go next</size></line-height>'
+    <size=20>Press [<-] or [->] to move slides</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
@@ -3074,7 +3070,7 @@ RectTransform:
   m_LocalScale: {x: 3.2, y: 3.2, z: 3.2}
   m_Children: []
   m_Father: {fileID: 1792247229}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3358,7 +3354,7 @@ RectTransform:
   m_LocalScale: {x: 3.2, y: 3.2, z: 3.2}
   m_Children: []
   m_Father: {fileID: 1792247229}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4512,7 +4508,7 @@ MonoBehaviour:
   m_text: 'Use the up and down arrow keys to move the sorter up and down<line-height=35>
 
     <size=20>Press
-    B to go back or N to go next</size></line-height>'
+    [<-] or [->] to move slides</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
@@ -6378,7 +6374,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.031481862, y: -0.027104259}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -6389,7 +6385,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9572737, y: 1.1511228}
+  m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &1556186056
 MonoBehaviour:
@@ -6939,7 +6935,7 @@ RectTransform:
   m_LocalScale: {x: 3.2, y: 3.2, z: 3.2}
   m_Children: []
   m_Father: {fileID: 1792247229}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7364,7 +7360,6 @@ Transform:
   m_LocalScale: {x: 0.3125, y: 0.3125, z: 0.3125}
   m_Children:
   - {fileID: 592869516}
-  - {fileID: 1867339771}
   m_Father: {fileID: 967719594}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7397,6 +7392,8 @@ Transform:
   m_Children:
   - {fileID: 716708694}
   - {fileID: 874559548}
+  - {fileID: 570766418}
+  - {fileID: 128535986}
   - {fileID: 1725923487}
   - {fileID: 853158072}
   - {fileID: 894702187}
@@ -7607,81 +7604,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1867339770
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1867339771}
-  - component: {fileID: 1867339773}
-  - component: {fileID: 1867339772}
-  m_Layer: 0
-  m_Name: image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1867339771
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1867339770}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1783103441}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1278, y: 502}
-  m_SizeDelta: {x: 250, y: 600}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1867339772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1867339770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: eef9dbbab5fd69e4895d1b622f47fa4e, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1867339773
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1867339770}
-  m_CullTransparentMesh: 1
 --- !u!1 &1867536967
 GameObject:
   m_ObjectHideFlags: 0
@@ -8310,7 +8232,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.020988166, y: 0.010535002}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -8321,7 +8243,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.8943096, y: 1.1511233}
+  m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &1937774618
 MonoBehaviour:
@@ -9219,6 +9141,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4976593253165951369, guid: ffe92af8a479341628333d9c76dc6aba, type: 3}
+      propertyPath: m_Size.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976593253165951369, guid: ffe92af8a479341628333d9c76dc6aba, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4976593253165951371, guid: ffe92af8a479341628333d9c76dc6aba, type: 3}
       propertyPath: m_RootOrder
       value: 3

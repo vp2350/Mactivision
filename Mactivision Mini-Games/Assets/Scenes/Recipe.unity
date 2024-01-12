@@ -1246,7 +1246,7 @@ RectTransform:
   m_LocalScale: {x: 1.0000114, y: 1.0000114, z: 1.0000114}
   m_Children: []
   m_Father: {fileID: 499327947}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1868,7 +1868,7 @@ RectTransform:
   m_LocalScale: {x: 1.0000114, y: 1.0000114, z: 1.0000114}
   m_Children: []
   m_Father: {fileID: 499327947}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2969,11 +2969,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The order of the dispensed candies does not matter as long as it is the
-    right combination<line-height=35>
+  m_text: 'As long as they are the right candies, the order does not matter.<line-height=35>
 
-    <size=20>Press B to go back or N to go
-    next</size></line-height>'
+    <size=20>Press
+    [<-] or [->] to move slides</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
@@ -3380,7 +3379,7 @@ RectTransform:
   m_LocalScale: {x: 1.0000114, y: 1.0000114, z: 1.0000114}
   m_Children: []
   m_Father: {fileID: 499327947}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3686,7 +3685,6 @@ Transform:
   m_Children:
   - {fileID: 387552469}
   - {fileID: 1730901668}
-  - {fileID: 1704495373}
   - {fileID: 1245049272}
   - {fileID: 552570065}
   - {fileID: 267451186}
@@ -3755,10 +3753,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Fill the chest with the right candies!<line-height=35>
+  m_text: 'Pack up the candies!<line-height=35>
 
-    <size=20>Press
-    N to go next</size></line-height>'
+    <size=20>Press [->] for next
+    slide</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
@@ -3967,7 +3965,7 @@ RectTransform:
   m_LocalScale: {x: 1.0000114, y: 1.0000114, z: 1.0000114}
   m_Children: []
   m_Father: {fileID: 499327947}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4038,7 +4036,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563448690}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.0000116, y: 1.0000116, z: 1.0000116}
   m_Children: []
   m_Father: {fileID: 1406986741}
@@ -4046,7 +4044,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1295, y: 660}
+  m_AnchoredPosition: {x: 1290.0001, y: 390.99997}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &563448692
@@ -4144,10 +4142,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The current requirement may change every few turns!<line-height=35>
+  m_text: 'Pay attention to the monitor - it may change the candies you are looking
+    for during the game!<line-height=35>
 
-    <size=20>Press
-    B to go back or N to go next</size></line-height>'
+    <size=20>Press [<-] to go back or [->]
+    to start the game!</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
@@ -5618,10 +5617,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Candies in front of a green monitor indicate the current combination needed<line-height=35>
+  m_text: 'The monitor will show you what candies you are packing!<line-height=35>
 
     <size=20>Press
-    B to go back or N to go next</size></line-height>'
+    [<-] or [->] to move slides</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
@@ -6322,7 +6321,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1294.9999, y: 716}
+  m_AnchoredPosition: {x: 1290, y: 447}
   m_SizeDelta: {x: 275, y: 165}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &963698793
@@ -7049,7 +7048,7 @@ RectTransform:
   m_LocalScale: {x: 1.0000114, y: 1.0000114, z: 1.0000114}
   m_Children: []
   m_Father: {fileID: 499327947}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7245,7 +7244,6 @@ MonoBehaviour:
   - {fileID: 499327946}
   - {fileID: 998509920}
   - {fileID: 1406986740}
-  - {fileID: 664486695}
   instructionCount: 5
   countdownText: {fileID: 233214651}
   countDoneText: Start!
@@ -7506,7 +7504,7 @@ RectTransform:
   m_LocalScale: {x: 1.0000114, y: 1.0000114, z: 1.0000114}
   m_Children: []
   m_Father: {fileID: 499327947}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8408,9 +8406,10 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.0000114, y: 1.0000114, z: 1.0000114}
-  m_Children: []
+  m_Children:
+  - {fileID: 1704495373}
   m_Father: {fileID: 499327947}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9308,7 +9307,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1239.9999, y: 718}
+  m_AnchoredPosition: {x: 1235, y: 448.99997}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1403624528
@@ -9932,10 +9931,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Only the current food combination goes into the chest. Remember the current
-    combination!<line-height=35>
+  m_text: 'When you see the right candies, press the RIGHT ARROW KEY to pack them
+    in the chest.<line-height=35>
 
-    <size=20>Press B to go back or N to go next</size></line-height>'
+    <size=20>Press [<-] or [->] to move slides</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
@@ -11395,14 +11394,14 @@ RectTransform:
   m_GameObject: {fileID: 1704495372}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000114, y: 1.0000114, z: 1.0000114}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 499327947}
-  m_RootOrder: 2
+  m_Father: {fileID: 1245049272}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1005.00006, y: 533.5303}
+  m_AnchoredPosition: {x: -0.000061035156, y: -55.99933}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1704495374
@@ -11838,7 +11837,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1350.9998, y: 718}
+  m_AnchoredPosition: {x: 1345.9999, y: 448.99997}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1781782666
@@ -12149,7 +12148,7 @@ RectTransform:
   m_LocalScale: {x: 1.0000114, y: 1.0000114, z: 1.0000114}
   m_Children: []
   m_Father: {fileID: 499327947}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12435,10 +12434,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Use the RIGHT arrow key to STUFF the chest and the LEFT arrow to DISCARD
-    the candy<line-height=35>
+  m_text: 'When you see the right candies, press the RIGHT ARROW KEY to pack them
+    in the chest.<line-height=35>
 
-    <size=20>Press B to go back or N to start!</size></line-height>'
+    <size=20>Press [<-] or [->] to move slides</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
@@ -12756,10 +12755,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Any other combination goes into the bin!<line-height=35>
+  m_text: 'Throw wrong candy into the bin using the LEFT ARROW KEY<line-height=35>
 
     <size=20>Press
-    B to go back or N to go next</size></line-height>'
+    [<-] or [->] to move slides</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}

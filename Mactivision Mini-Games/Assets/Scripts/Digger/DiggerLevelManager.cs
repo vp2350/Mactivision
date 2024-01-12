@@ -117,7 +117,16 @@ public class DiggerLevelManager : LevelManager
     {
         Event e = Event.current;
         // start level when user presses `digKey`
-        if (lvlState==0 && e.keyCode==digKey) ShowInstruction(++instructionCount);
+        if (lvlState==0 && e.type==EventType.KeyUp)
+        {
+            if (e.keyCode==KeyCode.RightArrow && instructionCount < instructions.Length)
+            {
+                ShowInstruction(++instructionCount);
+            } else if (e.keyCode==KeyCode.LeftArrow && instructionCount > 0) 
+            {
+                ShowInstruction(--instructionCount);
+            }
+        }
 
         // record every key press and key release, regardless if it's `digKey`
         if (lvlState==2 && e.keyCode!=KeyCode.None) KeyEvent(e);

@@ -648,10 +648,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press the respective arrow keys to select the right object<line-height=35>
+  m_text: 'Use the ARROW KEYS to select the item you are looking for.<line-height=35>
 
     <size=20>Press
-    B to go back or N to go next</size></line-height>'
+    [<-] or [->] to move slides</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
@@ -910,7 +910,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &299740878
 RectTransform:
   m_ObjectHideFlags: 0
@@ -927,7 +927,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1343, y: 484}
+  m_AnchoredPosition: {x: 1343, y: 412}
   m_SizeDelta: {x: 4, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &299740879
@@ -1107,10 +1107,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The item you are looking for may change, only look for the latest one!<line-height=35>
+  m_text: 'Pay attention to the top-right monitor, it may give you a new item to
+    look for during the game!<line-height=35>
 
-    <size=20>Press
-    B to go back or N to go next</size></line-height>'
+    <size=20>Press [<-] to go back
+    or [->] to start game!</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
@@ -1630,11 +1631,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You get between $50 to $100 for every right decision depending on how
-    fast you respond. Make as much money as you can!<line-height=35>
+  m_text: 'You win money for correct answers. The faster you answer, the more money
+    you win!<line-height=35>
 
-    <size=20>Press
-    B to go back or N to start!</size></line-height>'
+    <size=20>Press [<-] or [->] to move slides</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
@@ -2008,7 +2008,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &531082233
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2025,7 +2025,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1494, y: 941}
+  m_AnchoredPosition: {x: 1552, y: 903}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &531082234
@@ -2601,10 +2601,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Find the object displayed on the prompter!<line-height=35>
+  m_text: 'Find the object!<line-height=35>
 
-    <size=20>Press
-    N to go next</size></line-height>'
+    <size=20>Press [->] to go next slide</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
@@ -3828,10 +3827,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The other monitors will then display the options<line-height=35>
+  m_text: 'After one second the monitor image will disappear, and four items will
+    appear on screen.<line-height=35>
 
-    <size=20>Press
-    B to go back or N to go next</size></line-height>'
+    <size=20>Press [<-] or [->] to move slides</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
@@ -4212,7 +4211,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1282, y: 552}
+  m_AnchoredPosition: {x: 1282, y: 479.99994}
   m_SizeDelta: {x: 17, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1366477013
@@ -5092,11 +5091,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The monitor on the top-right will display the object the player is currently
-    looking for. Remember the current object!<line-height=35>
+  m_text: 'The top-right monitor will show you the item you are looking for (like
+    the apple below!)<line-height=35>
 
-    <size=20>Press
-    B to go back or N to go next</size></line-height>'
+    <size=20>Press [<-] or [->] to move slides</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
@@ -5207,8 +5205,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1282, y: 552}
-  m_SizeDelta: {x: 17, y: 8}
+  m_AnchoredPosition: {x: 1284, y: 442}
+  m_SizeDelta: {x: 15.184, y: 7.146}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1607639208
 MonoBehaviour:
@@ -5489,6 +5487,7 @@ MonoBehaviour:
   - {fileID: 763264588}
   - {fileID: 1499067064}
   - {fileID: 875552198}
+  - {fileID: 371274951}
   instructionCount: 0
   countdownText: {fileID: 397547774}
   countDoneText: Start!
@@ -6260,7 +6259,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1284, y: 396}
+  m_AnchoredPosition: {x: 1284, y: 323.99994}
   m_SizeDelta: {x: 10.8, y: 19.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1944586181
@@ -6971,10 +6970,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press X if the object you are looking for is not on display<line-height=35>
+  m_text: 'If the object you are looking for is not there, press X<line-height=35>
 
     <size=20>Press
-    B to go back or N to go next</size></line-height>'
+    [<-] or [->] to move slides</size></line-height>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
   m_sharedMaterial: {fileID: 7052846941345835174, guid: 1f1bd4f65deff6b429253f9c3a2178dd, type: 2}
